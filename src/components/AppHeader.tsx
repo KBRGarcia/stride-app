@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
   name: {
     width: 120,
     height: 30,
+    marginLeft: -35,
   },
   toggleButton: {
     width: 40,
