@@ -10,6 +10,10 @@ import { setNotificationHandler } from 'expo-notifications/build/NotificationsHa
 import { scheduleNotificationAsync } from 'expo-notifications/build/scheduleNotificationAsync';
 import { setNotificationChannelAsync } from 'expo-notifications/build/setNotificationChannelAsync';
 
+import { shouldConfigureAndroidChannels } from './notificationsSupport';
+
+const REST_CHANNEL_ID = 'rest-timer';
+
 let isHandlerConfigured = false;
 
 function configureNotificationHandler(): void {
@@ -29,8 +33,30 @@ function configureNotificationHandler(): void {
   isHandlerConfigured = true;
 }
 
+async function ensureAndroidRestChannel(): Promise<string | undefined> {
+  if (!shouldConfigureAndroidChannels()) {
+    return undefined;
+  }
+
+  try {
+    await setNotificationChannelAsync(REST_CHANNEL_ID, {
+      name: 'Descanso',
+      importance: AndroidImportance.HIGH,
+      sound: 'default',
+    });
+    return REST_CHANNEL_ID;
+  } catch (error) {
+    console.warn('[notifications] No se pudo crear el canal Android:', error);
+    return undefined;
+  }
+}
+
 export async function ensureNotificationPermissions(): Promise<boolean> {
   configureNotificationHandler();
+
+  if (Platform.OS === 'android') {
+    await ensureAndroidRestChannel();
+  }
 
   const { status: existingStatus } = await getPermissionsAsync();
 
@@ -49,20 +75,14 @@ export async function scheduleRestEndNotification(
   configureNotificationHandler();
 
   try {
-    if (Platform.OS === 'android') {
-      await setNotificationChannelAsync('rest-timer', {
-        name: 'Descanso',
-        importance: AndroidImportance.HIGH,
-        sound: 'default',
-      });
-    }
+    const channelId = await ensureAndroidRestChannel();
 
     return await scheduleNotificationAsync({
       content: {
         title: 'Descanso terminado',
         body: `Prepárate: ${nextExerciseName}`,
         sound: true,
-        ...(Platform.OS === 'android' && { channelId: 'rest-timer' }),
+        ...(channelId && { channelId }),
       },
       trigger: {
         type: SchedulableTriggerInputTypes.DATE,

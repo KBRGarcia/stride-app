@@ -1,7 +1,7 @@
 import type { Recommendation, RoutinesData, UserProfile } from '../models/types';
 import {
   getAgeRangeId,
-  getWeightRangeId,
+  getWeightRangesToTry,
   inferAgeRangeFromBounds,
   inferWeightRangeFromBounds,
   type AgeRangeId,
@@ -88,15 +88,21 @@ export function findMatchingRecommendation(
 ): Recommendation | null {
   const age = calculateAge(profile.birthDate, referenceDate);
   const ageRange = getAgeRangeId(age);
-  const weightRange = getWeightRangeId(profile.weight);
+  const weightRangesToTry = getWeightRangesToTry(profile.weight);
 
-  if (!ageRange || !weightRange) {
+  if (!ageRange || weightRangesToTry.length === 0) {
     return null;
   }
 
-  return (
-    routines.find((recommendation) =>
+  for (const weightRange of weightRangesToTry) {
+    const match = routines.find((recommendation) =>
       matchesRecommendation(recommendation, ageRange, weightRange, profile.gender)
-    ) ?? null
-  );
+    );
+
+    if (match) {
+      return match;
+    }
+  }
+
+  return null;
 }

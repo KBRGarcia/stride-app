@@ -96,6 +96,30 @@ export function getWeightRangeId(weightKg: number): WeightRangeId | null {
   return '>=90';
 }
 
+/** Límite inferior (inclusivo) del tramo 70–79 kg cuando no hay rutina `70-80`. */
+export const WEIGHT_70_80_SPLIT_KG = 75;
+
+/**
+ * Rangos de peso a probar en orden de preferencia.
+ * Entre 70–79 kg: intenta `70-80` primero; si no hay rutina, usa `60-70` (70–74) o `80-89` (75–79).
+ */
+export function getWeightRangesToTry(weightKg: number): WeightRangeId[] {
+  const primary = getWeightRangeId(weightKg);
+
+  if (!primary) {
+    return [];
+  }
+
+  if (primary !== '70-80') {
+    return [primary];
+  }
+
+  const fallback: WeightRangeId =
+    weightKg < WEIGHT_70_80_SPLIT_KG ? '60-70' : '80-89';
+
+  return ['70-80', fallback];
+}
+
 /** Interpreta `ageMin`/`ageMax` del JSON legado (sin `ageRange`). */
 export function inferAgeRangeFromBounds(ageMin: number, ageMax: number): AgeRangeId | null {
   if (ageMax <= 14) {

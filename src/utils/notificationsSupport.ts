@@ -10,6 +10,11 @@ export function isExpoGoAndroid(): boolean {
   return isRunningInExpoGo() && Platform.OS === 'android';
 }
 
+/** El gestor de canales Android solo está disponible en development/production builds. */
+export function shouldConfigureAndroidChannels(): boolean {
+  return Platform.OS === 'android' && !isRunningInExpoGo();
+}
+
 export function canScheduleLocalNotifications(): boolean {
   return true;
 }
