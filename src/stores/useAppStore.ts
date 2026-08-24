@@ -1,8 +1,9 @@
 import { create } from 'zustand';
 
-import routines from '../data/routines.json';
-import type { DayOfWeek, Recommendation, RoutinesData, UserProfile } from '../models/types';
+import type { DayOfWeek, Recommendation, UserProfile } from '../models/types';
 import { findMatchingRecommendation } from '../utils/routineMatcher';
+import { getRoutinesForLocation } from '../utils/routinesData';
+import { isSameCalendarWeek } from '../utils/weekSchedule';
 import {
   clearProfile,
   getCompletedWorkoutDates,
@@ -23,6 +24,10 @@ interface AppState {
   isDayCompleted: (day: DayOfWeek) => boolean;
 }
 
+function matchProfile(profile: UserProfile): Recommendation | null {
+  return findMatchingRecommendation(profile, getRoutinesForLocation(profile.workoutLocation));
+}
+
 export const useAppStore = create<AppState>((set, get) => ({
   isHydrated: false,
   profile: null,
@@ -35,9 +40,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       getCompletedWorkoutDates(),
     ]);
 
-    const recommendation = profile
-      ? findMatchingRecommendation(profile, routines as RoutinesData)
-      : null;
+    const recommendation = profile ? matchProfile(profile) : null;
 
     set({
       isHydrated: true,
@@ -48,7 +51,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   setProfile: async (profile) => {
-    const recommendation = findMatchingRecommendation(profile, routines as RoutinesData);
+    const recommendation = matchProfile(profile);
 
     if (!recommendation) {
       return false;
@@ -68,7 +71,10 @@ export const useAppStore = create<AppState>((set, get) => ({
     });
   },
 
-  isDayCompleted: (day) => get().completedWorkouts.some((entry) => entry.day === day),
+  isDayCompleted: (day) =>
+    get().completedWorkouts.some(
+      (entry) => entry.day === day && isSameCalendarWeek(entry.date)
+    ),
 }));
 
 /** Expuesto para WorkoutScreen u otras pantallas que registren progreso. */

@@ -1,24 +1,39 @@
 import type { Recommendation, RoutinesData, UserProfile } from '../models/types';
+import {
+  getAgeRangeId,
+  getWeightRangeId,
+  inferAgeRangeFromBounds,
+  inferWeightRangeFromBounds,
+  type AgeRangeId,
+  type WeightRangeId,
+} from './profileRanges';
 
-/** Puntuación de especificidad: a menor valor, rango más estrecho (más específico). */
-function getSpecificityScore(recommendation: Recommendation): number {
-  const ageSpan = recommendation.ageMax - recommendation.ageMin;
-  const weightSpan = recommendation.weightMax - recommendation.weightMin;
-  return ageSpan + weightSpan;
+export function getRecommendationAgeRange(recommendation: Recommendation): AgeRangeId | null {
+  return recommendation.ageRange ?? inferAgeRangeFromBounds(recommendation.ageMin, recommendation.ageMax);
+}
+
+export function getRecommendationWeightRange(
+  recommendation: Recommendation
+): WeightRangeId | null {
+  return (
+    recommendation.weightRange ??
+    inferWeightRangeFromBounds(recommendation.weightMin, recommendation.weightMax)
+  );
 }
 
 function matchesRecommendation(
   recommendation: Recommendation,
-  age: number,
-  weight: number,
+  ageRange: AgeRangeId,
+  weightRange: WeightRangeId,
   gender: UserProfile['gender']
 ): boolean {
+  const recommendationAgeRange = getRecommendationAgeRange(recommendation);
+  const recommendationWeightRange = getRecommendationWeightRange(recommendation);
+
   return (
     recommendation.gender === gender &&
-    age >= recommendation.ageMin &&
-    age <= recommendation.ageMax &&
-    weight >= recommendation.weightMin &&
-    weight <= recommendation.weightMax
+    recommendationAgeRange === ageRange &&
+    recommendationWeightRange === weightRange
   );
 }
 
@@ -64,22 +79,24 @@ export function calculateAge(
 }
 
 /**
- * Busca la recomendación más específica que coincida con el perfil del usuario.
- * Ordena por rangos más estrechos (edad + peso) y devuelve el primer match.
+ * Busca la recomendación que coincide con el rango de edad y peso del perfil.
  */
 export function findMatchingRecommendation(
   profile: UserProfile,
-  routines: RoutinesData
+  routines: RoutinesData,
+  referenceDate: Date = new Date()
 ): Recommendation | null {
-  const age = calculateAge(profile.birthDate);
+  const age = calculateAge(profile.birthDate, referenceDate);
+  const ageRange = getAgeRangeId(age);
+  const weightRange = getWeightRangeId(profile.weight);
 
-  const sortedBySpecificity = [...routines].sort(
-    (a, b) => getSpecificityScore(a) - getSpecificityScore(b)
-  );
+  if (!ageRange || !weightRange) {
+    return null;
+  }
 
   return (
-    sortedBySpecificity.find((recommendation) =>
-      matchesRecommendation(recommendation, age, profile.weight, profile.gender)
+    routines.find((recommendation) =>
+      matchesRecommendation(recommendation, ageRange, weightRange, profile.gender)
     ) ?? null
   );
 }

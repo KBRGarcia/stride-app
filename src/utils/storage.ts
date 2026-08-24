@@ -1,10 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import type { DayOfWeek, UserProfile } from '../models/types';
+import type { ColorScheme } from '../theme/types';
 
 const STORAGE_KEYS = {
   profile: '@stride/profile',
   completedDates: '@stride/completed_dates',
+  colorScheme: '@stride/color_scheme',
 } as const;
 
 /** Fecha ISO (`YYYY-MM-DD`) en la que se completó un día de rutina. */
@@ -19,7 +21,17 @@ export async function getProfile(): Promise<UserProfile | null> {
     return null;
   }
 
-  return JSON.parse(raw) as UserProfile;
+  const parsed = JSON.parse(raw) as Partial<UserProfile>;
+  if (!parsed.birthDate || !parsed.weight || !parsed.gender) {
+    return null;
+  }
+
+  return {
+    birthDate: parsed.birthDate,
+    weight: parsed.weight,
+    gender: parsed.gender,
+    workoutLocation: parsed.workoutLocation === 'gym' ? 'gym' : 'home',
+  };
 }
 
 export async function saveProfile(profile: UserProfile): Promise<void> {
@@ -46,4 +58,17 @@ export async function clearProfile(): Promise<void> {
     STORAGE_KEYS.profile,
     STORAGE_KEYS.completedDates,
   ]);
+}
+
+export async function getColorScheme(): Promise<ColorScheme | null> {
+  const raw = await AsyncStorage.getItem(STORAGE_KEYS.colorScheme);
+  if (raw === 'light' || raw === 'dark') {
+    return raw;
+  }
+
+  return null;
+}
+
+export async function saveColorScheme(colorScheme: ColorScheme): Promise<void> {
+  await AsyncStorage.setItem(STORAGE_KEYS.colorScheme, colorScheme);
 }

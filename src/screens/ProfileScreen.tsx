@@ -1,26 +1,27 @@
-import DateTimePicker, {
-  DateTimePickerEvent,
-} from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   Alert,
+  KeyboardAvoidingView,
   Platform,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
   View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
-import type { Gender } from '../models/types';
-import type { RootStackParamList } from '../navigation/types';
+import { AppShell } from '../components/AppShell';
+import { BirthDatePicker } from '../components/BirthDatePicker';
 import { DevResetProfileButton } from '../components/DevResetProfileButton';
-import { calculateAge } from '../utils/routineMatcher';
+import { useTheme } from '../hooks/useTheme';
+import type { Gender, WorkoutLocation } from '../models/types';
+import type { RootStackParamList } from '../navigation/types';
 import { useAppStore } from '../stores/useAppStore';
+import { MIN_MATCHABLE_WEIGHT_KG } from '../utils/profileRanges';
+import { calculateAge } from '../utils/routineMatcher';
 
 type ProfileNavigation = NativeStackNavigationProp<RootStackParamList, 'Profile'>;
 
@@ -36,22 +37,100 @@ function formatBirthDate(date: Date): string {
 export default function ProfileScreen() {
   const navigation = useNavigation<ProfileNavigation>();
   const setProfile = useAppStore((state) => state.setProfile);
+  const { colors } = useTheme();
 
   const [gender, setGender] = useState<Gender | null>(null);
+  const [workoutLocation, setWorkoutLocation] = useState<WorkoutLocation | null>(null);
   const [weight, setWeight] = useState('');
   const [birthDate, setBirthDate] = useState(DEFAULT_BIRTH_DATE);
-  const [showDatePicker, setShowDatePicker] = useState(Platform.OS === 'ios');
   const [isSaving, setIsSaving] = useState(false);
 
-  const handleDateChange = (_event: DateTimePickerEvent, selectedDate?: Date) => {
-    if (Platform.OS === 'android') {
-      setShowDatePicker(false);
-    }
-
-    if (selectedDate) {
-      setBirthDate(selectedDate);
-    }
-  };
+  const styles = useMemo(
+    () =>
+      StyleSheet.create({
+        flex: { flex: 1 },
+        content: {
+          flexGrow: 1,
+          paddingHorizontal: 24,
+          paddingTop: 16,
+          paddingBottom: 24,
+        },
+        title: {
+          fontSize: 28,
+          fontWeight: '700',
+          color: colors.text,
+          marginBottom: 8,
+        },
+        subtitle: {
+          fontSize: 15,
+          color: colors.textMuted,
+          lineHeight: 22,
+          marginBottom: 28,
+        },
+        label: {
+          fontSize: 14,
+          fontWeight: '600',
+          color: colors.textSecondary,
+          marginBottom: 10,
+        },
+        genderRow: {
+          flexDirection: 'row',
+          gap: 12,
+          marginBottom: 24,
+        },
+        locationColumn: {
+          gap: 12,
+          marginBottom: 24,
+        },
+        genderButton: {
+          flex: 1,
+          borderWidth: 1,
+          borderColor: colors.border,
+          borderRadius: 12,
+          paddingVertical: 14,
+          alignItems: 'center',
+          backgroundColor: colors.inputBackground,
+        },
+        genderButtonActive: {
+          borderColor: colors.primary,
+          backgroundColor: colors.primaryActive,
+        },
+        genderText: {
+          color: colors.textSecondary,
+          fontWeight: '600',
+        },
+        genderTextActive: {
+          color: colors.primaryText,
+        },
+        input: {
+          borderWidth: 1,
+          borderColor: colors.border,
+          backgroundColor: colors.inputBackground,
+          borderRadius: 12,
+          paddingHorizontal: 16,
+          paddingVertical: 14,
+          color: colors.text,
+          fontSize: 16,
+          marginBottom: 24,
+        },
+        saveButton: {
+          marginTop: 8,
+          backgroundColor: colors.primary,
+          borderRadius: 12,
+          paddingVertical: 16,
+          alignItems: 'center',
+        },
+        saveButtonDisabled: {
+          opacity: 0.6,
+        },
+        saveButtonText: {
+          color: colors.primaryText,
+          fontSize: 16,
+          fontWeight: '700',
+        },
+      }),
+    [colors]
+  );
 
   const handleSave = async () => {
     if (!gender) {
@@ -59,9 +138,22 @@ export default function ProfileScreen() {
       return;
     }
 
+    if (!workoutLocation) {
+      Alert.alert('Perfil incompleto', 'Selecciona el tipo de rutina que deseas.');
+      return;
+    }
+
     const parsedWeight = Number(weight.replace(',', '.'));
     if (!weight.trim() || Number.isNaN(parsedWeight) || parsedWeight <= 0) {
       Alert.alert('Peso inválido', 'Introduce un peso válido en kilogramos.');
+      return;
+    }
+
+    if (parsedWeight < MIN_MATCHABLE_WEIGHT_KG) {
+      Alert.alert(
+        'Peso fuera de rango',
+        `Introduce un peso de ${MIN_MATCHABLE_WEIGHT_KG} kg o más.`
+      );
       return;
     }
 
@@ -78,6 +170,7 @@ export default function ProfileScreen() {
 
     const saved = await setProfile({
       gender,
+      workoutLocation,
       weight: parsedWeight,
       birthDate: birthDateIso,
     });
@@ -87,7 +180,7 @@ export default function ProfileScreen() {
     if (!saved) {
       Alert.alert(
         'Sin rutina disponible',
-        'No encontramos una rutina para tu perfil. Ajusta peso o fecha de nacimiento.'
+        'Aún no hay una rutina en casa o gimnasio para esa combinación de edad y peso. Prueba otros valores.'
       );
       return;
     }
@@ -96,174 +189,112 @@ export default function ProfileScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="light" />
-      <View style={styles.content}>
-        <Text style={styles.title}>Tu perfil</Text>
-        <Text style={styles.subtitle}>
-          Necesitamos estos datos para recomendarte la rutina semanal ideal.
-        </Text>
-
-        <Text style={styles.label}>Género</Text>
-        <View style={styles.genderRow}>
-          <Pressable
-            style={[styles.genderButton, gender === 'male' && styles.genderButtonActive]}
-            onPress={() => setGender('male')}
-          >
-            <Text
-              style={[styles.genderText, gender === 'male' && styles.genderTextActive]}
-            >
-              Hombre
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[styles.genderButton, gender === 'female' && styles.genderButtonActive]}
-            onPress={() => setGender('female')}
-          >
-            <Text
-              style={[styles.genderText, gender === 'female' && styles.genderTextActive]}
-            >
-              Mujer
-            </Text>
-          </Pressable>
-        </View>
-
-        <Text style={styles.label}>Peso (kg)</Text>
-        <TextInput
-          style={styles.input}
-          value={weight}
-          onChangeText={setWeight}
-          keyboardType="decimal-pad"
-          placeholder="Ej. 70"
-          placeholderTextColor="#64748b"
-        />
-
-        <Text style={styles.label}>Fecha de nacimiento</Text>
-        {Platform.OS === 'android' && (
-          <Pressable style={styles.dateButton} onPress={() => setShowDatePicker(true)}>
-            <Text style={styles.dateButtonText}>{formatBirthDate(birthDate)}</Text>
-          </Pressable>
-        )}
-        {showDatePicker && (
-          <DateTimePicker
-            value={birthDate}
-            mode="date"
-            display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-            maximumDate={new Date()}
-            onChange={handleDateChange}
-          />
-        )}
-
-        <Pressable
-          style={[styles.saveButton, isSaving && styles.saveButtonDisabled]}
-          onPress={handleSave}
-          disabled={isSaving}
+    <AppShell>
+      <KeyboardAvoidingView
+        style={styles.flex}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      >
+        <ScrollView
+          contentContainerStyle={styles.content}
+          keyboardShouldPersistTaps="handled"
         >
-          <Text style={styles.saveButtonText}>{isSaving ? 'Guardando...' : 'Guardar'}</Text>
-        </Pressable>
+          <Text style={styles.title}>Tu perfil</Text>
+          <Text style={styles.subtitle}>
+            Indica dónde entrenarás y tus datos personales. Stride elige la rutina según el entorno,
+            rangos de edad y peso.
+          </Text>
 
-        <DevResetProfileButton
-          onAfterReset={() => {
-            setGender(null);
-            setWeight('');
-            setBirthDate(DEFAULT_BIRTH_DATE);
-          }}
-        />
-      </View>
-    </SafeAreaView>
+          <Text style={styles.label}>Género</Text>
+          <View style={styles.genderRow}>
+            <Pressable
+              style={[styles.genderButton, gender === 'male' && styles.genderButtonActive]}
+              onPress={() => setGender('male')}
+            >
+              <Text
+                style={[styles.genderText, gender === 'male' && styles.genderTextActive]}
+              >
+                Hombre
+              </Text>
+            </Pressable>
+            <Pressable
+              style={[styles.genderButton, gender === 'female' && styles.genderButtonActive]}
+              onPress={() => setGender('female')}
+            >
+              <Text
+                style={[styles.genderText, gender === 'female' && styles.genderTextActive]}
+              >
+                Mujer
+              </Text>
+            </Pressable>
+          </View>
+
+          <Text style={styles.label}>Tipo de rutina</Text>
+          <View style={styles.locationColumn}>
+            <Pressable
+              style={[
+                styles.genderButton,
+                workoutLocation === 'home' && styles.genderButtonActive,
+              ]}
+              onPress={() => setWorkoutLocation('home')}
+            >
+              <Text
+                style={[
+                  styles.genderText,
+                  workoutLocation === 'home' && styles.genderTextActive,
+                ]}
+              >
+                Rutinas en Casa
+              </Text>
+            </Pressable>
+            <Pressable
+              style={[
+                styles.genderButton,
+                workoutLocation === 'gym' && styles.genderButtonActive,
+              ]}
+              onPress={() => setWorkoutLocation('gym')}
+            >
+              <Text
+                style={[
+                  styles.genderText,
+                  workoutLocation === 'gym' && styles.genderTextActive,
+                ]}
+              >
+                Rutinas en el Gimnasio
+              </Text>
+            </Pressable>
+          </View>
+
+          <Text style={styles.label}>Peso (kg)</Text>
+          <TextInput
+            style={styles.input}
+            value={weight}
+            onChangeText={setWeight}
+            keyboardType="decimal-pad"
+            placeholder="Ej. 71"
+            placeholderTextColor={colors.textMuted}
+          />
+
+          <Text style={styles.label}>Fecha de nacimiento</Text>
+          <BirthDatePicker value={birthDate} onChange={setBirthDate} maximumDate={new Date()} />
+
+          <Pressable
+            style={[styles.saveButton, isSaving && styles.saveButtonDisabled]}
+            onPress={handleSave}
+            disabled={isSaving}
+          >
+            <Text style={styles.saveButtonText}>{isSaving ? 'Guardando...' : 'Guardar'}</Text>
+          </Pressable>
+
+          <DevResetProfileButton
+            onAfterReset={() => {
+              setGender(null);
+              setWorkoutLocation(null);
+              setWeight('');
+              setBirthDate(DEFAULT_BIRTH_DATE);
+            }}
+          />
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </AppShell>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#0f172a',
-  },
-  content: {
-    flex: 1,
-    paddingHorizontal: 24,
-    paddingTop: 16,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: '700',
-    color: '#f8fafc',
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 15,
-    color: '#94a3b8',
-    lineHeight: 22,
-    marginBottom: 28,
-  },
-  label: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#cbd5e1',
-    marginBottom: 10,
-  },
-  genderRow: {
-    flexDirection: 'row',
-    gap: 12,
-    marginBottom: 24,
-  },
-  genderButton: {
-    flex: 1,
-    borderWidth: 1,
-    borderColor: '#334155',
-    borderRadius: 12,
-    paddingVertical: 14,
-    alignItems: 'center',
-    backgroundColor: '#1e293b',
-  },
-  genderButtonActive: {
-    borderColor: '#3b82f6',
-    backgroundColor: '#1d4ed8',
-  },
-  genderText: {
-    color: '#cbd5e1',
-    fontWeight: '600',
-  },
-  genderTextActive: {
-    color: '#ffffff',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#334155',
-    backgroundColor: '#1e293b',
-    borderRadius: 12,
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    color: '#f8fafc',
-    fontSize: 16,
-    marginBottom: 24,
-  },
-  dateButton: {
-    borderWidth: 1,
-    borderColor: '#334155',
-    backgroundColor: '#1e293b',
-    borderRadius: 12,
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    marginBottom: 12,
-  },
-  dateButtonText: {
-    color: '#f8fafc',
-    fontSize: 16,
-  },
-  saveButton: {
-    marginTop: 'auto',
-    backgroundColor: '#3b82f6',
-    borderRadius: 12,
-    paddingVertical: 16,
-    alignItems: 'center',
-  },
-  saveButtonDisabled: {
-    opacity: 0.6,
-  },
-  saveButtonText: {
-    color: '#ffffff',
-    fontSize: 16,
-    fontWeight: '700',
-  },
-});

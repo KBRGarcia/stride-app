@@ -1,7 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Alert, Pressable, StyleSheet, Text } from 'react-native';
+import { useMemo } from 'react';
 
+import { useTheme } from '../hooks/useTheme';
 import type { RootStackParamList } from '../navigation/types';
 import { useAppStore } from '../stores/useAppStore';
 
@@ -14,6 +16,29 @@ interface DevResetProfileButtonProps {
 export function DevResetProfileButton({ onAfterReset }: DevResetProfileButtonProps) {
   const navigation = useNavigation<DevNavigation>();
   const resetProfile = useAppStore((state) => state.resetProfile);
+  const { colors } = useTheme();
+
+  const styles = useMemo(
+    () =>
+      StyleSheet.create({
+        button: {
+          marginTop: 12,
+          marginBottom: 24,
+          borderWidth: 1,
+          borderColor: colors.dangerBorder,
+          borderRadius: 12,
+          paddingVertical: 14,
+          alignItems: 'center',
+          backgroundColor: colors.dangerSurface,
+        },
+        text: {
+          color: colors.dangerText,
+          fontSize: 14,
+          fontWeight: '600',
+        },
+      }),
+    [colors]
+  );
 
   if (!__DEV__) {
     return null;
@@ -44,21 +69,3 @@ export function DevResetProfileButton({ onAfterReset }: DevResetProfileButtonPro
     </Pressable>
   );
 }
-
-const styles = StyleSheet.create({
-  button: {
-    marginTop: 12,
-    marginBottom: 24,
-    borderWidth: 1,
-    borderColor: '#7f1d1d',
-    borderRadius: 12,
-    paddingVertical: 14,
-    alignItems: 'center',
-    backgroundColor: '#450a0a',
-  },
-  text: {
-    color: '#fca5a5',
-    fontSize: 14,
-    fontWeight: '600',
-  },
-});

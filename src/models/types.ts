@@ -1,5 +1,10 @@
+import type { AgeRangeId, WeightRangeId } from '../utils/profileRanges';
+
 /** Género soportado por el matcher y el JSON de rutinas. */
 export type Gender = 'male' | 'female';
+
+/** Entorno de entrenamiento elegido por el usuario. */
+export type WorkoutLocation = 'home' | 'gym';
 
 /** Día de la semana (1 = Lunes … 7 = Domingo). */
 export type DayOfWeek = 1 | 2 | 3 | 4 | 5 | 6 | 7;
@@ -36,10 +41,14 @@ export interface Recommendation {
   ageMax: number;
   weightMin: number;
   weightMax: number;
+  /** Rango canónico de edad. Si falta, se infiere de `ageMin`/`ageMax`. */
+  ageRange?: AgeRangeId;
+  /** Rango canónico de peso. Si falta, se infiere de `weightMin`/`weightMax`. */
+  weightRange?: WeightRangeId;
   weeklyRoutine: DayRoutine[];
 }
 
-/** Contenido completo de `src/data/routines.json`. */
+/** Contenido de `src/data/routines-home.json` o `src/data/routines-gym.json`. */
 export type RoutinesData = Recommendation[];
 
 /**
@@ -50,4 +59,5 @@ export interface UserProfile {
   birthDate: string;
   weight: number;
   gender: Gender;
+  workoutLocation: WorkoutLocation;
 }

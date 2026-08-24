@@ -1,14 +1,20 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { StatusBar } from 'expo-status-bar';
+import { useMemo } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { AppShell } from '../components/AppShell';
+import { DevResetProfileButton } from '../components/DevResetProfileButton';
+import { useTheme } from '../hooks/useTheme';
 import type { DayOfWeek } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
-import { DevResetProfileButton } from '../components/DevResetProfileButton';
 import { useAppStore } from '../stores/useAppStore';
+import {
+  getDayScheduleStatus,
+  getDayStatusLabel,
+  isDayWorkoutAccessible,
+} from '../utils/weekSchedule';
 
 type HomeNavigation = NativeStackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -26,11 +32,113 @@ export default function HomeScreen() {
   const navigation = useNavigation<HomeNavigation>();
   const recommendation = useAppStore((state) => state.recommendation);
   const isDayCompleted = useAppStore((state) => state.isDayCompleted);
+  const { colors } = useTheme();
+
+  const styles = useMemo(
+    () =>
+      StyleSheet.create({
+        header: {
+          paddingHorizontal: 24,
+          paddingTop: 16,
+          paddingBottom: 8,
+        },
+        title: {
+          fontSize: 28,
+          fontWeight: '700',
+          color: colors.text,
+        },
+        subtitle: {
+          marginTop: 6,
+          fontSize: 15,
+          color: colors.textMuted,
+        },
+        listContent: {
+          paddingHorizontal: 16,
+          paddingBottom: 24,
+        },
+        row: {
+          gap: 12,
+          marginBottom: 12,
+        },
+        dayCard: {
+          flex: 1,
+          minHeight: 120,
+          backgroundColor: colors.surface,
+          borderRadius: 16,
+          padding: 16,
+          borderWidth: 1,
+          borderColor: colors.border,
+        },
+        dayCardCompleted: {
+          borderColor: colors.successBorder,
+          backgroundColor: colors.successSurface,
+        },
+        dayCardToday: {
+          borderColor: colors.primary,
+          backgroundColor: colors.surface,
+        },
+        dayCardDisabled: {
+          opacity: 0.55,
+          backgroundColor: colors.surfaceSecondary,
+        },
+        dayCardHeader: {
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: 8,
+        },
+        dayShort: {
+          fontSize: 22,
+          fontWeight: '700',
+          color: colors.text,
+        },
+        dayFull: {
+          fontSize: 14,
+          color: colors.textSecondary,
+          marginBottom: 8,
+        },
+        exerciseCount: {
+          fontSize: 13,
+          color: colors.textMuted,
+        },
+        statusLabel: {
+          fontSize: 12,
+          fontWeight: '600',
+          color: colors.textMuted,
+          marginTop: 4,
+        },
+        statusLabelToday: {
+          color: colors.primary,
+        },
+        statusLabelCompleted: {
+          color: colors.success,
+        },
+        centerContent: {
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingHorizontal: 24,
+        },
+        errorTitle: {
+          fontSize: 22,
+          fontWeight: '700',
+          color: colors.text,
+          marginBottom: 8,
+          textAlign: 'center',
+        },
+        errorText: {
+          fontSize: 15,
+          color: colors.textMuted,
+          textAlign: 'center',
+          lineHeight: 22,
+        },
+      }),
+    [colors]
+  );
 
   if (!recommendation) {
     return (
-      <SafeAreaView style={styles.container}>
-        <StatusBar style="light" />
+      <AppShell>
         <View style={styles.centerContent}>
           <Text style={styles.errorTitle}>No hay rutina disponible</Text>
           <Text style={styles.errorText}>
@@ -38,15 +146,14 @@ export default function HomeScreen() {
           </Text>
           <DevResetProfileButton />
         </View>
-      </SafeAreaView>
+      </AppShell>
     );
   }
 
   const sortedDays = [...recommendation.weeklyRoutine].sort((a, b) => a.day - b.day);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="light" />
+    <AppShell>
       <View style={styles.header}>
         <Text style={styles.title}>Tu semana</Text>
         <Text style={styles.subtitle}>Plan de entrenamiento personalizado</Text>
@@ -61,111 +168,58 @@ export default function HomeScreen() {
         ListFooterComponent={<DevResetProfileButton />}
         renderItem={({ item }) => {
           const completed = isDayCompleted(item.day);
+          const status = getDayScheduleStatus(item.day, completed);
+          const accessible = isDayWorkoutAccessible(item.day, completed);
           const labels = DAY_LABELS[item.day];
+
+          const iconName =
+            status === 'completed'
+              ? 'checkmark-circle'
+              : status === 'today'
+                ? 'fitness'
+                : status === 'expired'
+                  ? 'time-outline'
+                  : 'lock-closed';
+
+          const iconColor =
+            status === 'completed'
+              ? colors.success
+              : status === 'today'
+                ? colors.primary
+                : colors.textMuted;
 
           return (
             <Pressable
-              style={[styles.dayCard, completed && styles.dayCardCompleted]}
+              style={[
+                styles.dayCard,
+                status === 'completed' && styles.dayCardCompleted,
+                status === 'today' && styles.dayCardToday,
+                !accessible && styles.dayCardDisabled,
+              ]}
+              disabled={!accessible}
               onPress={() => navigation.navigate('Workout', { day: item.day })}
             >
               <View style={styles.dayCardHeader}>
                 <Text style={styles.dayShort}>{labels.short}</Text>
-                <Ionicons
-                  name={completed ? 'checkmark-circle' : 'lock-closed'}
-                  size={22}
-                  color={completed ? '#22c55e' : '#64748b'}
-                />
+                <Ionicons name={iconName} size={22} color={iconColor} />
               </View>
               <Text style={styles.dayFull}>{labels.full}</Text>
               <Text style={styles.exerciseCount}>
                 {item.exercises.length} ejercicios
               </Text>
+              <Text
+                style={[
+                  styles.statusLabel,
+                  status === 'today' && styles.statusLabelToday,
+                  status === 'completed' && styles.statusLabelCompleted,
+                ]}
+              >
+                {getDayStatusLabel(status)}
+              </Text>
             </Pressable>
           );
         }}
       />
-    </SafeAreaView>
+    </AppShell>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#0f172a',
-  },
-  header: {
-    paddingHorizontal: 24,
-    paddingTop: 16,
-    paddingBottom: 8,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: '700',
-    color: '#f8fafc',
-  },
-  subtitle: {
-    marginTop: 6,
-    fontSize: 15,
-    color: '#94a3b8',
-  },
-  listContent: {
-    paddingHorizontal: 16,
-    paddingBottom: 24,
-  },
-  row: {
-    gap: 12,
-    marginBottom: 12,
-  },
-  dayCard: {
-    flex: 1,
-    minHeight: 120,
-    backgroundColor: '#1e293b',
-    borderRadius: 16,
-    padding: 16,
-    borderWidth: 1,
-    borderColor: '#334155',
-  },
-  dayCardCompleted: {
-    borderColor: '#166534',
-    backgroundColor: '#14532d33',
-  },
-  dayCardHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  dayShort: {
-    fontSize: 22,
-    fontWeight: '700',
-    color: '#f8fafc',
-  },
-  dayFull: {
-    fontSize: 14,
-    color: '#cbd5e1',
-    marginBottom: 8,
-  },
-  exerciseCount: {
-    fontSize: 13,
-    color: '#94a3b8',
-  },
-  centerContent: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 24,
-  },
-  errorTitle: {
-    fontSize: 22,
-    fontWeight: '700',
-    color: '#f8fafc',
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  errorText: {
-    fontSize: 15,
-    color: '#94a3b8',
-    textAlign: 'center',
-    lineHeight: 22,
-  },
-});
