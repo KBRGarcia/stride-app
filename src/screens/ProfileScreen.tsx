@@ -18,6 +18,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import type { Gender } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
+import { DevResetProfileButton } from '../components/DevResetProfileButton';
 import { calculateAge } from '../utils/routineMatcher';
 import { useAppStore } from '../stores/useAppStore';
 
@@ -160,6 +161,14 @@ export default function ProfileScreen() {
         >
           <Text style={styles.saveButtonText}>{isSaving ? 'Guardando...' : 'Guardar'}</Text>
         </Pressable>
+
+        <DevResetProfileButton
+          onAfterReset={() => {
+            setGender(null);
+            setWeight('');
+            setBirthDate(DEFAULT_BIRTH_DATE);
+          }}
+        />
       </View>
     </SafeAreaView>
   );
@@ -244,7 +253,6 @@ const styles = StyleSheet.create({
   },
   saveButton: {
     marginTop: 'auto',
-    marginBottom: 24,
     backgroundColor: '#3b82f6',
     borderRadius: 12,
     paddingVertical: 16,

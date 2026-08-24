@@ -4,6 +4,7 @@ import routines from '../data/routines.json';
 import type { DayOfWeek, Recommendation, RoutinesData, UserProfile } from '../models/types';
 import { findMatchingRecommendation } from '../utils/routineMatcher';
 import {
+  clearProfile,
   getCompletedWorkoutDates,
   getProfile,
   saveCompletedWorkoutDates,
@@ -18,6 +19,7 @@ interface AppState {
   completedWorkouts: CompletedWorkoutDate[];
   hydrate: () => Promise<void>;
   setProfile: (profile: UserProfile) => Promise<boolean>;
+  resetProfile: () => Promise<void>;
   isDayCompleted: (day: DayOfWeek) => boolean;
 }
 
@@ -55,6 +57,15 @@ export const useAppStore = create<AppState>((set, get) => ({
     await saveProfile(profile);
     set({ profile, recommendation });
     return true;
+  },
+
+  resetProfile: async () => {
+    await clearProfile();
+    set({
+      profile: null,
+      recommendation: null,
+      completedWorkouts: [],
+    });
   },
 
   isDayCompleted: (day) => get().completedWorkouts.some((entry) => entry.day === day),

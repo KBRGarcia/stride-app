@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import type { DayOfWeek } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
+import { DevResetProfileButton } from '../components/DevResetProfileButton';
 import { useAppStore } from '../stores/useAppStore';
 
 type HomeNavigation = NativeStackNavigationProp<RootStackParamList, 'Home'>;
@@ -35,6 +36,7 @@ export default function HomeScreen() {
           <Text style={styles.errorText}>
             No se encontró una rutina para tu perfil. Vuelve a configurarlo.
           </Text>
+          <DevResetProfileButton />
         </View>
       </SafeAreaView>
     );
@@ -56,6 +58,7 @@ export default function HomeScreen() {
         numColumns={2}
         columnWrapperStyle={styles.row}
         contentContainerStyle={styles.listContent}
+        ListFooterComponent={<DevResetProfileButton />}
         renderItem={({ item }) => {
           const completed = isDayCompleted(item.day);
           const labels = DAY_LABELS[item.day];
