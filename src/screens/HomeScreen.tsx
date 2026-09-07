@@ -10,6 +10,7 @@ import { useTheme } from '../hooks/useTheme';
 import type { DayOfWeek } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
 import { useAppStore } from '../stores/useAppStore';
+import { getDayExercises } from '../utils/routinesData';
 import {
   getDayScheduleStatus,
   getDayStatusLabel,
@@ -205,7 +206,7 @@ export default function HomeScreen() {
               </View>
               <Text style={styles.dayFull}>{labels.full}</Text>
               <Text style={styles.exerciseCount}>
-                {item.exercises.length} ejercicios
+                {getDayExercises(item).length} ejercicios
               </Text>
               <Text
                 style={[

@@ -20,6 +20,7 @@ import { useTimer } from '../hooks/useTimer';
 import type { RootStackParamList } from '../navigation/types';
 import { markDayCompleted, useAppStore } from '../stores/useAppStore';
 import { getExerciseImage } from '../utils/imageMapper';
+import { getDayExercises } from '../utils/routinesData';
 import { formatExercisePrescription } from '../utils/workoutFormat';
 import { isDayWorkoutAccessible, toIsoDate } from '../utils/weekSchedule';
 
@@ -204,7 +205,10 @@ export default function WorkoutScreen() {
     }
   }, [canStartWorkout, completedThisWeek, navigation]);
 
-  const exercises = dayRoutine?.exercises ?? [];
+  const exercises = useMemo(
+    () => (dayRoutine ? getDayExercises(dayRoutine) : []),
+    [dayRoutine]
+  );
 
   const [exerciseIndex, setExerciseIndex] = useState(0);
   const [phase, setPhase] = useState<WorkoutPhase>('exercise');

@@ -17,15 +17,21 @@ import { AppShell } from '../components/AppShell';
 import { BirthDatePicker } from '../components/BirthDatePicker';
 import { DevResetProfileButton } from '../components/DevResetProfileButton';
 import { useTheme } from '../hooks/useTheme';
-import type { Gender, WorkoutLocation } from '../models/types';
+import type { WorkoutGoal, WorkoutLocation } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
 import { useAppStore } from '../stores/useAppStore';
-import { MIN_MATCHABLE_WEIGHT_KG } from '../utils/profileRanges';
+import { MIN_SUPPORTED_AGE, MIN_SUPPORTED_WEIGHT_KG } from '../utils/archetypes';
 import { calculateAge } from '../utils/routineMatcher';
 
 type ProfileNavigation = NativeStackNavigationProp<RootStackParamList, 'Profile'>;
+type GenderSelection = 'male' | 'female';
 
 const DEFAULT_BIRTH_DATE = new Date(2000, 0, 1);
+const GOAL_OPTIONS: ReadonlyArray<{ value: WorkoutGoal; label: string }> = [
+  { value: 'toning', label: 'Tonificación' },
+  { value: 'muscle_gain', label: 'Aumento de masa muscular' },
+  { value: 'fat_reduction', label: 'Reducción de grasa' },
+];
 
 function formatBirthDate(date: Date): string {
   const year = date.getFullYear();
@@ -39,8 +45,9 @@ export default function ProfileScreen() {
   const setProfile = useAppStore((state) => state.setProfile);
   const { colors } = useTheme();
 
-  const [gender, setGender] = useState<Gender | null>(null);
+  const [gender, setGender] = useState<GenderSelection | null>(null);
   const [workoutLocation, setWorkoutLocation] = useState<WorkoutLocation | null>(null);
+  const [goal, setGoal] = useState<WorkoutGoal | null>(null);
   const [weight, setWeight] = useState('');
   const [birthDate, setBirthDate] = useState(DEFAULT_BIRTH_DATE);
   const [isSaving, setIsSaving] = useState(false);
@@ -73,17 +80,16 @@ export default function ProfileScreen() {
           color: colors.textSecondary,
           marginBottom: 10,
         },
-        genderRow: {
+        optionsColumn: {
+          gap: 12,
+          marginBottom: 24,
+        },
+        optionsRow: {
           flexDirection: 'row',
           gap: 12,
           marginBottom: 24,
         },
-        locationColumn: {
-          gap: 12,
-          marginBottom: 24,
-        },
-        genderButton: {
-          flex: 1,
+        optionButton: {
           borderWidth: 1,
           borderColor: colors.border,
           borderRadius: 12,
@@ -91,16 +97,26 @@ export default function ProfileScreen() {
           alignItems: 'center',
           backgroundColor: colors.inputBackground,
         },
-        genderButtonActive: {
+        optionButtonFlex: {
+          flex: 1,
+        },
+        optionButtonActive: {
           borderColor: colors.primary,
           backgroundColor: colors.primaryActive,
         },
-        genderText: {
+        optionText: {
           color: colors.textSecondary,
           fontWeight: '600',
         },
-        genderTextActive: {
+        optionTextActive: {
           color: colors.primaryText,
+        },
+        goalHint: {
+          color: colors.textMuted,
+          fontSize: 13,
+          lineHeight: 19,
+          marginTop: -14,
+          marginBottom: 24,
         },
         input: {
           borderWidth: 1,
@@ -143,34 +159,48 @@ export default function ProfileScreen() {
       return;
     }
 
+    if (!goal) {
+      Alert.alert('Perfil incompleto', 'Selecciona el objetivo de tu rutina.');
+      return;
+    }
+
     const parsedWeight = Number(weight.replace(',', '.'));
     if (!weight.trim() || Number.isNaN(parsedWeight) || parsedWeight <= 0) {
       Alert.alert('Peso inválido', 'Introduce un peso válido en kilogramos.');
       return;
     }
 
-    if (parsedWeight < MIN_MATCHABLE_WEIGHT_KG) {
+    if (parsedWeight < MIN_SUPPORTED_WEIGHT_KG) {
       Alert.alert(
         'Peso fuera de rango',
-        `Introduce un peso de ${MIN_MATCHABLE_WEIGHT_KG} kg o más.`
+        `Introduce un peso de ${MIN_SUPPORTED_WEIGHT_KG} kg o más.`
       );
       return;
     }
 
     const birthDateIso = formatBirthDate(birthDate);
 
+    let age: number;
     try {
-      calculateAge(birthDateIso);
+      age = calculateAge(birthDateIso);
     } catch {
       Alert.alert('Fecha inválida', 'Selecciona una fecha de nacimiento válida.');
+      return;
+    }
+
+    if (age < MIN_SUPPORTED_AGE) {
+      Alert.alert(
+        'Edad fuera de rango',
+        `Las rutinas están disponibles a partir de los ${MIN_SUPPORTED_AGE} años.`
+      );
       return;
     }
 
     setIsSaving(true);
 
     const saved = await setProfile({
-      gender,
       workoutLocation,
+      goal,
       weight: parsedWeight,
       birthDate: birthDateIso,
     });
@@ -180,7 +210,7 @@ export default function ProfileScreen() {
     if (!saved) {
       Alert.alert(
         'Sin rutina disponible',
-        'Aún no hay una rutina en casa o gimnasio para esa combinación de edad y peso. Prueba otros valores.'
+        'No hay una rutina disponible para el entorno, objetivo, edad y peso seleccionados.'
       );
       return;
     }
@@ -200,28 +230,42 @@ export default function ProfileScreen() {
         >
           <Text style={styles.title}>Tu perfil</Text>
           <Text style={styles.subtitle}>
-            Indica dónde entrenarás y tus datos personales. Stride elige la rutina según el entorno,
-            rangos de edad y peso.
+            Indica dónde entrenarás, qué deseas conseguir y tus datos personales. Stride
+            personalizará automáticamente tu rutina según tu edad y peso.
           </Text>
 
           <Text style={styles.label}>Género</Text>
-          <View style={styles.genderRow}>
+          <View style={styles.optionsRow}>
             <Pressable
-              style={[styles.genderButton, gender === 'male' && styles.genderButtonActive]}
+              style={[
+                styles.optionButton,
+                styles.optionButtonFlex,
+                gender === 'male' && styles.optionButtonActive,
+              ]}
               onPress={() => setGender('male')}
             >
               <Text
-                style={[styles.genderText, gender === 'male' && styles.genderTextActive]}
+                style={[
+                  styles.optionText,
+                  gender === 'male' && styles.optionTextActive,
+                ]}
               >
                 Hombre
               </Text>
             </Pressable>
             <Pressable
-              style={[styles.genderButton, gender === 'female' && styles.genderButtonActive]}
+              style={[
+                styles.optionButton,
+                styles.optionButtonFlex,
+                gender === 'female' && styles.optionButtonActive,
+              ]}
               onPress={() => setGender('female')}
             >
               <Text
-                style={[styles.genderText, gender === 'female' && styles.genderTextActive]}
+                style={[
+                  styles.optionText,
+                  gender === 'female' && styles.optionTextActive,
+                ]}
               >
                 Mujer
               </Text>
@@ -229,18 +273,18 @@ export default function ProfileScreen() {
           </View>
 
           <Text style={styles.label}>Tipo de rutina</Text>
-          <View style={styles.locationColumn}>
+          <View style={styles.optionsColumn}>
             <Pressable
               style={[
-                styles.genderButton,
-                workoutLocation === 'home' && styles.genderButtonActive,
+                styles.optionButton,
+                workoutLocation === 'home' && styles.optionButtonActive,
               ]}
               onPress={() => setWorkoutLocation('home')}
             >
               <Text
                 style={[
-                  styles.genderText,
-                  workoutLocation === 'home' && styles.genderTextActive,
+                  styles.optionText,
+                  workoutLocation === 'home' && styles.optionTextActive,
                 ]}
               >
                 Rutinas en Casa
@@ -248,21 +292,58 @@ export default function ProfileScreen() {
             </Pressable>
             <Pressable
               style={[
-                styles.genderButton,
-                workoutLocation === 'gym' && styles.genderButtonActive,
+                styles.optionButton,
+                workoutLocation === 'gym' && styles.optionButtonActive,
               ]}
-              onPress={() => setWorkoutLocation('gym')}
+              onPress={() => {
+                setWorkoutLocation('gym');
+                setGoal('muscle_gain');
+              }}
             >
               <Text
                 style={[
-                  styles.genderText,
-                  workoutLocation === 'gym' && styles.genderTextActive,
+                  styles.optionText,
+                  workoutLocation === 'gym' && styles.optionTextActive,
                 ]}
               >
                 Rutinas en el Gimnasio
               </Text>
             </Pressable>
           </View>
+
+          {workoutLocation ? (
+            <>
+              <Text style={styles.label}>Objetivo</Text>
+              <View style={styles.optionsColumn}>
+                {GOAL_OPTIONS.filter(
+                  (option) => workoutLocation === 'home' || option.value === 'muscle_gain'
+                ).map((option) => (
+                  <Pressable
+                    key={option.value}
+                    style={[
+                      styles.optionButton,
+                      goal === option.value && styles.optionButtonActive,
+                    ]}
+                    onPress={() => setGoal(option.value)}
+                  >
+                    <Text
+                      style={[
+                        styles.optionText,
+                        goal === option.value && styles.optionTextActive,
+                      ]}
+                    >
+                      {option.label}
+                    </Text>
+                  </Pressable>
+                ))}
+              </View>
+              {workoutLocation === 'gym' ? (
+                <Text style={styles.goalHint}>
+                  Por ahora, el gimnasio solo dispone del objetivo de aumento de masa muscular.
+                </Text>
+              ) : null}
+            </>
+          ) : null}
 
           <Text style={styles.label}>Peso (kg)</Text>
           <TextInput
@@ -289,6 +370,7 @@ export default function ProfileScreen() {
             onAfterReset={() => {
               setGender(null);
               setWorkoutLocation(null);
+              setGoal(null);
               setWeight('');
               setBirthDate(DEFAULT_BIRTH_DATE);
             }}

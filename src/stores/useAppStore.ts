@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 import type { DayOfWeek, Recommendation, UserProfile } from '../models/types';
 import { findMatchingRecommendation } from '../utils/routineMatcher';
-import { getRoutinesForLocation } from '../utils/routinesData';
+import { getRoutines } from '../utils/routinesData';
 import { isSameCalendarWeek } from '../utils/weekSchedule';
 import {
   clearProfile,
@@ -25,7 +25,10 @@ interface AppState {
 }
 
 function matchProfile(profile: UserProfile): Recommendation | null {
-  return findMatchingRecommendation(profile, getRoutinesForLocation(profile.workoutLocation));
+  return findMatchingRecommendation(
+    profile,
+    getRoutines(profile.workoutLocation, profile.goal)
+  );
 }
 
 export const useAppStore = create<AppState>((set, get) => ({

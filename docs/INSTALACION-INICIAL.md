@@ -30,7 +30,7 @@ Documento de referencia que consolida la configuración del proyecto **Stride** 
 **Stride** (KBR-Tempo) es una app de entrenamiento inteligente orientada a eliminar distracciones durante la rutina. En **Fase 1 ("La Chispa")** la app es:
 
 - **100 % local** (sin backend, sin internet obligatorio).
-- Basada en un archivo `routines.json` embebido.
+- Basada en archivos JSON embebidos, separados por entorno y objetivo.
 - Con perfil de usuario guardado en **AsyncStorage**.
 - Con temporizador de descanso y notificaciones locales (por implementar).
 
@@ -207,7 +207,7 @@ npx expo install react-native-screens react-native-safe-area-context
 
 ### Paso 6.2 — Estado y almacenamiento local
 
-**Por qué:** Fase 1 sin backend: perfil (fecha nacimiento, peso, género) y estado de entrenamiento viven en el dispositivo.
+**Por qué:** Fase 1 sin backend remoto: perfil (fecha de nacimiento, peso, entorno y objetivo) y estado de entrenamiento viven en el dispositivo.
 
 ```bash
 npx expo install zustand @react-native-async-storage/async-storage
@@ -481,8 +481,8 @@ stride-app/
 Con el entorno listo, el desarrollo continúa con:
 
 1. Estructura de carpetas (`src/screens`, `src/store`, `src/data`, etc.).
-2. Schema TypeScript y archivo `routines.json`.
-3. Matcher (filtro por género, edad, peso).
+2. Esquema TypeScript y archivos JSON de rutinas por entorno y objetivo.
+3. Matcher por arquetipo calculado a partir de edad y peso.
 4. Pantallas: onboarding → calendario → entrenamiento.
 5. Contador inteligente con `expo-notifications` y `expo-keep-awake`.
 6. Configuración EAS y build APK para la landing page.

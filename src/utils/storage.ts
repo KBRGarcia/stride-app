@@ -22,15 +22,29 @@ export async function getProfile(): Promise<UserProfile | null> {
   }
 
   const parsed = JSON.parse(raw) as Partial<UserProfile>;
-  if (!parsed.birthDate || !parsed.weight || !parsed.gender) {
+  const { goal, workoutLocation } = parsed;
+  const isValidGoal =
+    goal === 'toning' ||
+    goal === 'muscle_gain' ||
+    goal === 'fat_reduction';
+  const isValidLocation =
+    workoutLocation === 'home' || workoutLocation === 'gym';
+
+  if (
+    !parsed.birthDate ||
+    typeof parsed.weight !== 'number' ||
+    !isValidGoal ||
+    !isValidLocation ||
+    (workoutLocation === 'gym' && goal !== 'muscle_gain')
+  ) {
     return null;
   }
 
   return {
     birthDate: parsed.birthDate,
     weight: parsed.weight,
-    gender: parsed.gender,
-    workoutLocation: parsed.workoutLocation === 'gym' ? 'gym' : 'home',
+    workoutLocation,
+    goal,
   };
 }
 
