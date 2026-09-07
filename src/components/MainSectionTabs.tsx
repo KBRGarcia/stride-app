@@ -6,7 +6,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useTheme } from '../hooks/useTheme';
 import type { RootStackParamList } from '../navigation/types';
 
-type MainSection = 'home' | 'cardio' | 'nutrition';
+type MainSection = 'home' | 'cardio';
 type MainNavigation = NativeStackNavigationProp<RootStackParamList>;
 
 interface MainSectionTabsProps {
@@ -16,11 +16,10 @@ interface MainSectionTabsProps {
 const TABS: ReadonlyArray<{
   id: MainSection;
   label: string;
-  route: 'Home' | 'Cardio' | 'Nutrition';
+  route: 'Home' | 'Cardio';
 }> = [
   { id: 'home', label: 'Entrenamiento', route: 'Home' },
   { id: 'cardio', label: 'Cardio', route: 'Cardio' },
-  { id: 'nutrition', label: 'Nutrición', route: 'Nutrition' },
 ];
 
 export function MainSectionTabs({ active }: MainSectionTabsProps) {
@@ -32,8 +31,8 @@ export function MainSectionTabs({ active }: MainSectionTabsProps) {
       StyleSheet.create({
         row: {
           flexDirection: 'row',
-          gap: 4,
-          marginHorizontal: 16,
+          gap: 8,
+          marginHorizontal: 24,
           marginTop: 16,
           marginBottom: 4,
           padding: 4,
@@ -44,17 +43,15 @@ export function MainSectionTabs({ active }: MainSectionTabsProps) {
           flex: 1,
           borderRadius: 10,
           paddingVertical: 10,
-          paddingHorizontal: 4,
           alignItems: 'center',
         },
         tabActive: {
           backgroundColor: colors.surface,
         },
         label: {
-          fontSize: 12,
+          fontSize: 14,
           fontWeight: '600',
           color: colors.textMuted,
-          textAlign: 'center',
         },
         labelActive: {
           color: colors.text,
@@ -81,13 +78,7 @@ export function MainSectionTabs({ active }: MainSectionTabsProps) {
             accessibilityState={{ selected: isActive }}
             accessibilityLabel={tab.label}
           >
-            <Text
-              style={[styles.label, isActive && styles.labelActive]}
-              numberOfLines={1}
-              adjustsFontSizeToFit
-            >
-              {tab.label}
-            </Text>
+            <Text style={[styles.label, isActive && styles.labelActive]}>{tab.label}</Text>
           </Pressable>
         );
       })}

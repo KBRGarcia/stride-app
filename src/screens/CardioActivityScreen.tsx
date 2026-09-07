@@ -165,8 +165,8 @@ export default function CardioActivityScreen() {
 
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Recomendaciones generales</Text>
-          {activity.recomendacionesGenerales.map((item) => (
-            <Text key={item} style={styles.item}>
+          {activity.recomendacionesGenerales.map((item, index) => (
+            <Text key={`recomendacion-${index}`} style={styles.item}>
               {'\u2022'} {item}
             </Text>
           ))}
@@ -183,19 +183,19 @@ export default function CardioActivityScreen() {
                 <Text style={styles.fieldLabel}>
                   Calentamiento ({day.calentamiento.duracion})
                 </Text>
-                {day.calentamiento.ejercicios.map((item) => (
-                  <Text key={item} style={styles.item}>
+                {day.calentamiento.ejercicios.map((item, index) => (
+                  <Text key={`calentamiento-${index}`} style={styles.item}>
                     {'\u2022'} {item}
                   </Text>
                 ))}
               </>
             ) : null}
 
-            {formatCardioMainWorkout(day.entrenamientoPrincipal).map((field) => (
-              <View key={field.label}>
+            {formatCardioMainWorkout(day.entrenamientoPrincipal).map((field, fieldIndex) => (
+              <View key={`bloque-${fieldIndex}`}>
                 <Text style={styles.fieldLabel}>{field.label}</Text>
-                {field.values.map((value) => (
-                  <Text key={value} style={styles.item}>
+                {field.values.map((value, valueIndex) => (
+                  <Text key={`bloque-${fieldIndex}-${valueIndex}`} style={styles.item}>
                     {field.values.length > 1 ? `\u2022 ${value}` : value}
                   </Text>
                 ))}
@@ -205,8 +205,8 @@ export default function CardioActivityScreen() {
             <Text style={styles.fieldLabel}>
               Enfriamiento ({day.enfriamientoEstiramientos.duracion})
             </Text>
-            {day.enfriamientoEstiramientos.ejercicios.map((stretch) => (
-              <View key={stretch.nombre}>
+            {day.enfriamientoEstiramientos.ejercicios.map((stretch, index) => (
+              <View key={`estiramiento-${index}`}>
                 <Text style={styles.item}>
                   {'\u2022'} {stretch.nombre}: {stretch.descripcion}
                 </Text>

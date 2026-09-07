@@ -9,7 +9,6 @@ import type { RootStackParamList } from './src/navigation/types';
 import CardioActivityScreen from './src/screens/CardioActivityScreen';
 import CardioScreen from './src/screens/CardioScreen';
 import HomeScreen from './src/screens/HomeScreen';
-import NutritionScreen from './src/screens/NutritionScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import { BrandSplashScreen } from './src/screens/SplashScreen';
 import WelcomeScreen from './src/screens/WelcomeScreen';
@@ -86,7 +85,6 @@ function AppNavigator() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Cardio" component={CardioScreen} />
         <Stack.Screen name="CardioActivity" component={CardioActivityScreen} />
-        <Stack.Screen name="Nutrition" component={NutritionScreen} />
         <Stack.Screen name="Workout" component={WorkoutScreen} />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,18 +1,20 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { AppShell } from '../components/AppShell';
 import { DevResetProfileButton } from '../components/DevResetProfileButton';
 import { MainSectionTabs } from '../components/MainSectionTabs';
+import { NutritionPanel } from '../components/NutritionPanel';
+import { SectionSubmenu } from '../components/SectionSubmenu';
 import { useTheme } from '../hooks/useTheme';
 import type { DayOfWeek } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
 import { useAppStore } from '../stores/useAppStore';
-import { formatMuscleGroups } from '../utils/muscleGroups';
 import { getDayExercises } from '../utils/routinesData';
+import { getNutritionGuide, NUTRITION_GOAL_TITLES } from '../utils/nutritionData';
 import {
   getDayOfWeek,
   getDayScheduleStatus,
@@ -21,6 +23,7 @@ import {
 } from '../utils/weekSchedule';
 
 type HomeNavigation = NativeStackNavigationProp<RootStackParamList, 'Home'>;
+type HomeSubmenu = 'plan' | 'nutrition';
 
 const DAY_LABELS: Record<DayOfWeek, { short: string; full: string }> = {
   1: { short: 'Lun', full: 'Lunes' },
@@ -32,11 +35,18 @@ const DAY_LABELS: Record<DayOfWeek, { short: string; full: string }> = {
   7: { short: 'Dom', full: 'Domingo' },
 };
 
+const HOME_SUBMENU: ReadonlyArray<{ id: HomeSubmenu; label: string }> = [
+  { id: 'plan', label: 'Plan' },
+  { id: 'nutrition', label: 'Nutrición' },
+];
+
 export default function HomeScreen() {
   const navigation = useNavigation<HomeNavigation>();
   const recommendation = useAppStore((state) => state.recommendation);
+  const profile = useAppStore((state) => state.profile);
   const isDayCompleted = useAppStore((state) => state.isDayCompleted);
   const { colors } = useTheme();
+  const [submenu, setSubmenu] = useState<HomeSubmenu>('plan');
 
   const styles = useMemo(
     () =>
@@ -60,47 +70,43 @@ export default function HomeScreen() {
           paddingHorizontal: 16,
           paddingBottom: 24,
         },
-        row: {
-          gap: 12,
-          marginBottom: 12,
-        },
-        dayCard: {
-          flex: 1,
-          minHeight: 148,
+        dayRow: {
+          flexDirection: 'row',
+          alignItems: 'center',
           backgroundColor: colors.surface,
-          borderRadius: 16,
-          padding: 16,
+          borderRadius: 14,
+          paddingVertical: 14,
+          paddingHorizontal: 16,
           borderWidth: 1,
           borderColor: colors.border,
+          marginBottom: 10,
         },
-        dayCardCompleted: {
+        dayRowCompleted: {
           borderColor: colors.successBorder,
           backgroundColor: colors.successSurface,
         },
-        dayCardToday: {
+        dayRowToday: {
           borderColor: colors.primary,
-          backgroundColor: colors.surface,
         },
-        dayCardPreview: {
+        dayRowPreview: {
           backgroundColor: colors.surfaceSecondary,
         },
-        dayCardHeader: {
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: 8,
-        },
         dayShort: {
-          fontSize: 22,
+          width: 44,
+          fontSize: 16,
           fontWeight: '700',
           color: colors.text,
         },
-        dayFull: {
-          fontSize: 14,
-          color: colors.textSecondary,
-          marginBottom: 8,
+        dayInfo: {
+          flex: 1,
         },
-        exerciseCount: {
+        dayFull: {
+          fontSize: 16,
+          fontWeight: '600',
+          color: colors.text,
+        },
+        dayMeta: {
+          marginTop: 2,
           fontSize: 13,
           color: colors.textMuted,
         },
@@ -108,19 +114,13 @@ export default function HomeScreen() {
           fontSize: 12,
           fontWeight: '600',
           color: colors.textMuted,
-          marginTop: 4,
+          marginRight: 8,
         },
         statusLabelToday: {
           color: colors.primary,
         },
         statusLabelCompleted: {
           color: colors.success,
-        },
-        muscleGroups: {
-          fontSize: 12,
-          color: colors.textSecondary,
-          marginTop: 6,
-          lineHeight: 16,
         },
         centerContent: {
           flex: 1,
@@ -145,10 +145,24 @@ export default function HomeScreen() {
     [colors]
   );
 
-  if (!recommendation) {
-    return (
-      <AppShell>
-        <MainSectionTabs active="home" />
+  const nutritionGuide = profile ? getNutritionGuide(profile.goal) : null;
+
+  return (
+    <AppShell>
+      <MainSectionTabs active="home" />
+      <SectionSubmenu options={HOME_SUBMENU} active={submenu} onChange={setSubmenu} />
+
+      {submenu === 'nutrition' ? (
+        <NutritionPanel
+          guide={nutritionGuide}
+          title="Nutrición"
+          subtitle={
+            profile
+              ? `Guía para ${NUTRITION_GOAL_TITLES[profile.goal].toLowerCase()}`
+              : 'Según tu plan de entrenamiento'
+          }
+        />
+      ) : !recommendation ? (
         <View style={styles.centerContent}>
           <Text style={styles.errorTitle}>No hay rutina disponible</Text>
           <Text style={styles.errorText}>
@@ -156,82 +170,70 @@ export default function HomeScreen() {
           </Text>
           <DevResetProfileButton />
         </View>
-      </AppShell>
-    );
-  }
+      ) : (
+        <>
+          <View style={styles.header}>
+            <Text style={styles.title}>Tu semana</Text>
+            <Text style={styles.subtitle}>Elige un día para entrenar</Text>
+          </View>
 
-  const sortedDays = [...recommendation.weeklyRoutine].sort((a, b) => a.day - b.day);
+          <FlatList
+            data={[...recommendation.weeklyRoutine].sort((a, b) => a.day - b.day)}
+            keyExtractor={(item) => String(item.day)}
+            contentContainerStyle={styles.listContent}
+            ListFooterComponent={<DevResetProfileButton />}
+            renderItem={({ item }) => {
+              const completed = isDayCompleted(item.day);
+              const status = getDayScheduleStatus(item.day, completed);
+              const canStart = isDayWorkoutAccessible(item.day, completed);
+              const isToday = item.day === getDayOfWeek();
+              const labels = DAY_LABELS[item.day];
 
-  return (
-    <AppShell>
-      <MainSectionTabs active="home" />
-      <View style={styles.header}>
-        <Text style={styles.title}>Tu semana</Text>
-        <Text style={styles.subtitle}>Plan de entrenamiento personalizado</Text>
-      </View>
+              const iconName =
+                status === 'completed'
+                  ? 'checkmark-circle'
+                  : status === 'today'
+                    ? 'fitness'
+                    : 'chevron-forward';
 
-      <FlatList
-        data={sortedDays}
-        keyExtractor={(item) => String(item.day)}
-        numColumns={2}
-        columnWrapperStyle={styles.row}
-        contentContainerStyle={styles.listContent}
-        ListFooterComponent={<DevResetProfileButton />}
-        renderItem={({ item }) => {
-          const completed = isDayCompleted(item.day);
-          const status = getDayScheduleStatus(item.day, completed);
-          const canStart = isDayWorkoutAccessible(item.day, completed);
-          const isToday = item.day === getDayOfWeek();
-          const labels = DAY_LABELS[item.day];
+              const iconColor =
+                status === 'completed'
+                  ? colors.success
+                  : status === 'today'
+                    ? colors.primary
+                    : colors.textMuted;
 
-          const iconName =
-            status === 'completed'
-              ? 'checkmark-circle'
-              : status === 'today'
-                ? 'fitness'
-                : 'list-outline';
-
-          const iconColor =
-            status === 'completed'
-              ? colors.success
-              : status === 'today'
-                ? colors.primary
-                : colors.textMuted;
-
-          return (
-            <Pressable
-              style={[
-                styles.dayCard,
-                status === 'completed' && styles.dayCardCompleted,
-                status === 'today' && styles.dayCardToday,
-                !canStart && !completed && styles.dayCardPreview,
-              ]}
-              onPress={() => navigation.navigate('Workout', { day: item.day })}
-            >
-              <View style={styles.dayCardHeader}>
-                <Text style={styles.dayShort}>{labels.short}</Text>
-                <Ionicons name={iconName} size={22} color={iconColor} />
-              </View>
-              <Text style={styles.dayFull}>{labels.full}</Text>
-              <Text style={styles.exerciseCount}>
-                {getDayExercises(item).length} ejercicios
-              </Text>
-              <Text style={styles.muscleGroups}>
-                {formatMuscleGroups(getDayExercises(item))}
-              </Text>
-              <Text
-                style={[
-                  styles.statusLabel,
-                  status === 'today' && styles.statusLabelToday,
-                  status === 'completed' && styles.statusLabelCompleted,
-                ]}
-              >
-                {getDayStatusLabel(status, { canRepeat: completed && isToday })}
-              </Text>
-            </Pressable>
-          );
-        }}
-      />
+              return (
+                <Pressable
+                  style={[
+                    styles.dayRow,
+                    status === 'completed' && styles.dayRowCompleted,
+                    status === 'today' && styles.dayRowToday,
+                    !canStart && !completed && styles.dayRowPreview,
+                  ]}
+                  onPress={() => navigation.navigate('Workout', { day: item.day })}
+                >
+                  <Text style={styles.dayShort}>{labels.short}</Text>
+                  <View style={styles.dayInfo}>
+                    <Text style={styles.dayFull}>{labels.full}</Text>
+                    <Text style={styles.dayMeta}>{getDayExercises(item).length} ejercicios</Text>
+                  </View>
+                  <Text
+                    style={[
+                      styles.statusLabel,
+                      status === 'today' && styles.statusLabelToday,
+                      status === 'completed' && styles.statusLabelCompleted,
+                    ]}
+                  >
+                    {getDayStatusLabel(status, { canRepeat: completed && isToday })}
+                  </Text>
+                  <Ionicons name={iconName} size={20} color={iconColor} />
+                </Pressable>
+              );
+            }}
+          />
+        </>
+      )}
     </AppShell>
   );
 }
