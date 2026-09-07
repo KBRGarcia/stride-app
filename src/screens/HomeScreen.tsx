@@ -10,8 +10,10 @@ import { useTheme } from '../hooks/useTheme';
 import type { DayOfWeek } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
 import { useAppStore } from '../stores/useAppStore';
+import { formatMuscleGroups } from '../utils/muscleGroups';
 import { getDayExercises } from '../utils/routinesData';
 import {
+  getDayOfWeek,
   getDayScheduleStatus,
   getDayStatusLabel,
   isDayWorkoutAccessible,
@@ -63,7 +65,7 @@ export default function HomeScreen() {
         },
         dayCard: {
           flex: 1,
-          minHeight: 120,
+          minHeight: 148,
           backgroundColor: colors.surface,
           borderRadius: 16,
           padding: 16,
@@ -78,8 +80,7 @@ export default function HomeScreen() {
           borderColor: colors.primary,
           backgroundColor: colors.surface,
         },
-        dayCardDisabled: {
-          opacity: 0.55,
+        dayCardPreview: {
           backgroundColor: colors.surfaceSecondary,
         },
         dayCardHeader: {
@@ -113,6 +114,12 @@ export default function HomeScreen() {
         },
         statusLabelCompleted: {
           color: colors.success,
+        },
+        muscleGroups: {
+          fontSize: 12,
+          color: colors.textSecondary,
+          marginTop: 6,
+          lineHeight: 16,
         },
         centerContent: {
           flex: 1,
@@ -170,7 +177,8 @@ export default function HomeScreen() {
         renderItem={({ item }) => {
           const completed = isDayCompleted(item.day);
           const status = getDayScheduleStatus(item.day, completed);
-          const accessible = isDayWorkoutAccessible(item.day, completed);
+          const canStart = isDayWorkoutAccessible(item.day, completed);
+          const isToday = item.day === getDayOfWeek();
           const labels = DAY_LABELS[item.day];
 
           const iconName =
@@ -178,9 +186,7 @@ export default function HomeScreen() {
               ? 'checkmark-circle'
               : status === 'today'
                 ? 'fitness'
-                : status === 'expired'
-                  ? 'time-outline'
-                  : 'lock-closed';
+                : 'list-outline';
 
           const iconColor =
             status === 'completed'
@@ -195,9 +201,8 @@ export default function HomeScreen() {
                 styles.dayCard,
                 status === 'completed' && styles.dayCardCompleted,
                 status === 'today' && styles.dayCardToday,
-                !accessible && styles.dayCardDisabled,
+                !canStart && !completed && styles.dayCardPreview,
               ]}
-              disabled={!accessible}
               onPress={() => navigation.navigate('Workout', { day: item.day })}
             >
               <View style={styles.dayCardHeader}>
@@ -208,6 +213,9 @@ export default function HomeScreen() {
               <Text style={styles.exerciseCount}>
                 {getDayExercises(item).length} ejercicios
               </Text>
+              <Text style={styles.muscleGroups}>
+                {formatMuscleGroups(getDayExercises(item))}
+              </Text>
               <Text
                 style={[
                   styles.statusLabel,
@@ -215,7 +223,7 @@ export default function HomeScreen() {
                   status === 'completed' && styles.statusLabelCompleted,
                 ]}
               >
-                {getDayStatusLabel(status)}
+                {getDayStatusLabel(status, { canRepeat: completed && isToday })}
               </Text>
             </Pressable>
           );

@@ -56,24 +56,30 @@ export function getDayScheduleStatus(
   return 'today';
 }
 
-/** Solo el entrenamiento del día actual puede iniciarse (dentro de la semana en curso). */
+/**
+ * Solo se puede entrenar el día de hoy. Se puede repetir aunque ya esté marcado
+ * como completado en la semana actual.
+ */
 export function isDayWorkoutAccessible(
   day: DayOfWeek,
-  completedThisWeek: boolean,
+  _completedThisWeek: boolean,
   reference: Date = new Date()
 ): boolean {
-  return getDayScheduleStatus(day, completedThisWeek, reference) === 'today';
+  return day === getDayOfWeek(reference);
 }
 
-export function getDayStatusLabel(status: DayScheduleStatus): string {
+export function getDayStatusLabel(
+  status: DayScheduleStatus,
+  options?: { canRepeat?: boolean }
+): string {
   switch (status) {
     case 'expired':
-      return 'No disponible';
+      return 'Ver rutina';
     case 'upcoming':
-      return 'Próximamente';
+      return 'Ver rutina';
     case 'today':
       return 'Hoy';
     case 'completed':
-      return 'Completado';
+      return options?.canRepeat ? 'Completado · Toca para repetir' : 'Completado';
   }
 }

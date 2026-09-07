@@ -3,7 +3,7 @@ import type { RouteProp } from '@react-navigation/native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useKeepAwake } from 'expo-keep-awake';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Alert,
   Image,
@@ -17,17 +17,30 @@ import {
 import { AppShell } from '../components/AppShell';
 import { useTheme } from '../hooks/useTheme';
 import { useTimer } from '../hooks/useTimer';
+import type { DayOfWeek, DayRoutine, Exercise } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
 import { markDayCompleted, useAppStore } from '../stores/useAppStore';
 import { getExerciseImage } from '../utils/imageMapper';
+import { formatMuscleGroups, getExerciseMuscleGroup } from '../utils/muscleGroups';
 import { getDayExercises } from '../utils/routinesData';
-import { formatExercisePrescription } from '../utils/workoutFormat';
+import { formatElapsedDuration, formatExercisePrescription } from '../utils/workoutFormat';
 import { isDayWorkoutAccessible, toIsoDate } from '../utils/weekSchedule';
 
 type WorkoutRoute = RouteProp<RootStackParamList, 'Workout'>;
 type WorkoutNavigation = NativeStackNavigationProp<RootStackParamList, 'Workout'>;
 
-type WorkoutPhase = 'exercise' | 'rest' | 'countdown';
+type WorkoutPhase = 'preview' | 'exercise' | 'rest' | 'countdown' | 'summary';
+type ExerciseOutcome = 'completed' | 'skipped';
+
+const DAY_LABELS: Record<DayOfWeek, string> = {
+  1: 'Lunes',
+  2: 'Martes',
+  3: 'Miércoles',
+  4: 'Jueves',
+  5: 'Viernes',
+  6: 'Sábado',
+  7: 'Domingo',
+};
 
 function getTodayIso(): string {
   return toIsoDate(new Date());
@@ -59,6 +72,56 @@ export default function WorkoutScreen() {
           fontSize: 14,
           fontWeight: '600',
         },
+        previewTitle: {
+          fontSize: 26,
+          fontWeight: '700',
+          color: colors.text,
+          marginBottom: 6,
+        },
+        previewSubtitle: {
+          fontSize: 15,
+          color: colors.textSecondary,
+          marginBottom: 8,
+          lineHeight: 22,
+        },
+        previewHint: {
+          fontSize: 14,
+          color: colors.textMuted,
+          marginBottom: 20,
+          lineHeight: 20,
+        },
+        exerciseCard: {
+          backgroundColor: colors.surface,
+          borderRadius: 14,
+          borderWidth: 1,
+          borderColor: colors.border,
+          padding: 14,
+          marginBottom: 10,
+        },
+        exerciseCardTitle: {
+          fontSize: 16,
+          fontWeight: '700',
+          color: colors.text,
+          marginBottom: 4,
+        },
+        exerciseCardMeta: {
+          fontSize: 14,
+          fontWeight: '600',
+          color: colors.primary,
+        },
+        exerciseCardGroup: {
+          marginTop: 4,
+          fontSize: 13,
+          color: colors.textMuted,
+        },
+        phaseTitle: {
+          marginTop: 8,
+          marginBottom: 10,
+          fontSize: 13,
+          fontWeight: '700',
+          color: colors.textMuted,
+          textTransform: 'uppercase',
+        },
         exerciseImage: {
           width: '100%',
           height: 220,
@@ -76,6 +139,12 @@ export default function WorkoutScreen() {
           fontSize: 18,
           fontWeight: '600',
           color: colors.primary,
+          marginBottom: 8,
+        },
+        muscleGroup: {
+          fontSize: 14,
+          fontWeight: '600',
+          color: colors.textSecondary,
           marginBottom: 12,
         },
         description: {
@@ -92,6 +161,34 @@ export default function WorkoutScreen() {
         },
         primaryButtonText: {
           color: colors.primaryText,
+          fontSize: 16,
+          fontWeight: '700',
+        },
+        skipButton: {
+          marginTop: 12,
+          backgroundColor: colors.surface,
+          borderRadius: 12,
+          borderWidth: 1,
+          borderColor: colors.border,
+          paddingVertical: 16,
+          alignItems: 'center',
+        },
+        skipButtonText: {
+          color: colors.textSecondary,
+          fontSize: 16,
+          fontWeight: '700',
+        },
+        secondaryButton: {
+          marginTop: 12,
+          backgroundColor: colors.surface,
+          borderRadius: 12,
+          borderWidth: 1,
+          borderColor: colors.border,
+          paddingVertical: 16,
+          alignItems: 'center',
+        },
+        secondaryButtonText: {
+          color: colors.textSecondary,
           fontSize: 16,
           fontWeight: '700',
         },
@@ -180,6 +277,48 @@ export default function WorkoutScreen() {
           color: colors.text,
           marginBottom: 16,
         },
+        summaryCard: {
+          backgroundColor: colors.surface,
+          borderRadius: 16,
+          borderWidth: 1,
+          borderColor: colors.border,
+          padding: 20,
+          marginTop: 8,
+          marginBottom: 24,
+        },
+        summaryCount: {
+          fontSize: 22,
+          fontWeight: '700',
+          color: colors.text,
+          marginBottom: 8,
+        },
+        summaryTime: {
+          fontSize: 16,
+          fontWeight: '600',
+          color: colors.primary,
+          marginBottom: 20,
+        },
+        summarySectionTitle: {
+          fontSize: 14,
+          fontWeight: '700',
+          color: colors.textMuted,
+          marginBottom: 8,
+          textTransform: 'uppercase',
+        },
+        summaryItem: {
+          fontSize: 15,
+          color: colors.textSecondary,
+          lineHeight: 22,
+          marginBottom: 4,
+        },
+        summaryEmpty: {
+          fontSize: 15,
+          color: colors.textMuted,
+          marginBottom: 16,
+        },
+        sectionSpacer: {
+          marginTop: 16,
+        },
       }),
     [colors]
   );
@@ -192,42 +331,41 @@ export default function WorkoutScreen() {
   const workoutDay = route.params.day;
   const completedThisWeek = isDayCompleted(workoutDay);
   const canStartWorkout = isDayWorkoutAccessible(workoutDay, completedThisWeek);
-
-  useEffect(() => {
-    if (!canStartWorkout) {
-      Alert.alert(
-        'Día no disponible',
-        completedThisWeek
-          ? 'Ya completaste el entrenamiento de este día en la semana actual.'
-          : 'Solo puedes entrenar el día que corresponde al calendario. Los días pasados quedan cerrados hasta el próximo lunes.',
-        [{ text: 'Entendido', onPress: () => navigation.goBack() }]
-      );
-    }
-  }, [canStartWorkout, completedThisWeek, navigation]);
-
   const exercises = useMemo(
     () => (dayRoutine ? getDayExercises(dayRoutine) : []),
     [dayRoutine]
   );
 
   const [exerciseIndex, setExerciseIndex] = useState(0);
-  const [phase, setPhase] = useState<WorkoutPhase>('exercise');
+  const [phase, setPhase] = useState<WorkoutPhase>('preview');
   const [countdownValue, setCountdownValue] = useState<number | null>(null);
   const [countdownExerciseName, setCountdownExerciseName] = useState('');
+  const [outcomes, setOutcomes] = useState<ExerciseOutcome[]>([]);
+  const [elapsedMs, setElapsedMs] = useState(0);
+  const startedAtRef = useRef<number | null>(null);
+  const outcomesRef = useRef<ExerciseOutcome[]>([]);
 
   const currentExercise = exercises[exerciseIndex];
   const nextExercise = exercises[exerciseIndex + 1];
 
-  const completeWorkout = useCallback(async () => {
+  const recordOutcome = useCallback((outcome: ExerciseOutcome) => {
+    const next = [...outcomesRef.current, outcome];
+    outcomesRef.current = next;
+    setOutcomes(next);
+  }, []);
+
+  const finishSession = useCallback(async () => {
+    const startedAt = startedAtRef.current ?? Date.now();
+    setElapsedMs(Date.now() - startedAt);
     await markDayCompleted(route.params.day, getTodayIso());
-    navigation.navigate('Home');
-  }, [navigation, route.params.day]);
+    setPhase('summary');
+  }, [route.params.day]);
 
   const beginCountdownToNext = useCallback(
     (nextIndex: number) => {
       const upcoming = exercises[nextIndex];
       if (!upcoming) {
-        void completeWorkout();
+        void finishSession();
         return;
       }
 
@@ -235,19 +373,19 @@ export default function WorkoutScreen() {
       setCountdownValue(3);
       setPhase('countdown');
     },
-    [completeWorkout, exercises]
+    [exercises, finishSession]
   );
 
   const handleRestComplete = useCallback(() => {
     const nextIndex = exerciseIndex + 1;
 
     if (nextIndex >= exercises.length) {
-      void completeWorkout();
+      void finishSession();
       return;
     }
 
     beginCountdownToNext(nextIndex);
-  }, [beginCountdownToNext, completeWorkout, exerciseIndex, exercises.length]);
+  }, [beginCountdownToNext, exerciseIndex, exercises.length, finishSession]);
 
   const getNextExerciseName = useCallback(() => {
     return nextExercise?.name ?? 'Siguiente ejercicio';
@@ -284,21 +422,44 @@ export default function WorkoutScreen() {
     }
   }, [isResting]);
 
-  const handleFinishExercise = async () => {
-    if (!currentExercise) {
-      return;
-    }
-
-    if (exerciseIndex >= exercises.length - 1) {
-      await completeWorkout();
+  const advanceAfterExercise = async (isLastExercise: boolean) => {
+    if (isLastExercise) {
+      await finishSession();
       return;
     }
 
     await startRest();
   };
 
+  const handleFinishExercise = async () => {
+    if (!currentExercise) {
+      return;
+    }
+
+    recordOutcome('completed');
+    await advanceAfterExercise(exerciseIndex >= exercises.length - 1);
+  };
+
+  const handleSkipExercise = async () => {
+    if (!currentExercise) {
+      return;
+    }
+
+    recordOutcome('skipped');
+    await advanceAfterExercise(exerciseIndex >= exercises.length - 1);
+  };
+
+  const handleStartWorkout = () => {
+    startedAtRef.current = Date.now();
+    outcomesRef.current = [];
+    setExerciseIndex(0);
+    setOutcomes([]);
+    setElapsedMs(0);
+    setPhase('exercise');
+  };
+
   const handleStop = async () => {
-    Alert.alert('Detener entrenamiento', '¿Quieres salir y guardar el progreso hasta ahora?', [
+    Alert.alert('Detener entrenamiento', '¿Quieres salir sin finalizar la rutina?', [
       { text: 'Cancelar', style: 'cancel' },
       {
         text: 'Detener',
@@ -311,20 +472,16 @@ export default function WorkoutScreen() {
     ]);
   };
 
-  if (!canStartWorkout) {
-    return (
-      <AppShell>
-        <View style={styles.centerContent} />
-      </AppShell>
-    );
-  }
+  const goHome = () => {
+    navigation.navigate('Home');
+  };
 
-  if (!dayRoutine || !currentExercise) {
+  if (!dayRoutine) {
     return (
       <AppShell>
         <View style={styles.centerContent}>
           <Text style={styles.errorTitle}>Rutina no encontrada</Text>
-          <Pressable style={styles.primaryButton} onPress={() => navigation.navigate('Home')}>
+          <Pressable style={styles.primaryButton} onPress={goHome}>
             <Text style={styles.primaryButtonText}>Volver al inicio</Text>
           </Pressable>
         </View>
@@ -332,10 +489,12 @@ export default function WorkoutScreen() {
     );
   }
 
+  const completedExercises = exercises.filter((_, index) => outcomes[index] === 'completed');
+  const skippedExercises = exercises.filter((_, index) => outcomes[index] === 'skipped');
+
   return (
     <AppShell>
       <View style={styles.main}>
-
         {phase === 'countdown' && countdownValue !== null && (
           <View style={styles.countdownOverlay}>
             <Text style={styles.countdownNumber}>{countdownValue}</Text>
@@ -345,14 +504,25 @@ export default function WorkoutScreen() {
         )}
 
         <ScrollView contentContainerStyle={styles.content}>
-          <View style={styles.headerRow}>
-            <Text style={styles.progress}>
-              Ejercicio {exerciseIndex + 1} / {exercises.length}
-            </Text>
-          </View>
+          {phase === 'preview' && (
+            <DayPreview
+              canStart={canStartWorkout}
+              completedThisWeek={completedThisWeek}
+              dayLabel={DAY_LABELS[workoutDay]}
+              dayRoutine={dayRoutine}
+              onBack={goHome}
+              onStart={handleStartWorkout}
+              styles={styles}
+            />
+          )}
 
-          {phase === 'exercise' && (
+          {phase === 'exercise' && currentExercise && (
             <>
+              <View style={styles.headerRow}>
+                <Text style={styles.progress}>
+                  Ejercicio {exerciseIndex + 1} / {exercises.length}
+                </Text>
+              </View>
               <Image
                 source={getExerciseImage(currentExercise.imagePlaceholder)}
                 style={styles.exerciseImage}
@@ -362,6 +532,9 @@ export default function WorkoutScreen() {
               <Text style={styles.prescription}>
                 {formatExercisePrescription(currentExercise)}
               </Text>
+              <Text style={styles.muscleGroup}>
+                Grupo muscular: {getExerciseMuscleGroup(currentExercise)}
+              </Text>
               <Text style={styles.description}>{currentExercise.description}</Text>
 
               <Pressable style={styles.primaryButton} onPress={() => void handleFinishExercise()}>
@@ -370,6 +543,9 @@ export default function WorkoutScreen() {
                     ? 'Finalizar entrenamiento'
                     : 'Terminar ejercicio'}
                 </Text>
+              </Pressable>
+              <Pressable style={styles.skipButton} onPress={() => void handleSkipExercise()}>
+                <Text style={styles.skipButtonText}>Saltar Ejercicio</Text>
               </Pressable>
             </>
           )}
@@ -412,8 +588,133 @@ export default function WorkoutScreen() {
               </View>
             </>
           )}
+
+          {phase === 'summary' && (
+            <>
+              <Text style={styles.previewTitle}>Rutina finalizada</Text>
+              <View style={styles.summaryCard}>
+                <Text style={styles.summaryCount}>
+                  Ejercicios completados {completedExercises.length}/{exercises.length}
+                </Text>
+                <Text style={styles.summaryTime}>
+                  Tiempo total: {formatElapsedDuration(elapsedMs)}
+                </Text>
+
+                <Text style={styles.summarySectionTitle}>Ejercicios completados</Text>
+                {completedExercises.length > 0 ? (
+                  completedExercises.map((exercise) => (
+                    <Text key={exercise.id} style={styles.summaryItem}>
+                      • {exercise.name}
+                    </Text>
+                  ))
+                ) : (
+                  <Text style={styles.summaryEmpty}>Ninguno</Text>
+                )}
+
+                <Text style={[styles.summarySectionTitle, styles.sectionSpacer]}>
+                  Ejercicios saltados
+                </Text>
+                {skippedExercises.length > 0 ? (
+                  skippedExercises.map((exercise) => (
+                    <Text key={exercise.id} style={styles.summaryItem}>
+                      • {exercise.name}
+                    </Text>
+                  ))
+                ) : (
+                  <Text style={styles.summaryEmpty}>Ninguno</Text>
+                )}
+              </View>
+
+              <Pressable style={styles.primaryButton} onPress={goHome}>
+                <Text style={styles.primaryButtonText}>Inicio</Text>
+              </Pressable>
+            </>
+          )}
         </ScrollView>
       </View>
     </AppShell>
+  );
+}
+
+function DayPreview({
+  canStart,
+  completedThisWeek,
+  dayLabel,
+  dayRoutine,
+  onBack,
+  onStart,
+  styles,
+}: {
+  canStart: boolean;
+  completedThisWeek: boolean;
+  dayLabel: string;
+  dayRoutine: DayRoutine;
+  onBack: () => void;
+  onStart: () => void;
+  styles: {
+    previewTitle: object;
+    previewSubtitle: object;
+    previewHint: object;
+    phaseTitle: object;
+    exerciseCard: object;
+    exerciseCardTitle: object;
+    exerciseCardMeta: object;
+    exerciseCardGroup: object;
+    primaryButton: object;
+    primaryButtonText: object;
+    secondaryButton: object;
+    secondaryButtonText: object;
+  };
+}) {
+  const exercises = getDayExercises(dayRoutine);
+  const phases: Array<{ title: string; items: Exercise[] }> = [
+    { title: 'Calentamiento', items: dayRoutine.warmUp },
+    { title: 'Entrenamiento', items: dayRoutine.mainWorkout },
+    { title: 'Enfriamiento', items: dayRoutine.coolDown },
+  ];
+
+  return (
+    <>
+      <Text style={styles.previewTitle}>{dayLabel}</Text>
+      <Text style={styles.previewSubtitle}>{formatMuscleGroups(exercises)}</Text>
+      <Text style={styles.previewHint}>
+        {canStart
+          ? completedThisWeek
+            ? 'Ya completaste este día. Puedes repetir la rutina las veces que quieras.'
+            : 'Este es tu entrenamiento de hoy. Revisa los ejercicios y comienza cuando estés listo.'
+          : 'Puedes consultar los ejercicios de este día. El entrenamiento solo se inicia el día que corresponde.'}
+      </Text>
+
+      {phases.map((phase) =>
+        phase.items.length === 0 ? null : (
+          <View key={phase.title}>
+            <Text style={styles.phaseTitle}>{phase.title}</Text>
+            {phase.items.map((exercise) => (
+              <View key={exercise.id} style={styles.exerciseCard}>
+                <Text style={styles.exerciseCardTitle}>{exercise.name}</Text>
+                <Text style={styles.exerciseCardMeta}>
+                  {formatExercisePrescription(exercise)}
+                </Text>
+                <Text style={styles.exerciseCardGroup}>
+                  Grupo muscular: {getExerciseMuscleGroup(exercise)}
+                </Text>
+              </View>
+            ))}
+          </View>
+        )
+      )}
+
+      {canStart && (
+        <Pressable style={styles.primaryButton} onPress={onStart}>
+          <Text style={styles.primaryButtonText}>
+            {completedThisWeek ? 'Repetir entrenamiento' : 'Comenzar entrenamiento'}
+          </Text>
+        </Pressable>
+      )}
+
+      <Pressable style={styles.secondaryButton} onPress={onBack}>
+        <Text style={styles.secondaryButtonText}>Inicio</Text>
+      </Pressable>
+    </>
   );
 }

@@ -9,6 +9,7 @@ import type { RootStackParamList } from './src/navigation/types';
 import HomeScreen from './src/screens/HomeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import { BrandSplashScreen } from './src/screens/SplashScreen';
+import WelcomeScreen from './src/screens/WelcomeScreen';
 import WorkoutScreen from './src/screens/WorkoutScreen';
 import { useAppStore } from './src/stores/useAppStore';
 import { useThemeStore } from './src/stores/useThemeStore';
@@ -74,9 +75,10 @@ function AppNavigator() {
   return (
     <NavigationContainer theme={navigationTheme}>
       <Stack.Navigator
-        initialRouteName={profile ? 'Home' : 'Profile'}
+        initialRouteName={profile ? 'Home' : 'Welcome'}
         screenOptions={{ headerShown: false }}
       >
+        <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Workout" component={WorkoutScreen} />
