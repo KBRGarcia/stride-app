@@ -21,3 +21,8 @@ const NUTRITION_BY_GOAL: Record<WorkoutGoal, NutritionGuide> = {
 export function getNutritionGuide(goal: WorkoutGoal): NutritionGuide {
   return NUTRITION_BY_GOAL[goal];
 }
+
+/** El cardio se asocia siempre con la guía de reducción de grasa. */
+export function getCardioNutritionGuide(): NutritionGuide {
+  return getNutritionGuide('fat_reduction');
+}

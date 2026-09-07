@@ -6,12 +6,22 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useTheme } from '../hooks/useTheme';
 import type { RootStackParamList } from '../navigation/types';
 
-type MainSection = 'home' | 'nutrition';
+type MainSection = 'home' | 'cardio' | 'nutrition';
 type MainNavigation = NativeStackNavigationProp<RootStackParamList>;
 
 interface MainSectionTabsProps {
   active: MainSection;
 }
+
+const TABS: ReadonlyArray<{
+  id: MainSection;
+  label: string;
+  route: 'Home' | 'Cardio' | 'Nutrition';
+}> = [
+  { id: 'home', label: 'Entrenamiento', route: 'Home' },
+  { id: 'cardio', label: 'Cardio', route: 'Cardio' },
+  { id: 'nutrition', label: 'Nutrición', route: 'Nutrition' },
+];
 
 export function MainSectionTabs({ active }: MainSectionTabsProps) {
   const navigation = useNavigation<MainNavigation>();
@@ -22,8 +32,8 @@ export function MainSectionTabs({ active }: MainSectionTabsProps) {
       StyleSheet.create({
         row: {
           flexDirection: 'row',
-          gap: 8,
-          marginHorizontal: 24,
+          gap: 4,
+          marginHorizontal: 16,
           marginTop: 16,
           marginBottom: 4,
           padding: 4,
@@ -34,15 +44,17 @@ export function MainSectionTabs({ active }: MainSectionTabsProps) {
           flex: 1,
           borderRadius: 10,
           paddingVertical: 10,
+          paddingHorizontal: 4,
           alignItems: 'center',
         },
         tabActive: {
           backgroundColor: colors.surface,
         },
         label: {
-          fontSize: 14,
+          fontSize: 12,
           fontWeight: '600',
           color: colors.textMuted,
+          textAlign: 'center',
         },
         labelActive: {
           color: colors.text,
@@ -53,36 +65,32 @@ export function MainSectionTabs({ active }: MainSectionTabsProps) {
 
   return (
     <View style={styles.row}>
-      <Pressable
-        style={[styles.tab, active === 'home' && styles.tabActive]}
-        onPress={() => {
-          if (active !== 'home') {
-            navigation.navigate('Home');
-          }
-        }}
-        accessibilityRole="button"
-        accessibilityState={{ selected: active === 'home' }}
-        accessibilityLabel="Entrenamiento"
-      >
-        <Text style={[styles.label, active === 'home' && styles.labelActive]}>
-          Entrenamiento
-        </Text>
-      </Pressable>
-      <Pressable
-        style={[styles.tab, active === 'nutrition' && styles.tabActive]}
-        onPress={() => {
-          if (active !== 'nutrition') {
-            navigation.navigate('Nutrition');
-          }
-        }}
-        accessibilityRole="button"
-        accessibilityState={{ selected: active === 'nutrition' }}
-        accessibilityLabel="Nutrición"
-      >
-        <Text style={[styles.label, active === 'nutrition' && styles.labelActive]}>
-          Nutrición
-        </Text>
-      </Pressable>
+      {TABS.map((tab) => {
+        const isActive = active === tab.id;
+
+        return (
+          <Pressable
+            key={tab.id}
+            style={[styles.tab, isActive && styles.tabActive]}
+            onPress={() => {
+              if (!isActive) {
+                navigation.navigate(tab.route);
+              }
+            }}
+            accessibilityRole="button"
+            accessibilityState={{ selected: isActive }}
+            accessibilityLabel={tab.label}
+          >
+            <Text
+              style={[styles.label, isActive && styles.labelActive]}
+              numberOfLines={1}
+              adjustsFontSizeToFit
+            >
+              {tab.label}
+            </Text>
+          </Pressable>
+        );
+      })}
     </View>
   );
 }

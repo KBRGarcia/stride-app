@@ -108,3 +108,53 @@ export interface NutritionGuide {
   timingDeComidas: NutritionMealTiming;
   ejemploMenuDiario: NutritionDailyMenu;
 }
+
+/** Identificador de una actividad de cardio independiente del perfil. */
+export type CardioActivityId = 'jog' | 'cycling' | 'rope-jump';
+
+export interface CardioStretch {
+  nombre: string;
+  descripcion: string;
+}
+
+export interface CardioWarmUp {
+  duracion: string;
+  ejercicios: string[];
+}
+
+export interface CardioCoolDown {
+  duracion: string;
+  ejercicios: CardioStretch[];
+}
+
+export type CardioMainWorkout = Record<string, string | string[]>;
+
+export interface CardioSessionDay {
+  nombre: string;
+  calentamiento?: CardioWarmUp;
+  entrenamientoPrincipal?: CardioMainWorkout;
+  actividad?: string;
+  enfriamientoEstiramientos: CardioCoolDown;
+}
+
+export interface CardioWeeklyRoutine {
+  dia1: CardioSessionDay;
+  dia2: CardioSessionDay;
+  dia3: CardioSessionDay;
+  dia4: CardioSessionDay;
+  dia5: CardioSessionDay;
+}
+
+export interface CardioPlan {
+  objetivo: string;
+  descripcion: string;
+  nota: string;
+  duracionEstimada: string;
+  recomendacionesGenerales: string[];
+  rutinaSemanal: CardioWeeklyRoutine;
+}
+
+export interface CardioActivity extends CardioPlan {
+  id: CardioActivityId;
+  title: string;
+}

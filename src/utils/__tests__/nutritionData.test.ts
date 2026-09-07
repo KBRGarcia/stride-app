@@ -1,5 +1,5 @@
 import type { WorkoutGoal } from '../../models/types';
-import { getNutritionGuide, NUTRITION_GOAL_TITLES } from '../nutritionData';
+import { getCardioNutritionGuide, getNutritionGuide, NUTRITION_GOAL_TITLES } from '../nutritionData';
 
 const GOALS: WorkoutGoal[] = ['toning', 'muscle_gain', 'fat_reduction'];
 
@@ -20,6 +20,10 @@ describe('nutritionData', () => {
     expect(getNutritionGuide('toning').objetivo).toBe('tonificacion');
     expect(getNutritionGuide('muscle_gain').objetivo).toBe('aumentoMasaMuscular');
     expect(getNutritionGuide('fat_reduction').objetivo).toBe('reduccionDeGrasa');
+  });
+
+  it('asocia el cardio con la guía de reducción de grasa', () => {
+    expect(getCardioNutritionGuide().objetivo).toBe('reduccionDeGrasa');
   });
 
   it('tiene título para cada objetivo', () => {
