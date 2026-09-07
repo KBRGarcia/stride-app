@@ -59,3 +59,52 @@ export interface UserProfile {
   workoutLocation: WorkoutLocation;
   goal: WorkoutGoal;
 }
+
+/** Guía nutricional asociada a un objetivo de entrenamiento. */
+export interface NutritionMacros {
+  calorias: string;
+  proteinas: string;
+  carbohidratos: string;
+  grasas: string;
+}
+
+export interface NutritionHydration {
+  agua: string;
+  bebidas: string;
+}
+
+export interface NutritionSupplements {
+  recomendados: string[];
+  evitar: string;
+}
+
+export interface NutritionMealTiming {
+  antesEntreno: string;
+  duranteEntreno: string;
+  despuesEntreno: string;
+  comidaPostEntreno?: string;
+  distribucion: string;
+}
+
+export interface NutritionDailyMenu {
+  desayuno: string;
+  mediaManana: string;
+  comida: string;
+  merienda?: string;
+  meriendaPreEntreno?: string;
+  cena: string;
+  antesDormir?: string;
+}
+
+export interface NutritionGuide {
+  objetivo: string;
+  descripcion: string;
+  nota: string;
+  caloriasYMacros: NutritionMacros;
+  alimentosRecomendados: string[];
+  alimentosAEliminarOLimitar: string[];
+  hidratacion: NutritionHydration;
+  suplementosYEstimulantes: NutritionSupplements;
+  timingDeComidas: NutritionMealTiming;
+  ejemploMenuDiario: NutritionDailyMenu;
+}

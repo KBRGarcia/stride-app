@@ -1,0 +1,201 @@
+{
+    "objetivo": "trotar_10km",
+    "descripcion": "Rutina semanal progresiva para principiantes que desean ser capaces de trotar 10 km de forma continua. El plan combina caminata y trote, aumentando gradualmente la distancia y el tiempo de carrera.",
+    "nota": "Esta rutina es orientativa y genérica. Escucha a tu cuerpo, hidrátate adecuadamente y consulta a un médico antes de comenzar un programa de ejercicio, especialmente si tienes condiciones preexistentes.",
+    "duracionEstimada": "8-12 semanas (la progresión semanal puede repetirse hasta lograr el objetivo)",
+    "recomendacionesGenerales": [
+        "Realiza siempre 5-10 minutos de calentamiento (marcha, movilidad articular).",
+        "Termina con 5-10 minutos de enfriamiento y estiramientos.",
+        "Descansa al menos 1 día completo entre sesiones al inicio.",
+        "Aumenta la distancia semanal no más del 10% para evitar lesiones.",
+        "Usa calzado adecuado y superficie cómoda (pista, cinta, tierra).",
+        "Si sientes dolor agudo, mareo o dificultad para respirar, detente y descansa."
+    ],
+    "rutinaSemanal": {
+        "dia1": {
+            "nombre": "Lunes – Iniciación (Caminata + Trote)",
+            "calentamiento": {
+                "duracion": "5 minutos",
+                "ejercicios": [
+                    "Marcha en el lugar con elevación de rodillas (2 min)",
+                    "Rotación de tobillos y muñecas (1 min)",
+                    "Zancadas laterales sin peso (2 min)"
+                ]
+            },
+            "entrenamientoPrincipal": {
+                "trote_caminata": [
+                    "Caminata rápida (5 min)",
+                    "Trote suave (1 min)",
+                    "Caminata (2 min)",
+                    "Trote suave (1 min)",
+                    "Caminata (2 min)",
+                    "Trote suave (1 min)",
+                    "Caminata (5 min)"
+                ],
+                "series": "Repetir este circuito 2-3 veces, según sensación",
+                "distanciaEstimada": "2 – 3 km"
+            },
+            "enfriamientoEstiramientos": {
+                "duracion": "5-10 minutos",
+                "ejercicios": [
+                    {
+                        "nombre": "Estiramiento de cuádriceps",
+                        "descripcion": "De pie, sujeta el pie y lleva el talón al glúteo, mantén 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de isquiotibiales",
+                        "descripcion": "Siéntate en el suelo, extiende una pierna y flexiona el torso hacia adelante, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de gemelos",
+                        "descripcion": "Apoya las manos en una pared, coloca una pierna atrás y presiona el talón contra el suelo, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de glúteos",
+                        "descripcion": "Tumbado boca arriba, cruza el tobillo sobre la rodilla contraria y tira de la pierna hacia el pecho, 20-30 segundos por lado."
+                    }
+                ]
+            }
+        },
+        "dia2": {
+            "nombre": "Miércoles – Progresión (Trote Continuo)",
+            "calentamiento": {
+                "duracion": "5 minutos",
+                "ejercicios": [
+                    "Marcha dinámica (2 min)",
+                    "Círculos de cadera (1 min)",
+                    "Trote suave en el lugar (2 min)"
+                ]
+            },
+            "entrenamientoPrincipal": {
+                "troteContinuo": "Trote suave continuo durante 5 minutos",
+                "caminataActiva": "Caminata rápida (3 min)",
+                "repeticiones": "Repetir 3-4 veces",
+                "distanciaEstimada": "3 – 4 km"
+            },
+            "enfriamientoEstiramientos": {
+                "duracion": "5-10 minutos",
+                "ejercicios": [
+                    {
+                        "nombre": "Estiramiento de cuádriceps",
+                        "descripcion": "De pie, sujeta el pie y lleva el talón al glúteo, mantén 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de isquiotibiales",
+                        "descripcion": "Siéntate en el suelo, extiende una pierna y flexiona el torso hacia adelante, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de gemelos",
+                        "descripcion": "Apoya las manos en una pared, coloca una pierna atrás y presiona el talón contra el suelo, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de glúteos",
+                        "descripcion": "Tumbado boca arriba, cruza el tobillo sobre la rodilla contraria y tira de la pierna hacia el pecho, 20-30 segundos por lado."
+                    }
+                ]
+            }
+        },
+        "dia3": {
+            "nombre": "Viernes – Resistencia (Intervalos)",
+            "calentamiento": {
+                "duracion": "5 minutos",
+                "ejercicios": [
+                    "Marcha con brazos (2 min)",
+                    "Rotación de hombros (1 min)",
+                    "Sentadillas sin peso (2 min)"
+                ]
+            },
+            "entrenamientoPrincipal": {
+                "intervalos": [
+                    "Trote suave (2 min)",
+                    "Caminata (1 min)",
+                    "Trote medio (3 min)",
+                    "Caminata (1 min)",
+                    "Trote suave (2 min)"
+                ],
+                "series": "Repetir 3-4 veces",
+                "distanciaEstimada": "4 – 5 km"
+            },
+            "enfriamientoEstiramientos": {
+                "duracion": "5-10 minutos",
+                "ejercicios": [
+                    {
+                        "nombre": "Estiramiento de cuádriceps",
+                        "descripcion": "De pie, sujeta el pie y lleva el talón al glúteo, mantén 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de isquiotibiales",
+                        "descripcion": "Siéntate en el suelo, extiende una pierna y flexiona el torso hacia adelante, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de gemelos",
+                        "descripcion": "Apoya las manos en una pared, coloca una pierna atrás y presiona el talón contra el suelo, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de glúteos",
+                        "descripcion": "Tumbado boca arriba, cruza el tobillo sobre la rodilla contraria y tira de la pierna hacia el pecho, 20-30 segundos por lado."
+                    }
+                ]
+            }
+        },
+        "dia4": {
+            "nombre": "Sábado – Larga distancia",
+            "calentamiento": {
+                "duracion": "5-7 minutos",
+                "ejercicios": [
+                    "Marcha dinámica (2 min)",
+                    "Movilidad de cadera (2 min)",
+                    "Trote suave (2-3 min)"
+                ]
+            },
+            "entrenamientoPrincipal": {
+                "troteContinuo": "Trote suave continuo durante 8 minutos",
+                "caminataActiva": "Caminata rápida (3 min)",
+                "repeticiones": "Repetir 3 veces",
+                "distanciaEstimada": "6 – 7 km"
+            },
+            "enfriamientoEstiramientos": {
+                "duracion": "5-10 minutos",
+                "ejercicios": [
+                    {
+                        "nombre": "Estiramiento de cuádriceps",
+                        "descripcion": "De pie, sujeta el pie y lleva el talón al glúteo, mantén 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de isquiotibiales",
+                        "descripcion": "Siéntate en el suelo, extiende una pierna y flexiona el torso hacia adelante, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de gemelos",
+                        "descripcion": "Apoya las manos en una pared, coloca una pierna atrás y presiona el talón contra el suelo, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de glúteos",
+                        "descripcion": "Tumbado boca arriba, cruza el tobillo sobre la rodilla contraria y tira de la pierna hacia el pecho, 20-30 segundos por lado."
+                    }
+                ]
+            }
+        },
+        "dia5": {
+            "nombre": "Domingo – Recuperación activa",
+            "actividad": "Caminata larga (30-45 minutos) sin impacto, o descanso completo.",
+            "enfriamientoEstiramientos": {
+                "duracion": "5 minutos",
+                "ejercicios": [
+                    {
+                        "nombre": "Estiramiento de cuádriceps",
+                        "descripcion": "De pie, sujeta el pie y lleva el talón al glúteo, mantén 20 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de isquiotibiales",
+                        "descripcion": "Siéntate en el suelo, extiende una pierna y flexiona el torso hacia adelante, 20 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de gemelos",
+                        "descripcion": "Apoya las manos en una pared, coloca una pierna atrás y presiona el talón contra el suelo, 20 segundos por pierna."
+                    }
+                ]
+            }
+        }
+    }
+}

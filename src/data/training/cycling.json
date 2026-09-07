@@ -1,0 +1,185 @@
+{
+    "objetivo": "ciclismo_15km",
+    "descripcion": "Rutina semanal progresiva para principiantes que desean recorrer 15 km en bicicleta (estática o de ruta) de forma continua. Se combina pedaleo suave con intervalos de mayor intensidad.",
+    "nota": "Esta rutina es orientativa y genérica. Ajusta la resistencia según tu nivel, hidrátate y usa casco si es en ruta. Consulta a un médico antes de comenzar.",
+    "duracionEstimada": "6-10 semanas (la progresión semanal puede repetirse hasta lograr el objetivo)",
+    "recomendacionesGenerales": [
+        "Ajusta la altura del asiento para evitar lesiones de rodilla.",
+        "Realiza siempre 5-10 minutos de calentamiento (pedaleo suave).",
+        "Termina con 5-10 minutos de enfriamiento y estiramientos.",
+        "Mantén una cadencia de 70-90 rpm (revoluciones por minuto) en bicicleta.",
+        "Si usas bicicleta de ruta, elige recorridos planos al inicio.",
+        "Escucha a tu cuerpo: si sientes dolor en las rodillas, reduce la resistencia."
+    ],
+    "rutinaSemanal": {
+        "dia1": {
+            "nombre": "Lunes – Iniciación (Pedaleo Suave)",
+            "calentamiento": {
+                "duracion": "5 minutos",
+                "ejercicios": [
+                    "Pedaleo suave sin resistencia (5 min)"
+                ]
+            },
+            "entrenamientoPrincipal": {
+                "pedaleo": "Pedaleo suave (12 min)",
+                "descanso": "Pedaleo muy suave (3 min)",
+                "repeticiones": "Repetir 2 veces",
+                "distanciaEstimada": "5 – 7 km"
+            },
+            "enfriamientoEstiramientos": {
+                "duracion": "5-10 minutos",
+                "ejercicios": [
+                    {
+                        "nombre": "Estiramiento de cuádriceps",
+                        "descripcion": "De pie, sujeta el pie y lleva el talón al glúteo, mantén 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de isquiotibiales",
+                        "descripcion": "Siéntate en el suelo, extiende una pierna y flexiona el torso hacia adelante, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de gemelos",
+                        "descripcion": "Apoya las manos en una pared, coloca una pierna atrás y presiona el talón contra el suelo, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de espalda baja",
+                        "descripcion": "Tumbado boca arriba, abraza las rodillas contra el pecho, mantén 20-30 segundos."
+                    }
+                ]
+            }
+        },
+        "dia2": {
+            "nombre": "Miércoles – Intervalos de Resistencia",
+            "calentamiento": {
+                "duracion": "5 minutos",
+                "ejercicios": [
+                    "Pedaleo suave con resistencia baja (5 min)"
+                ]
+            },
+            "entrenamientoPrincipal": {
+                "intervalos": [
+                    "Pedaleo moderado (5 min) con resistencia media",
+                    "Pedaleo suave (2 min) con resistencia baja",
+                    "Pedaleo fuerte (3 min) con resistencia media-alta",
+                    "Pedaleo suave (2 min)"
+                ],
+                "series": "Repetir 3 veces",
+                "distanciaEstimada": "8 – 10 km"
+            },
+            "enfriamientoEstiramientos": {
+                "duracion": "5-10 minutos",
+                "ejercicios": [
+                    {
+                        "nombre": "Estiramiento de cuádriceps",
+                        "descripcion": "De pie, sujeta el pie y lleva el talón al glúteo, mantén 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de isquiotibiales",
+                        "descripcion": "Siéntate en el suelo, extiende una pierna y flexiona el torso hacia adelante, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de gemelos",
+                        "descripcion": "Apoya las manos en una pared, coloca una pierna atrás y presiona el talón contra el suelo, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de espalda baja",
+                        "descripcion": "Tumbado boca arriba, abraza las rodillas contra el pecho, mantén 20-30 segundos."
+                    }
+                ]
+            }
+        },
+        "dia3": {
+            "nombre": "Viernes – Resistencia Progresiva",
+            "calentamiento": {
+                "duracion": "5 minutos",
+                "ejercicios": [
+                    "Pedaleo suave (5 min)"
+                ]
+            },
+            "entrenamientoPrincipal": {
+                "pedaleoContinuo": "Pedaleo continuo durante 15 minutos a ritmo constante (resistencia moderada)",
+                "recuperacion": "Pedaleo suave (3 min)",
+                "repeticiones": "Repetir 2 veces",
+                "distanciaEstimada": "10 – 12 km"
+            },
+            "enfriamientoEstiramientos": {
+                "duracion": "5-10 minutos",
+                "ejercicios": [
+                    {
+                        "nombre": "Estiramiento de cuádriceps",
+                        "descripcion": "De pie, sujeta el pie y lleva el talón al glúteo, mantén 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de isquiotibiales",
+                        "descripcion": "Siéntate en el suelo, extiende una pierna y flexiona el torso hacia adelante, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de gemelos",
+                        "descripcion": "Apoya las manos en una pared, coloca una pierna atrás y presiona el talón contra el suelo, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de espalda baja",
+                        "descripcion": "Tumbado boca arriba, abraza las rodillas contra el pecho, mantén 20-30 segundos."
+                    }
+                ]
+            }
+        },
+        "dia4": {
+            "nombre": "Sábado – Larga Distancia",
+            "calentamiento": {
+                "duracion": "5 minutos",
+                "ejercicios": [
+                    "Pedaleo suave (5 min)"
+                ]
+            },
+            "entrenamientoPrincipal": {
+                "pedaleoContinuo": "Pedaleo continuo durante 20 minutos a ritmo constante (resistencia moderada-baja)",
+                "recuperacion": "Pedaleo suave (3 min)",
+                "repeticiones": "Repetir 1 vez",
+                "distanciaEstimada": "12 – 15 km"
+            },
+            "enfriamientoEstiramientos": {
+                "duracion": "5-10 minutos",
+                "ejercicios": [
+                    {
+                        "nombre": "Estiramiento de cuádriceps",
+                        "descripcion": "De pie, sujeta el pie y lleva el talón al glúteo, mantén 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de isquiotibiales",
+                        "descripcion": "Siéntate en el suelo, extiende una pierna y flexiona el torso hacia adelante, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de gemelos",
+                        "descripcion": "Apoya las manos en una pared, coloca una pierna atrás y presiona el talón contra el suelo, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de espalda baja",
+                        "descripcion": "Tumbado boca arriba, abraza las rodillas contra el pecho, mantén 20-30 segundos."
+                    }
+                ]
+            }
+        },
+        "dia5": {
+            "nombre": "Domingo – Recuperación activa",
+            "actividad": "Paseo en bicicleta muy suave (20-30 minutos) sin esfuerzo, o descanso.",
+            "enfriamientoEstiramientos": {
+                "duracion": "5 minutos",
+                "ejercicios": [
+                    {
+                        "nombre": "Estiramiento de cuádriceps",
+                        "descripcion": "De pie, sujeta el pie y lleva el talón al glúteo, mantén 20 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de isquiotibiales",
+                        "descripcion": "Siéntate en el suelo, extiende una pierna y flexiona el torso hacia adelante, 20 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de gemelos",
+                        "descripcion": "Apoya las manos en una pared, coloca una pierna atrás y presiona el talón contra el suelo, 20 segundos por pierna."
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "objetivo": "aumentoMasaMuscular",
+    "descripcion": "Ganar peso en forma de músculo con un superávit calórico controlado y entrenamiento de fuerza intenso.",
+    "nota": "Esta información es orientativa y no sustituye el asesoramiento profesional.",
+    "caloriasYMacros": {
+        "calorias": "Superávit de 200 – 400 kcal/día (para ganar músculo sin exceso de grasa)",
+        "proteinas": "1.6 – 2.2 g/kg (el mayor rango)",
+        "carbohidratos": "4 – 6 g/kg (clave para energía y recuperación)",
+        "grasas": "0.8 – 1.2 g/kg (necesarias para la producción hormonal)"
+    },
+    "alimentosRecomendados": [
+        "Carnes magras: pollo, pavo, ternera magra",
+        "Pescados: salmón, atún, merluza",
+        "Huevos enteros y claras",
+        "Lácteos enteros o semidesnatados: leche, queso, yogur",
+        "Legumbres, tofu, tempeh",
+        "Carbohidratos complejos: arroz (integral o blanco), pasta, quinoa, patata, boniato, pan integral, avena",
+        "Grasas saludables: aguacate, aceite de oliva, frutos secos, semillas, pescado graso, mantequilla de cacahuete natural",
+        "Frutas: plátano, mango, piña (para glucógeno)",
+        "Todas las verduras (especialmente las de hoja verde)"
+    ],
+    "alimentosAEliminarOLimitar": [
+        "Azúcares simples y ultraprocesados: en superávit, consumirlos en exceso puede generar grasa no deseada y picos de insulina",
+        "Grasas trans y fritos: mejor optar por grasas saludables",
+        "Alcohol: puede interferir con la síntesis proteica y el sueño; limitar a ocasiones especiales",
+        "Excesos de fibra: grandes cantidades pueden causar saciedad prematura y dificultar el superávit"
+    ],
+    "hidratacion": {
+        "agua": "2.5 – 3 litros al día (la deshidratación reduce el rendimiento)",
+        "bebidas": "Leche y batidos de proteína cuentan como líquidos"
+    },
+    "suplementosYEstimulantes": {
+        "recomendados": [
+            "Proteína en polvo (whey, caseína, vegetal): muy práctica para alcanzar el objetivo proteico",
+            "Creatina: 3-5 g/día (mejora fuerza y volumen celular)",
+            "Cafeína: antes del entrenamiento para mejorar el rendimiento (≤400 mg/día)",
+            "Beta-alanina: útil en series largas de 8-15 repeticiones (opcional)",
+            "Omega-3: reduce inflamación y beneficia la salud general"
+        ],
+        "evitar": "Suplementos que prometan ganancias rápidas sin entrenamiento; anabolizantes no regulados son peligrosos."
+    },
+    "timingDeComidas": {
+        "antesEntreno": "1-2 h antes: comida abundante en carbohidratos y proteína (ej. arroz con pollo y verduras)",
+        "duranteEntreno": "Bebida con carbohidratos (ej. bebida deportiva o agua con maltodextrina) si >60 min",
+        "despuesEntreno": "Inmediato: batido de proteína + carbohidratos rápidos (ej. whey con plátano o miel)",
+        "comidaPostEntreno": "1-2 h después: comida sólida completa (ej. pasta con carne magra)",
+        "distribucion": "5-6 comidas al día, incluyendo una antes de dormir (ej. caseína o requesón) para alimentar el músculo durante la noche"
+    },
+    "ejemploMenuDiario": {
+        "desayuno": "Tortilla de 3 huevos enteros con avena y leche entera, plátano",
+        "mediaManana": "Bocadillo de pavo con pan integral y aguacate",
+        "comida": "Arroz integral con pollo y brócoli, 1 cucharada de aceite de oliva",
+        "meriendaPreEntreno": "Batido de proteína con avena y leche",
+        "cena": "Salmón a la plancha con patata asada y espárragos",
+        "antesDormir": "Requesón o yogur griego con frutos secos"
+    }
+}

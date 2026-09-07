@@ -1,0 +1,53 @@
+{
+    "objetivo": "reduccionDeGrasa",
+    "descripcion": "Pérdida de peso corporal principalmente en forma de grasa, manteniendo la masa muscular. Se requiere un déficit calórico moderado y sostenido.",
+    "nota": "Esta información es orientativa y no sustituye el asesoramiento profesional.",
+    "caloriasYMacros": {
+        "calorias": "Déficit de 300 – 500 kcal/día (nunca por debajo de la tasa metabólica basal)",
+        "proteinas": "1.8 – 2.2 g/kg (más altas para preservar músculo en déficit)",
+        "carbohidratos": "2 – 3 g/kg (ajustar según tolerancia y actividad)",
+        "grasas": "0.6 – 0.8 g/kg (no bajar de 0.5 para mantener función hormonal)"
+    },
+    "alimentosRecomendados": [
+        "Proteínas magras: pechuga de pollo, pavo, pescado blanco y azul, huevos, claras",
+        "Verduras de gran volumen y bajo calóricas: brócoli, coliflor, espinacas, lechuga, pepino, apio, calabacín",
+        "Carbohidratos de bajo índice glucémico: avena, quinoa, boniato, legumbres (en raciones controladas)",
+        "Frutas: bayas, pomelo, manzana",
+        "Grasas saludables: aguacate (poca cantidad), aceite de oliva (moderado), frutos secos (20-30 g/día), semillas",
+        "Caldo de huesos o sopas claras (para saciar)",
+        "Yogur desnatado, requesón 0%"
+    ],
+    "alimentosAEliminarOLimitar": [
+        "Calorías líquidas: refrescos, zumos, alcohol, batidos comerciales, leche entera en exceso",
+        "Carbohidratos refinados: pan blanco, arroz blanco, pasta, dulces, galletas",
+        "Grasas trans y saturadas: bollería industrial, margarinas, fritos, embutidos",
+        "Salsas y aderezos calóricos: mayonesa, kétchup, salsas de queso",
+        "Frutos secos y semillas en exceso (medir porciones)"
+    ],
+    "hidratacion": {
+        "agua": "2.5 – 3 litros al día (ayuda a la saciedad y al metabolismo)",
+        "bebidas": "Tés e infusiones sin azúcar (té verde, rojo, manzanilla). Evitar edulcorantes artificiales en exceso."
+    },
+    "suplementosYEstimulantes": {
+        "recomendados": [
+            "Cafeína (200-400 mg/día): reduce el apetito y aumenta el gasto calórico. Evitar por la noche.",
+            "Proteína en polvo (whey aislada): para asegurar ingesta proteica con pocas calorías",
+            "Fibras solubles (psyllium, glucomanano): aumentan la saciedad (tomar con abundante agua)",
+            "Termogénicos (cafeína, té verde, capsaicina): efecto leve, no sustituyen la dieta"
+        ],
+        "evitar": "Diuréticos, laxantes, estimulantes no regulados, y productos que prometan pérdida rápida sin cambios alimenticios."
+    },
+    "timingDeComidas": {
+        "antesEntreno": "1-2 h antes: carbohidratos de bajo índice + proteína (ej. avena con claras de huevo)",
+        "duranteEntreno": "Agua o bebida sin calorías; no se recomiendan carbohidratos durante el ejercicio en déficit severo",
+        "despuesEntreno": "Proteína + algo de carbohidrato para recuperación (ej. batido de proteína con leche desnatada y media fruta)",
+        "distribucion": "3-4 comidas principales y 1-2 tentempiés bajos en calorías (verduras crudas, palitos de apio, pepino)"
+    },
+    "ejemploMenuDiario": {
+        "desayuno": "Revuelto de claras de huevo con espinacas y una tostada integral",
+        "mediaManana": "Un puñado de fresas y un yogur desnatado",
+        "comida": "Ensalada grande con atún al natural, tomate, pepino, cebolla y 1 cucharada de aceite de oliva",
+        "merienda": "Batido de proteína con agua y canela",
+        "cena": "Pechuga de pavo a la plancha con brócoli al vapor y 10 g de almendras"
+    }
+}

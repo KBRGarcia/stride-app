@@ -1,0 +1,202 @@
+{
+    "objetivo": "saltarCuerda_10min",
+    "descripcion": "Rutina semanal progresiva para principiantes que desean ser capaces de saltar la cuerda durante 10 minutos continuos. Se combinan series de salto con descansos activos.",
+    "nota": "Esta rutina es orientativa y genérica. Usa una cuerda adecuada a tu altura, calza zapatillas con amortiguación y salta sobre una superficie blanda si es posible. Consulta a un médico antes de comenzar.",
+    "duracionEstimada": "6-8 semanas (la progresión semanal puede repetirse hasta lograr el objetivo)",
+    "recomendacionesGenerales": [
+        "Realiza siempre 5 minutos de calentamiento (movilidad articular y saltos suaves).",
+        "Mantén una postura erguida, salta con las puntas de los pies y rota la muñeca.",
+        "Descansa 1 día entre sesiones al inicio.",
+        "Aumenta el tiempo de salto gradualmente (no más del 10% semanal).",
+        "Si sientes dolor en tobillos o rodillas, reduce la intensidad."
+    ],
+    "rutinaSemanal": {
+        "dia1": {
+            "nombre": "Lunes – Iniciación (Saltos Básicos)",
+            "calentamiento": {
+                "duracion": "5 minutos",
+                "ejercicios": [
+                    "Saltos suaves sin cuerda (2 min)",
+                    "Rotación de tobillos y muñecas (1 min)",
+                    "Elevación de talones (2 min)"
+                ]
+            },
+            "entrenamientoPrincipal": {
+                "series": [
+                    "Salto continuo (30 segundos)",
+                    "Descanso (30 segundos)",
+                    "Salto continuo (45 segundos)",
+                    "Descanso (30 segundos)"
+                ],
+                "repeticiones": "Repetir 4-5 veces",
+                "tiempoTotal": "Aproximadamente 8-10 minutos de salto total"
+            },
+            "enfriamientoEstiramientos": {
+                "duracion": "5-10 minutos",
+                "ejercicios": [
+                    {
+                        "nombre": "Estiramiento de gemelos",
+                        "descripcion": "Apoya las manos en una pared, coloca una pierna atrás y presiona el talón contra el suelo, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de isquiotibiales",
+                        "descripcion": "Siéntate en el suelo, extiende una pierna y flexiona el torso hacia adelante, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de cuádriceps",
+                        "descripcion": "De pie, sujeta el pie y lleva el talón al glúteo, mantén 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de hombros y muñecas",
+                        "descripcion": "Entrelaza los dedos y estira los brazos hacia adelante, mantén 20 segundos."
+                    }
+                ]
+            }
+        },
+        "dia2": {
+            "nombre": "Miércoles – Resistencia (Saltos Continuos)",
+            "calentamiento": {
+                "duracion": "5 minutos",
+                "ejercicios": [
+                    "Salto suave sin cuerda (2 min)",
+                    "Círculos con los brazos (1 min)",
+                    "Sentadillas sin peso (2 min)"
+                ]
+            },
+            "entrenamientoPrincipal": {
+                "series": [
+                    "Salto continuo (1 minuto)",
+                    "Descanso (45 segundos)",
+                    "Salto continuo (1 minuto 30 segundos)",
+                    "Descanso (45 segundos)"
+                ],
+                "repeticiones": "Repetir 3-4 veces",
+                "tiempoTotal": "Aproximadamente 12-15 minutos de salto total"
+            },
+            "enfriamientoEstiramientos": {
+                "duracion": "5-10 minutos",
+                "ejercicios": [
+                    {
+                        "nombre": "Estiramiento de gemelos",
+                        "descripcion": "Apoya las manos en una pared, coloca una pierna atrás y presiona el talón contra el suelo, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de isquiotibiales",
+                        "descripcion": "Siéntate en el suelo, extiende una pierna y flexiona el torso hacia adelante, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de cuádriceps",
+                        "descripcion": "De pie, sujeta el pie y lleva el talón al glúteo, mantén 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de hombros y muñecas",
+                        "descripcion": "Entrelaza los dedos y estira los brazos hacia adelante, mantén 20 segundos."
+                    }
+                ]
+            }
+        },
+        "dia3": {
+            "nombre": "Viernes – Intervalos de Intensidad",
+            "calentamiento": {
+                "duracion": "5 minutos",
+                "ejercicios": [
+                    "Saltos suaves con cuerda (2 min)",
+                    "Movilidad de cadera (2 min)",
+                    "Elevación de talones (1 min)"
+                ]
+            },
+            "entrenamientoPrincipal": {
+                "intervalos": [
+                    "Salto rápido (45 segundos)",
+                    "Descanso (30 segundos)",
+                    "Salto moderado (1 minuto)",
+                    "Descanso (30 segundos)",
+                    "Salto rápido (30 segundos)",
+                    "Descanso (30 segundos)"
+                ],
+                "series": "Repetir 4 veces",
+                "tiempoTotal": "Aproximadamente 16-18 minutos de salto total"
+            },
+            "enfriamientoEstiramientos": {
+                "duracion": "5-10 minutos",
+                "ejercicios": [
+                    {
+                        "nombre": "Estiramiento de gemelos",
+                        "descripcion": "Apoya las manos en una pared, coloca una pierna atrás y presiona el talón contra el suelo, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de isquiotibiales",
+                        "descripcion": "Siéntate en el suelo, extiende una pierna y flexiona el torso hacia adelante, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de cuádriceps",
+                        "descripcion": "De pie, sujeta el pie y lleva el talón al glúteo, mantén 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de hombros y muñecas",
+                        "descripcion": "Entrelaza los dedos y estira los brazos hacia adelante, mantén 20 segundos."
+                    }
+                ]
+            }
+        },
+        "dia4": {
+            "nombre": "Sábado – Salto Continuo Progresivo",
+            "calentamiento": {
+                "duracion": "5 minutos",
+                "ejercicios": [
+                    "Saltos suaves (2 min)",
+                    "Movilidad de tobillos (2 min)",
+                    "Rotación de muñecas (1 min)"
+                ]
+            },
+            "entrenamientoPrincipal": {
+                "saltoContinuo": "Salto continuo durante 3 minutos (ritmo moderado)",
+                "descanso": "Descanso (1 minuto)",
+                "repeticiones": "Repetir 3 veces",
+                "tiempoTotal": "Aproximadamente 12 minutos de salto total"
+            },
+            "enfriamientoEstiramientos": {
+                "duracion": "5-10 minutos",
+                "ejercicios": [
+                    {
+                        "nombre": "Estiramiento de gemelos",
+                        "descripcion": "Apoya las manos en una pared, coloca una pierna atrás y presiona el talón contra el suelo, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de isquiotibiales",
+                        "descripcion": "Siéntate en el suelo, extiende una pierna y flexiona el torso hacia adelante, 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de cuádriceps",
+                        "descripcion": "De pie, sujeta el pie y lleva el talón al glúteo, mantén 20-30 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de hombros y muñecas",
+                        "descripcion": "Entrelaza los dedos y estira los brazos hacia adelante, mantén 20 segundos."
+                    }
+                ]
+            }
+        },
+        "dia5": {
+            "nombre": "Domingo – Recuperación activa",
+            "actividad": "Caminata ligera (20-30 minutos) o estiramientos suaves. No saltar.",
+            "enfriamientoEstiramientos": {
+                "duracion": "5-10 minutos",
+                "ejercicios": [
+                    {
+                        "nombre": "Estiramiento de gemelos",
+                        "descripcion": "Apoya las manos en una pared, coloca una pierna atrás y presiona el talón contra el suelo, 20 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de isquiotibiales",
+                        "descripcion": "Siéntate en el suelo, extiende una pierna y flexiona el torso hacia adelante, 20 segundos por pierna."
+                    },
+                    {
+                        "nombre": "Estiramiento de cuádriceps",
+                        "descripcion": "De pie, sujeta el pie y lleva el talón al glúteo, mantén 20 segundos por pierna."
+                    }
+                ]
+            }
+        }
+    }
+}

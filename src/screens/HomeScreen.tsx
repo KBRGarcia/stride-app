@@ -6,6 +6,7 @@ import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { AppShell } from '../components/AppShell';
 import { DevResetProfileButton } from '../components/DevResetProfileButton';
+import { MainSectionTabs } from '../components/MainSectionTabs';
 import { useTheme } from '../hooks/useTheme';
 import type { DayOfWeek } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
@@ -147,6 +148,7 @@ export default function HomeScreen() {
   if (!recommendation) {
     return (
       <AppShell>
+        <MainSectionTabs active="home" />
         <View style={styles.centerContent}>
           <Text style={styles.errorTitle}>No hay rutina disponible</Text>
           <Text style={styles.errorText}>
@@ -162,6 +164,7 @@ export default function HomeScreen() {
 
   return (
     <AppShell>
+      <MainSectionTabs active="home" />
       <View style={styles.header}>
         <Text style={styles.title}>Tu semana</Text>
         <Text style={styles.subtitle}>Plan de entrenamiento personalizado</Text>
