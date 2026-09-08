@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Alert, Pressable, StyleSheet, Text } from 'react-native';
@@ -7,51 +8,46 @@ import { useTheme } from '../hooks/useTheme';
 import type { RootStackParamList } from '../navigation/types';
 import { useAppStore } from '../stores/useAppStore';
 
-type DevNavigation = NativeStackNavigationProp<RootStackParamList>;
+type ResetNavigation = NativeStackNavigationProp<RootStackParamList>;
 
-interface DevResetProfileButtonProps {
+interface ResetProfileButtonProps {
   onAfterReset?: () => void;
+  onPress?: () => void;
 }
 
-export function DevResetProfileButton({ onAfterReset }: DevResetProfileButtonProps) {
-  const navigation = useNavigation<DevNavigation>();
+export function ResetProfileButton({ onAfterReset, onPress }: ResetProfileButtonProps) {
+  const navigation = useNavigation<ResetNavigation>();
   const resetProfile = useAppStore((state) => state.resetProfile);
   const { colors } = useTheme();
 
   const styles = useMemo(
     () =>
       StyleSheet.create({
-        button: {
-          marginTop: 12,
-          marginBottom: 24,
-          borderWidth: 1,
-          borderColor: colors.dangerBorder,
-          borderRadius: 12,
-          paddingVertical: 14,
+        row: {
+          flexDirection: 'row',
           alignItems: 'center',
-          backgroundColor: colors.dangerSurface,
+          gap: 10,
+          paddingHorizontal: 14,
+          paddingVertical: 12,
         },
         text: {
-          color: colors.dangerText,
-          fontSize: 14,
+          color: colors.text,
+          fontSize: 15,
           fontWeight: '600',
         },
       }),
     [colors]
   );
 
-  if (!__DEV__) {
-    return null;
-  }
-
   const handlePress = () => {
+    onPress?.();
     Alert.alert(
-      'Restablecer perfil (dev)',
-      'Se borrarán el perfil y los entrenamientos completados. ¿Continuar?',
+      'Actualizar datos',
+      'Se borrarán el perfil y los entrenamientos completados para que puedas volver a configurarlos. ¿Continuar?',
       [
         { text: 'Cancelar', style: 'cancel' },
         {
-          text: 'Restablecer',
+          text: 'Continuar',
           style: 'destructive',
           onPress: async () => {
             await resetProfile();
@@ -64,8 +60,14 @@ export function DevResetProfileButton({ onAfterReset }: DevResetProfileButtonPro
   };
 
   return (
-    <Pressable style={styles.button} onPress={handlePress}>
-      <Text style={styles.text}>Restablecer perfil (dev)</Text>
+    <Pressable
+      style={styles.row}
+      onPress={handlePress}
+      accessibilityRole="button"
+      accessibilityLabel="Actualizar datos"
+    >
+      <Ionicons name="create-outline" size={20} color={colors.text} />
+      <Text style={styles.text}>Actualizar datos</Text>
     </Pressable>
   );
 }

@@ -15,7 +15,6 @@ import {
 
 import { AppShell } from '../components/AppShell';
 import { BirthDatePicker } from '../components/BirthDatePicker';
-import { DevResetProfileButton } from '../components/DevResetProfileButton';
 import { useTheme } from '../hooks/useTheme';
 import type { WorkoutGoal, WorkoutLocation } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
@@ -365,16 +364,6 @@ export default function ProfileScreen() {
           >
             <Text style={styles.saveButtonText}>{isSaving ? 'Guardando...' : 'Guardar'}</Text>
           </Pressable>
-
-          <DevResetProfileButton
-            onAfterReset={() => {
-              setGender(null);
-              setWorkoutLocation(null);
-              setGoal(null);
-              setWeight('');
-              setBirthDate(DEFAULT_BIRTH_DATE);
-            }}
-          />
         </ScrollView>
       </KeyboardAvoidingView>
     </AppShell>

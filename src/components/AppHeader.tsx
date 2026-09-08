@@ -1,12 +1,19 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Image, Pressable, StyleSheet, View } from 'react-native';
+import { useState } from 'react';
+import { Image, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTheme } from '../hooks/useTheme';
 import { useThemeStore } from '../stores/useThemeStore';
+import { ResetProfileButton } from './ResetProfileButton';
 
 export function AppHeader() {
   const { colors, images, isDark } = useTheme();
   const toggleColorScheme = useThemeStore((state) => state.toggleColorScheme);
+  const insets = useSafeAreaInsets();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <View
@@ -34,17 +41,55 @@ export function AppHeader() {
       </View>
 
       <Pressable
-        style={[styles.toggleButton, { backgroundColor: colors.surfaceSecondary }]}
-        onPress={() => void toggleColorScheme()}
+        style={[styles.menuButton, { backgroundColor: colors.surfaceSecondary }]}
+        onPress={() => setIsMenuOpen(true)}
         accessibilityRole="button"
-        accessibilityLabel={isDark ? 'Activar modo claro' : 'Activar modo oscuro'}
+        accessibilityLabel="Abrir menú"
       >
-        <Ionicons
-          name={isDark ? 'sunny-outline' : 'moon-outline'}
-          size={22}
-          color={colors.text}
-        />
+        <Ionicons name="ellipsis-vertical" size={20} color={colors.text} />
       </Pressable>
+
+      <Modal
+        visible={isMenuOpen}
+        transparent
+        animationType="fade"
+        onRequestClose={closeMenu}
+      >
+        <Pressable style={styles.overlay} onPress={closeMenu}>
+          <Pressable
+            style={[
+              styles.menu,
+              {
+                top: insets.top + 56,
+                backgroundColor: colors.surface,
+                borderColor: colors.border,
+              },
+            ]}
+            onPress={() => undefined}
+          >
+            <ResetProfileButton onPress={closeMenu} />
+            <View style={[styles.separator, { backgroundColor: colors.border }]} />
+            <Pressable
+              style={styles.menuRow}
+              onPress={() => {
+                closeMenu();
+                void toggleColorScheme();
+              }}
+              accessibilityRole="button"
+              accessibilityLabel={isDark ? 'Activar modo claro' : 'Activar modo oscuro'}
+            >
+              <Ionicons
+                name={isDark ? 'sunny-outline' : 'moon-outline'}
+                size={20}
+                color={colors.text}
+              />
+              <Text style={[styles.menuRowText, { color: colors.text }]}>
+                {isDark ? 'Modo claro' : 'Modo oscuro'}
+              </Text>
+            </Pressable>
+          </Pressable>
+        </Pressable>
+      </Modal>
     </View>
   );
 }
@@ -74,11 +119,41 @@ const styles = StyleSheet.create({
     height: 30,
     marginLeft: -35,
   },
-  toggleButton: {
+  menuButton: {
     width: 40,
     height: 40,
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  overlay: {
+    flex: 1,
+  },
+  menu: {
+    position: 'absolute',
+    right: 16,
+    minWidth: 220,
+    borderRadius: 12,
+    borderWidth: 1,
+    overflow: 'hidden',
+    elevation: 6,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+  },
+  separator: {
+    height: StyleSheet.hairlineWidth,
+  },
+  menuRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+  },
+  menuRowText: {
+    fontSize: 15,
+    fontWeight: '600',
   },
 });

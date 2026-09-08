@@ -5,7 +5,6 @@ import { useMemo, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { AppShell } from '../components/AppShell';
-import { DevResetProfileButton } from '../components/DevResetProfileButton';
 import { MainSectionTabs } from '../components/MainSectionTabs';
 import { NutritionPanel } from '../components/NutritionPanel';
 import { SectionSubmenu } from '../components/SectionSubmenu';
@@ -168,7 +167,6 @@ export default function HomeScreen() {
           <Text style={styles.errorText}>
             No se encontró una rutina para tu perfil. Vuelve a configurarlo.
           </Text>
-          <DevResetProfileButton />
         </View>
       ) : (
         <>
@@ -181,7 +179,6 @@ export default function HomeScreen() {
             data={[...recommendation.weeklyRoutine].sort((a, b) => a.day - b.day)}
             keyExtractor={(item) => String(item.day)}
             contentContainerStyle={styles.listContent}
-            ListFooterComponent={<DevResetProfileButton />}
             renderItem={({ item }) => {
               const completed = isDayCompleted(item.day);
               const status = getDayScheduleStatus(item.day, completed);
