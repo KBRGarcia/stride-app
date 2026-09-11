@@ -6,5 +6,6 @@ export type RootStackParamList = {
   Home: undefined;
   Cardio: undefined;
   CardioActivity: { activityId: CardioActivityId };
+  CardioSession: { activityId: CardioActivityId; dayIndex: number };
   Workout: { day: DayOfWeek };
 };

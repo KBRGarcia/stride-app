@@ -1,4 +1,6 @@
+import gymFatReductionRoutines from '../data/gym/fat_reduction.json';
 import gymMuscleGainRoutines from '../data/gym/muscle_gain.json';
+import gymToningRoutines from '../data/gym/toning.json';
 import homeFatReductionRoutines from '../data/home/fat_reduction.json';
 import homeMuscleGainRoutines from '../data/home/muscle_gain.json';
 import homeToningRoutines from '../data/home/toning.json';
@@ -16,13 +18,14 @@ const HOME_ROUTINES: Record<WorkoutGoal, RoutinesData> = {
   fat_reduction: homeFatReductionRoutines as RoutinesData,
 };
 
-export function getRoutines(location: WorkoutLocation, goal: WorkoutGoal): RoutinesData {
-  if (location === 'gym') {
-    // El único archivo de gimnasio disponible actualmente corresponde a ganancia muscular.
-    return goal === 'muscle_gain' ? (gymMuscleGainRoutines as RoutinesData) : [];
-  }
+const GYM_ROUTINES: Record<WorkoutGoal, RoutinesData> = {
+  toning: gymToningRoutines as RoutinesData,
+  muscle_gain: gymMuscleGainRoutines as RoutinesData,
+  fat_reduction: gymFatReductionRoutines as RoutinesData,
+};
 
-  return HOME_ROUTINES[goal];
+export function getRoutines(location: WorkoutLocation, goal: WorkoutGoal): RoutinesData {
+  return location === 'gym' ? GYM_ROUTINES[goal] : HOME_ROUTINES[goal];
 }
 
 /** Mantiene el orden natural de una sesión: calentamiento, trabajo principal y enfriamiento. */

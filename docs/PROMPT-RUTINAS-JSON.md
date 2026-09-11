@@ -13,7 +13,9 @@ El género no forma parte del perfil ni de la selección.
 - `src/data/home/toning.json`
 - `src/data/home/muscle_gain.json`
 - `src/data/home/fat_reduction.json`
-- Gimnasio: por ahora solo existe `muscle_gain`.
+- `src/data/gym/toning.json`
+- `src/data/gym/muscle_gain.json`
+- `src/data/gym/fat_reduction.json`
 
 ## Arquetipos
 

@@ -34,8 +34,7 @@ export async function getProfile(): Promise<UserProfile | null> {
     !parsed.birthDate ||
     typeof parsed.weight !== 'number' ||
     !isValidGoal ||
-    !isValidLocation ||
-    (workoutLocation === 'gym' && goal !== 'muscle_gain')
+    !isValidLocation
   ) {
     return null;
   }

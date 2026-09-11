@@ -7,7 +7,8 @@ import type {
 import { getDayExercises, getRoutines } from '../routinesData';
 
 const ARCHETYPES: Archetype[] = ['A', 'B', 'C', 'D', 'E', 'F'];
-const HOME_GOALS: WorkoutGoal[] = ['toning', 'muscle_gain', 'fat_reduction'];
+const GOALS: WorkoutGoal[] = ['toning', 'muscle_gain', 'fat_reduction'];
+const LOCATIONS: WorkoutLocation[] = ['home', 'gym'];
 const DATASETS: ReadonlyArray<{
   name: string;
   location: WorkoutLocation;
@@ -16,7 +17,9 @@ const DATASETS: ReadonlyArray<{
   { name: 'casa/tonificación', location: 'home', goal: 'toning' },
   { name: 'casa/masa muscular', location: 'home', goal: 'muscle_gain' },
   { name: 'casa/reducción de grasa', location: 'home', goal: 'fat_reduction' },
+  { name: 'gimnasio/tonificación', location: 'gym', goal: 'toning' },
   { name: 'gimnasio/masa muscular', location: 'gym', goal: 'muscle_gain' },
+  { name: 'gimnasio/reducción de grasa', location: 'gym', goal: 'fat_reduction' },
 ];
 
 function validateDataset(routines: RoutinesData): void {
@@ -51,19 +54,13 @@ function validateDataset(routines: RoutinesData): void {
 }
 
 describe('routinesData', () => {
-  it.each(HOME_GOALS)('incluye los seis arquetipos en casa para %s', (goal) => {
-    const routines = getRoutines('home', goal);
+  it.each(LOCATIONS)('incluye los seis arquetipos en %s para cada objetivo', (location) => {
+    for (const goal of GOALS) {
+      const routines = getRoutines(location, goal);
 
-    expect(routines.map((routine) => routine.archetype)).toEqual(ARCHETYPES);
-    expect(routines.every((routine) => routine.weeklyRoutine.length === 7)).toBe(true);
-  });
-
-  it('solo ofrece aumento de masa muscular en gimnasio', () => {
-    expect(getRoutines('gym', 'muscle_gain').map((routine) => routine.archetype)).toEqual(
-      ARCHETYPES
-    );
-    expect(getRoutines('gym', 'toning')).toEqual([]);
-    expect(getRoutines('gym', 'fat_reduction')).toEqual([]);
+      expect(routines.map((routine) => routine.archetype)).toEqual(ARCHETYPES);
+      expect(routines.every((routine) => routine.weeklyRoutine.length === 7)).toBe(true);
+    }
   });
 
   it('ordena las fases de cada sesión', () => {

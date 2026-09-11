@@ -110,13 +110,6 @@ export default function ProfileScreen() {
         optionTextActive: {
           color: colors.primaryText,
         },
-        goalHint: {
-          color: colors.textMuted,
-          fontSize: 13,
-          lineHeight: 19,
-          marginTop: -14,
-          marginBottom: 24,
-        },
         input: {
           borderWidth: 1,
           borderColor: colors.border,
@@ -294,10 +287,7 @@ export default function ProfileScreen() {
                 styles.optionButton,
                 workoutLocation === 'gym' && styles.optionButtonActive,
               ]}
-              onPress={() => {
-                setWorkoutLocation('gym');
-                setGoal('muscle_gain');
-              }}
+              onPress={() => setWorkoutLocation('gym')}
             >
               <Text
                 style={[
@@ -314,9 +304,7 @@ export default function ProfileScreen() {
             <>
               <Text style={styles.label}>Objetivo</Text>
               <View style={styles.optionsColumn}>
-                {GOAL_OPTIONS.filter(
-                  (option) => workoutLocation === 'home' || option.value === 'muscle_gain'
-                ).map((option) => (
+                {GOAL_OPTIONS.map((option) => (
                   <Pressable
                     key={option.value}
                     style={[
@@ -336,11 +324,6 @@ export default function ProfileScreen() {
                   </Pressable>
                 ))}
               </View>
-              {workoutLocation === 'gym' ? (
-                <Text style={styles.goalHint}>
-                  Por ahora, el gimnasio solo dispone del objetivo de aumento de masa muscular.
-                </Text>
-              ) : null}
             </>
           ) : null}
 

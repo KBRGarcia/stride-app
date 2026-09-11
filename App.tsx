@@ -8,6 +8,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import type { RootStackParamList } from './src/navigation/types';
 import CardioActivityScreen from './src/screens/CardioActivityScreen';
 import CardioScreen from './src/screens/CardioScreen';
+import CardioSessionScreen from './src/screens/CardioSessionScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import { BrandSplashScreen } from './src/screens/SplashScreen';
@@ -85,6 +86,7 @@ function AppNavigator() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Cardio" component={CardioScreen} />
         <Stack.Screen name="CardioActivity" component={CardioActivityScreen} />
+        <Stack.Screen name="CardioSession" component={CardioSessionScreen} />
         <Stack.Screen name="Workout" component={WorkoutScreen} />
       </Stack.Navigator>
     </NavigationContainer>

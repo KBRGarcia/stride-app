@@ -16,10 +16,12 @@ describe('nutritionData', () => {
     expect(guide.ejemploMenuDiario.desayuno.length).toBeGreaterThan(0);
   });
 
-  it('asocia cada objetivo con su guía', () => {
+  it('asocia cada objetivo con su guía, independiente del entorno de entrenamiento', () => {
     expect(getNutritionGuide('toning').objetivo).toBe('tonificacion');
     expect(getNutritionGuide('muscle_gain').objetivo).toBe('aumentoMasaMuscular');
     expect(getNutritionGuide('fat_reduction').objetivo).toBe('reduccionDeGrasa');
+    expect(getNutritionGuide('toning')).not.toBe(getNutritionGuide('muscle_gain'));
+    expect(getNutritionGuide('toning')).not.toBe(getNutritionGuide('fat_reduction'));
   });
 
   it('asocia el cardio con la guía de reducción de grasa', () => {

@@ -1,8 +1,12 @@
 import { getCardioNutritionGuide } from '../nutritionData';
 import {
+  countCardioDayItems,
   formatCardioMainWorkout,
   getCardioActivities,
   getCardioActivity,
+  getCardioDayPhases,
+  getCardioDayPresentation,
+  getCardioSessionDay,
   getCardioWeekDays,
 } from '../cardioData';
 
@@ -25,6 +29,26 @@ describe('cardioData', () => {
     expect(getCardioActivity('jog')?.objetivo).toBe('trotar_10km');
     expect(getCardioActivity('cycling')?.objetivo).toBe('ciclismo_15km');
     expect(getCardioActivity('rope-jump')?.objetivo).toBe('saltarCuerda_10min');
+  });
+
+  it('presenta cada día como en el plan de entrenamiento', () => {
+    const monday = getCardioWeekDays(getCardioActivity('jog')!)[0];
+    const presentation = getCardioDayPresentation(monday);
+
+    expect(presentation).toEqual({
+      weekdayShort: 'Lun',
+      weekdayFull: 'Lunes',
+      focus: 'Iniciación (Caminata + Trote)',
+      dayOfWeek: 1,
+    });
+    expect(countCardioDayItems(monday)).toBeGreaterThan(0);
+    expect(getCardioDayPhases(monday).map((phase) => phase.title)).toEqual([
+      'Calentamiento',
+      'Entrenamiento',
+      'Enfriamiento',
+    ]);
+    expect(getCardioSessionDay(getCardioActivity('jog')!, 4)?.nombre).toContain('Domingo');
+    expect(getCardioSessionDay(getCardioActivity('jog')!, 5)).toBeNull();
   });
 
   it('formatea bloques heterogéneos del entrenamiento principal', () => {

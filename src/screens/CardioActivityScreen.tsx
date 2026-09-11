@@ -3,17 +3,23 @@ import type { RouteProp } from '@react-navigation/native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useMemo } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { AppShell } from '../components/AppShell';
 import { MainSectionTabs } from '../components/MainSectionTabs';
 import { useTheme } from '../hooks/useTheme';
 import type { RootStackParamList } from '../navigation/types';
 import {
-  formatCardioMainWorkout,
+  countCardioDayItems,
   getCardioActivity,
+  getCardioDayPresentation,
   getCardioWeekDays,
 } from '../utils/cardioData';
+import {
+  getDayOfWeek,
+  getDayScheduleStatus,
+  getDayStatusLabel,
+} from '../utils/weekSchedule';
 
 type CardioActivityRoute = RouteProp<RootStackParamList, 'CardioActivity'>;
 type CardioActivityNavigation = NativeStackNavigationProp<
@@ -56,50 +62,55 @@ export default function CardioActivityScreen() {
           marginTop: 6,
           fontSize: 15,
           color: colors.textMuted,
-          lineHeight: 22,
         },
-        content: {
+        listContent: {
           paddingHorizontal: 16,
-          paddingTop: 12,
-          paddingBottom: 32,
+          paddingBottom: 24,
         },
-        card: {
+        dayRow: {
+          flexDirection: 'row',
+          alignItems: 'center',
           backgroundColor: colors.surface,
-          borderColor: colors.border,
+          borderRadius: 14,
+          paddingVertical: 14,
+          paddingHorizontal: 16,
           borderWidth: 1,
-          borderRadius: 16,
-          padding: 16,
-          marginBottom: 14,
-        },
-        cardTitle: {
-          fontSize: 17,
-          fontWeight: '700',
-          color: colors.text,
+          borderColor: colors.border,
           marginBottom: 10,
         },
-        body: {
-          fontSize: 15,
-          color: colors.textSecondary,
-          lineHeight: 22,
+        dayRowToday: {
+          borderColor: colors.primary,
         },
-        item: {
-          fontSize: 15,
-          color: colors.textSecondary,
-          lineHeight: 22,
-          marginBottom: 6,
+        dayRowPreview: {
+          backgroundColor: colors.surfaceSecondary,
         },
-        fieldLabel: {
-          fontSize: 13,
+        dayShort: {
+          width: 44,
+          fontSize: 16,
           fontWeight: '700',
           color: colors.text,
-          marginTop: 10,
-          marginBottom: 4,
         },
-        note: {
+        dayInfo: {
+          flex: 1,
+        },
+        dayFull: {
+          fontSize: 16,
+          fontWeight: '600',
+          color: colors.text,
+        },
+        dayMeta: {
+          marginTop: 2,
           fontSize: 13,
           color: colors.textMuted,
-          lineHeight: 20,
-          fontStyle: 'italic',
+        },
+        statusLabel: {
+          fontSize: 12,
+          fontWeight: '600',
+          color: colors.textMuted,
+          marginRight: 8,
+        },
+        statusLabelToday: {
+          color: colors.primary,
         },
         centerContent: {
           flex: 1,
@@ -139,6 +150,7 @@ export default function CardioActivityScreen() {
   }
 
   const days = getCardioWeekDays(activity);
+  const today = getDayOfWeek();
 
   return (
     <AppShell>
@@ -154,71 +166,55 @@ export default function CardioActivityScreen() {
           <Text style={styles.backLabel}>Cardio</Text>
         </Pressable>
         <Text style={styles.title}>{activity.title}</Text>
-        <Text style={styles.subtitle}>{activity.duracionEstimada}</Text>
+        <Text style={styles.subtitle}>Elige un día para entrenar</Text>
       </View>
 
-      <ScrollView contentContainerStyle={styles.content}>
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>Descripción</Text>
-          <Text style={styles.body}>{activity.descripcion}</Text>
-        </View>
+      <FlatList
+        data={days}
+        keyExtractor={(item, index) => `${item.nombre}-${index}`}
+        contentContainerStyle={styles.listContent}
+        renderItem={({ item, index }) => {
+          const presentation = getCardioDayPresentation(item);
+          const isToday = presentation.dayOfWeek === today;
+          const status = presentation.dayOfWeek
+            ? getDayScheduleStatus(presentation.dayOfWeek, false)
+            : 'upcoming';
 
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>Recomendaciones generales</Text>
-          {activity.recomendacionesGenerales.map((item, index) => (
-            <Text key={`recomendacion-${index}`} style={styles.item}>
-              {'\u2022'} {item}
-            </Text>
-          ))}
-        </View>
-
-        {days.map((day) => (
-          <View key={day.nombre} style={styles.card}>
-            <Text style={styles.cardTitle}>{day.nombre}</Text>
-
-            {day.actividad ? <Text style={styles.body}>{day.actividad}</Text> : null}
-
-            {day.calentamiento ? (
-              <>
-                <Text style={styles.fieldLabel}>
-                  Calentamiento ({day.calentamiento.duracion})
-                </Text>
-                {day.calentamiento.ejercicios.map((item, index) => (
-                  <Text key={`calentamiento-${index}`} style={styles.item}>
-                    {'\u2022'} {item}
-                  </Text>
-                ))}
-              </>
-            ) : null}
-
-            {formatCardioMainWorkout(day.entrenamientoPrincipal).map((field, fieldIndex) => (
-              <View key={`bloque-${fieldIndex}`}>
-                <Text style={styles.fieldLabel}>{field.label}</Text>
-                {field.values.map((value, valueIndex) => (
-                  <Text key={`bloque-${fieldIndex}-${valueIndex}`} style={styles.item}>
-                    {field.values.length > 1 ? `\u2022 ${value}` : value}
-                  </Text>
-                ))}
-              </View>
-            ))}
-
-            <Text style={styles.fieldLabel}>
-              Enfriamiento ({day.enfriamientoEstiramientos.duracion})
-            </Text>
-            {day.enfriamientoEstiramientos.ejercicios.map((stretch, index) => (
-              <View key={`estiramiento-${index}`}>
-                <Text style={styles.item}>
-                  {'\u2022'} {stretch.nombre}: {stretch.descripcion}
+          return (
+            <Pressable
+              style={[
+                styles.dayRow,
+                isToday && styles.dayRowToday,
+                !isToday && styles.dayRowPreview,
+              ]}
+              onPress={() =>
+                navigation.navigate('CardioSession', {
+                  activityId: activity.id,
+                  dayIndex: index,
+                })
+              }
+              accessibilityRole="button"
+              accessibilityLabel={presentation.weekdayFull}
+            >
+              <Text style={styles.dayShort}>{presentation.weekdayShort}</Text>
+              <View style={styles.dayInfo}>
+                <Text style={styles.dayFull}>{presentation.weekdayFull}</Text>
+                <Text style={styles.dayMeta}>
+                  {countCardioDayItems(item)} ejercicios
                 </Text>
               </View>
-            ))}
-          </View>
-        ))}
-
-        <View style={styles.card}>
-          <Text style={styles.note}>{activity.nota}</Text>
-        </View>
-      </ScrollView>
+              <Text style={[styles.statusLabel, isToday && styles.statusLabelToday]}>
+                {getDayStatusLabel(status)}
+              </Text>
+              <Ionicons
+                name={isToday ? 'fitness' : 'chevron-forward'}
+                size={20}
+                color={isToday ? colors.primary : colors.textMuted}
+              />
+            </Pressable>
+          );
+        }}
+      />
     </AppShell>
   );
 }
