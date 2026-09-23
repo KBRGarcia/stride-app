@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es-419">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Stride: fitness personalizado, rutinas semanales y entrenamiento guiado. Descarga Stride Lite sin conexión ni registros."
+    />
+    <title>Stride — Entrena con claridad</title>
+    <link rel="icon" href="assets/images/Stride-logo-light.png" type="image/png" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/theme-init.js"></script>
+    <script src="js/theme.js" defer></script>
+    <script src="js/splash.js" defer></script>
+    <script src="js/download.js" defer></script>
+    <script src="js/footer.js" defer></script>
+  </head>
+  <body class="page-home">
+    <div class="ambient-bg ambient-bg--home" aria-hidden="true"></div>
+
+    <div id="page-splash" class="page-splash" role="status" aria-live="polite" aria-label="Cargando Stride">
+      <div class="page-splash-inner">
+        <img
+          class="page-splash-icon"
+          data-logo-icon
+          src="assets/images/Stride-logo-light.png"
+          alt=""
+          width="132"
+          height="132"
+        />
+        <img
+          class="page-splash-name"
+          data-logo-name
+          src="assets/images/Stride-name-light.png"
+          alt="Stride"
+          height="63"
+        />
+      </div>
+    </div>
+
+    <a class="skip-link" href="#contenido">Ir al contenido</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html">
+          <img
+            class="brand-icon"
+            data-logo-icon
+            src="assets/images/Stride-logo-light.png"
+            alt=""
+            width="62"
+            height="62"
+          />
+          <img
+            class="brand-name"
+            data-logo-name
+            src="assets/images/Stride-name-light.png"
+            alt="Stride"
+            height="44"
+          />
+        </a>
+        <div class="header-actions">
+          <a class="nav-link" href="productos.html">PRODUCTOS</a>
+          <button
+            type="button"
+            id="theme-toggle"
+            class="theme-toggle"
+            role="switch"
+            aria-checked="false"
+            aria-label="Cambiar tema"
+          >
+            <svg class="theme-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M12 3a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1zm5.657 3.343a1 1 0 0 1 0 1.414l-.707.707a1 1 0 1 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0zM21 11a1 1 0 1 1 0 2h-1a1 1 0 1 1 0-2h1zm-2.929 7.071a1 1 0 0 1 1.414 0l.707.707a1 1 0 1 1-1.414 1.414l-.707-.707a1 1 0 0 1 0-1.414zM12 19a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zm-7.071-2.929a1 1 0 0 1 0 1.414l-.707.707a1 1 0 1 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0zM3 13a1 1 0 1 1 0-2H2a1 1 0 1 1 0 2h1zm2.343-7.657a1 1 0 0 1-1.414 0l-.707-.707a1 1 0 0 1 1.414-1.414l.707.707a1 1 0 0 1 0 1.414zM12 6a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"
+              />
+            </svg>
+            <span class="theme-toggle-track" aria-hidden="true">
+              <span class="theme-toggle-thumb"></span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <section id="inicio" class="section hero">
+        <h1>Bienvenidos a Stride</h1>
+        <p class="hero-lead">
+          Stride es una aplicación de fitness que se adapta a ti: analiza tu perfil (edad, peso,
+          objetivo y lugar de entrenamiento) y te asigna una rutina semanal clara. Entrena en casa o
+          en el gimnasio, con guía y cronómetro, sin depender de internet ni de entrenadores
+          costosos. Tus datos pueden quedarse solo en tu teléfono.
+        </p>
+
+        <div class="product-grid">
+          <article class="product-card">
+            <span class="badge badge--available">Disponible ya</span>
+            <h2>Stride Lite</h2>
+            <p>
+              La primera versión: 100&nbsp;% funcional, sin conexión, sin cuentas ni anuncios.
+              Rutina de 7 días, temporizador de descanso y guías de nutrición y cardio.
+            </p>
+            <a id="download-lite" class="btn" href="#">Descargar (pronto)</a>
+            <a class="back-top" href="productos.html#stride-lite-detalle">Más información</a>
+          </article>
+
+          <article class="product-card">
+            <span class="badge badge--soon">Próximamente</span>
+            <h2>Stride App</h2>
+            <p>
+              Plataforma con cuenta y nube: historial persistente, recordatorios de entrenamiento y
+              sincronización offline-first desde cualquier dispositivo.
+            </p>
+            <button type="button" class="btn" disabled>Próximamente</button>
+            <a class="back-top" href="productos.html#stride-app-detalle">Más información</a>
+          </article>
+
+          <article class="product-card">
+            <span class="badge badge--soon">El futuro</span>
+            <h2>Stride Pro</h2>
+            <p>
+              Tu estudio personal: crea y edita rutinas, comparte entrenamientos y visualiza tu
+              progreso con métricas reales.
+            </p>
+            <button type="button" class="btn" disabled>En desarrollo</button>
+            <a class="back-top" href="productos.html#stride-pro-detalle">Más información</a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-lang">
+          <button type="button" aria-current="true">Español (Latinoamérica)</button>
+        </div>
+        <div class="footer-brand">
+          <div class="footer-kbr-placeholder" id="kbr-placeholder" aria-hidden="true">
+            Logo<br />KBR
+          </div>
+          <img
+            class="footer-kbr-logo"
+            id="kbr-logo"
+            src=""
+            alt="KBR — Desarrollador"
+            width="48"
+            height="48"
+          />
+          <span>KBR</span>
+        </div>
+        <p class="footer-copy">© Stride 2026</p>
+      </div>
+    </footer>
+  </body>
+</html>

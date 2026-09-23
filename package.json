@@ -33,6 +33,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "landing": "npx --yes serve landing -l 3000",
     "test": "jest"
   },
   "private": true
