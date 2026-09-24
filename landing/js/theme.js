@@ -23,6 +23,11 @@ function applyTheme(theme) {
       ? 'assets/images/Stride-name-dark.png'
       : 'assets/images/Stride-name-light.png';
   });
+  document.querySelectorAll('[data-kbr-logo]').forEach((img) => {
+    img.src = isDark
+      ? 'assets/images/logo-kbr-dark.png'
+      : 'assets/images/logo-kbr-light.png';
+  });
 
   const toggle = document.getElementById('theme-toggle');
   if (toggle) {

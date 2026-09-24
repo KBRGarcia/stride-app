@@ -1,11 +1,37 @@
 const LITE_APK_PATH = 'downloads/stride-lite.apk';
+const LITE_APK_FILENAME = 'stride-lite.apk';
 
 async function liteApkAvailable() {
   try {
-    const response = await fetch(LITE_APK_PATH, { method: 'HEAD' });
-    return response.ok;
+    const head = await fetch(LITE_APK_PATH, { method: 'HEAD' });
+    if (head.ok) return true;
+  } catch {
+    /* serve u otros hosts pueden no soportar HEAD */
+  }
+  try {
+    const get = await fetch(LITE_APK_PATH, { method: 'GET', headers: { Range: 'bytes=0-0' } });
+    return get.ok || get.status === 206;
   } catch {
     return false;
+  }
+}
+
+function configureDownloadButton(btn, available) {
+  if (!btn) return;
+  if (available) {
+    btn.href = LITE_APK_PATH;
+    btn.setAttribute('download', LITE_APK_FILENAME);
+    btn.classList.remove('btn--unavailable');
+    btn.removeAttribute('aria-disabled');
+    btn.removeAttribute('title');
+    btn.textContent = 'Descargar';
+  } else {
+    btn.href = LITE_APK_PATH;
+    btn.removeAttribute('download');
+    btn.classList.add('btn--unavailable');
+    btn.setAttribute('aria-disabled', 'true');
+    btn.title = 'Genera el APK: npm run build:apk:local o npm run build:apk:landing';
+    btn.textContent = 'Descargar (pronto)';
   }
 }
 
@@ -15,17 +41,13 @@ async function initDownloadButtons() {
   const available = await liteApkAvailable();
 
   [liteBtn, liteBtnProducts].forEach((btn) => {
+    configureDownloadButton(btn, available);
     if (!btn) return;
-    if (available) {
-      btn.href = LITE_APK_PATH;
-      btn.removeAttribute('aria-disabled');
-      btn.textContent = 'Descargar';
-    } else {
-      btn.href = '#';
-      btn.setAttribute('aria-disabled', 'true');
-      btn.title = 'El APK se publicará aquí muy pronto';
-      btn.textContent = 'Descargar (pronto)';
-    }
+    btn.addEventListener('click', (event) => {
+      if (btn.getAttribute('aria-disabled') === 'true') {
+        event.preventDefault();
+      }
+    });
   });
 }
 

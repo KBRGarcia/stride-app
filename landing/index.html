@@ -8,13 +8,12 @@
       content="Stride: fitness personalizado, rutinas semanales y entrenamiento guiado. Descarga Stride Lite sin conexión ni registros."
     />
     <title>Stride — Entrena con claridad</title>
-    <link rel="icon" href="assets/images/Stride-logo-light.png" type="image/png" />
+    <link rel="icon" href="assets/images/favicon.png" type="image/png" />
     <link rel="stylesheet" href="css/styles.css" />
     <script src="js/theme-init.js"></script>
     <script src="js/theme.js" defer></script>
     <script src="js/splash.js" defer></script>
     <script src="js/download.js" defer></script>
-    <script src="js/footer.js" defer></script>
   </head>
   <body class="page-home">
     <div class="ambient-bg ambient-bg--home" aria-hidden="true"></div>
@@ -101,7 +100,13 @@
               La primera versión: 100&nbsp;% funcional, sin conexión, sin cuentas ni anuncios.
               Rutina de 7 días, temporizador de descanso y guías de nutrición y cardio.
             </p>
-            <a id="download-lite" class="btn" href="#">Descargar (pronto)</a>
+            <a
+              id="download-lite"
+              class="btn"
+              href="downloads/stride-lite.apk"
+              download="stride-lite.apk"
+              >Descargar</a
+            >
             <a class="back-top" href="productos.html#stride-lite-detalle">Más información</a>
           </article>
 
@@ -136,18 +141,15 @@
           <button type="button" aria-current="true">Español (Latinoamérica)</button>
         </div>
         <div class="footer-brand">
-          <div class="footer-kbr-placeholder" id="kbr-placeholder" aria-hidden="true">
-            Logo<br />KBR
-          </div>
           <img
             class="footer-kbr-logo"
-            id="kbr-logo"
-            src=""
+            data-kbr-logo
+            src="assets/images/logo-kbr-light.png"
             alt="KBR — Desarrollador"
-            width="48"
-            height="48"
+            width="52"
+            height="52"
           />
-          <span>KBR</span>
+          <span>Developed by KBRGarcia</span>
         </div>
         <p class="footer-copy">© Stride 2026</p>
       </div>

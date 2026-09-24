@@ -39,3 +39,8 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# APK de distribución (generar con npm run build:apk:landing; subir al servidor, no a git)
+landing/downloads/*.apk
+!landing/downloads/.gitkeep
+!landing/downloads/.htaccess

@@ -1,0 +1,2 @@
+# Apache: tipo MIME correcto para instalación en Android
+AddType application/vnd.android.package-archive .apk
