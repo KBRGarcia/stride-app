@@ -10,6 +10,9 @@ GRADLE_APK="android/app/build/outputs/apk/release/app-release.apk"
 export ANDROID_HOME="${ANDROID_HOME:-$HOME/Android/Sdk}"
 export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
 
+echo "==> Keystore de release (credentials/)…"
+bash "${ROOT}/scripts/ensure-release-keystore.sh"
+
 echo "==> Generando iconos desde Stride-logo-background.png…"
 node scripts/generate-app-icons.mjs
 
@@ -24,5 +27,5 @@ cd "$ROOT"
 mkdir -p landing/downloads
 cp "${GRADLE_APK}" "${APK_OUT}"
 
-node "${ROOT}/scripts/verify-release.mjs" --require-apk
+node "${ROOT}/scripts/verify-release.mjs" --require-apk --require-release-signing
 echo "==> APK listo: ${APK_OUT}"

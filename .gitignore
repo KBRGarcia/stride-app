@@ -33,6 +33,11 @@ yarn-error.*
 # local env files
 .env*.local
 
+# Android release signing (generar con scripts/ensure-release-keystore.sh)
+credentials/*.keystore
+credentials/keystore.properties
+credentials/.stride-build-secrets
+
 # typescript
 *.tsbuildinfo
 

@@ -678,6 +678,40 @@ main.page-productos {
   text-align: right;
 }
 
+.footer-legal {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0.35rem clamp(0.65rem, 2.5vw, 1.25rem) 0;
+  text-align: center;
+  font-size: clamp(0.62rem, 2vw, 0.75rem);
+}
+
+.footer-legal a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer-legal a:hover {
+  color: var(--text);
+}
+
+.legal-page h2 {
+  margin: 1.75rem 0 0.5rem;
+  font-size: 1.15rem;
+}
+
+.legal-page ul {
+  margin: 0.5rem 0 1rem;
+  padding-left: 1.25rem;
+  text-align: left;
+}
+
+.legal-updated {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
 @media (max-width: 720px) {
   .header-inner {
     padding: 0.5rem 0.75rem;

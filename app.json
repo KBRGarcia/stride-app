@@ -38,7 +38,8 @@
           "resizeMode": "contain"
         }
       ],
-      "expo-font"
+      "expo-font",
+      "./plugins/withAndroidReleaseSigning.js"
     ]
   }
 }

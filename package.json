@@ -28,6 +28,7 @@
     "@testing-library/react-native": "^14.0.1",
     "@types/react": "~19.2.2",
     "react-test-renderer": "^19.2.3",
+    "playwright-core": "^1.49.0",
     "typescript": "~6.0.3"
   },
   "scripts": {
@@ -36,13 +37,16 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "landing": "npx --yes serve landing -l 3000",
-    "build:apk": "eas build --platform android --profile preview --wait",
+    "build:apk": "eas build --platform android --profile production --wait",
+    "build:apk:production": "bash scripts/build-lite-apk.sh",
     "generate:icons": "node scripts/generate-app-icons.mjs",
     "build:apk:local": "bash scripts/build-apk-local.sh",
     "build:apk:landing": "bash scripts/build-lite-apk.sh",
-    "verify": "npm test && tsc --noEmit && npx expo-doctor && node scripts/verify-release.mjs",
-    "verify:release": "npm test && tsc --noEmit && npx expo-doctor && node scripts/verify-release.mjs --require-apk",
-    "test": "jest"
+    "verify": "npm test && tsc --noEmit && npx expo-doctor && node scripts/verify-release.mjs && npm run test:landing",
+    "verify:release": "npm test && tsc --noEmit && npx expo-doctor && node scripts/verify-release.mjs --require-apk --require-release-signing && npm run test:landing",
+    "test": "jest",
+    "test:landing": "node scripts/landing-e2e.mjs",
+    "qa:android": "bash scripts/qa-android-device.sh"
   },
   "private": true
 }

@@ -18,8 +18,8 @@ if ! eas whoami >/dev/null 2>&1; then
   exit 1
 fi
 
-echo "==> Build Android APK (perfil: preview)..."
-eas build --platform android --profile preview --wait --non-interactive
+echo "==> Build Android APK (perfil: production — firma gestionada por EAS)..."
+eas build --platform android --profile production --wait --non-interactive
 
 echo "==> Buscando último build finalizado..."
 BUILD_ID="$(
@@ -47,7 +47,7 @@ if [[ "${APK_SIZE}" -lt 500000 ]]; then
 fi
 
 echo "==> Verificando release…"
-node "${ROOT}/scripts/verify-release.mjs" --require-apk
+node "${ROOT}/scripts/verify-release.mjs" --require-apk --require-release-signing
 
 echo "==> Listo: ${APK_OUT} ($(numfmt --to=iec "${APK_SIZE}" 2>/dev/null || echo "${APK_SIZE} bytes"))"
 echo "    Prueba la landing: npm run landing"

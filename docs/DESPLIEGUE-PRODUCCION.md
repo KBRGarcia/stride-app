@@ -18,9 +18,13 @@ Checklist para publicar la web de descarga y el APK sin sorpresas.
 **Opción A — local (sin cuenta Expo, requiere Android SDK):**
 
 ```bash
-npm run verify
-npm run build:apk:local   # Gradle + copia a landing/downloads/stride-lite.apk
+export STRIDE_KEYSTORE_PASSWORD='contraseña-segura'
+export STRIDE_KEY_PASSWORD='contraseña-segura'
+npm run build:apk:local   # keystore en credentials/ + APK firmado release
 ```
+
+Guarda una copia de `credentials/stride-release.keystore` y las contraseñas en un lugar seguro.
+Sin el keystore no podrás publicar actualizaciones con la misma firma.
 
 **Opción B — EAS (nube):**
 
@@ -58,23 +62,15 @@ La URL de descarga debe ser exactamente:
 
 (ajusta si el sitio no está en la raíz del dominio).
 
-## 4. Servidor web — tipo MIME del APK
+## 4. Servidor web — tipo MIME y descarga del APK
 
 Algunos servidores no reconocen `.apk` y la descarga falla en el móvil.
 
-**Nginx** (ejemplo):
+**Apache:** ya incluido en `landing/downloads/.htaccess` (MIME + `Content-Disposition: attachment`).
 
-```nginx
-types {
-    application/vnd.android.package-archive apk;
-}
-```
+**Nginx:** copia el fragmento `landing/downloads/nginx-apk-snippet.conf` dentro de tu `server { }`.
 
-**Apache** (`.htaccess` en `downloads/`):
-
-```apache
-AddType application/vnd.android.package-archive .apk
-```
+Tras desplegar, actualiza la query de caché en HTML (`?v=YYYYMMDD`) si cambiaste CSS/JS.
 
 ## 5. Comprobar antes de abrir al público
 
@@ -84,7 +80,10 @@ En local, con el APK ya en `landing/downloads/`:
 npm run verify:release
 npm run landing
 # Abre http://localhost:3000 — el botón debe decir "Descargar" y bajar el APK
+npm run qa:android   # si tienes un teléfono por USB (opcional)
 ```
+
+La landing incluye `privacidad.html` (enlace en el pie de página).
 
 En producción, prueba en un Android real: descargar, permitir “orígenes desconocidos” si aplica, instalar.
 

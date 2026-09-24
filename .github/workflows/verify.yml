@@ -1,0 +1,38 @@
+name: Verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Unit tests and TypeScript
+        run: npm test && npx tsc --noEmit
+
+      - name: Expo doctor
+        run: npx expo-doctor
+
+      - name: Landing assets check
+        run: node scripts/verify-release.mjs
+
+      - name: Install Chromium for landing E2E
+        run: npx playwright install chromium
+
+      - name: Landing E2E
+        run: npm run test:landing
+        env:
+          PLAYWRIGHT_CHROME_CHANNEL: chromium

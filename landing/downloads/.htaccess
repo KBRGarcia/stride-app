@@ -1,2 +1,8 @@
-# Apache: tipo MIME correcto para instalación en Android
+# Apache: tipo MIME y descarga del APK
 AddType application/vnd.android.package-archive .apk
+
+<IfModule mod_headers.c>
+  <Files "stride-lite.apk">
+    Header set Content-Disposition "attachment; filename=stride-lite.apk"
+  </Files>
+</IfModule>
