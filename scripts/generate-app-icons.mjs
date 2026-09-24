@@ -21,7 +21,11 @@ canvas.paste(img, ((side - w) // 2, (side - h) // 2), img)
 icon = canvas.resize((1024, 1024), Image.Resampling.LANCZOS)
 icon.save(root / "assets/icon.png", optimize=True)
 icon.save(root / "assets/android-icon-foreground.png", optimize=True)
-icon.resize((48, 48), Image.Resampling.LANCZOS).save(root / "assets/favicon.png", optimize=True)
+favicon = icon.resize((48, 48), Image.Resampling.LANCZOS)
+favicon.save(root / "assets/favicon.png", optimize=True)
+landing_favicon = root / "landing/assets/images/favicon.png"
+landing_favicon.parent.mkdir(parents=True, exist_ok=True)
+favicon.save(landing_favicon, optimize=True)
 print("Iconos generados desde Stride-logo-background.png")
 `;
 

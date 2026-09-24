@@ -5,7 +5,6 @@ function dismissSplash(splash) {
   if (!splash || splash.classList.contains('page-splash--hide')) return;
 
   splash.classList.add('page-splash--hide');
-  document.body.classList.remove('is-splash-active');
 
   const remove = () => {
     splash.remove();
@@ -24,8 +23,8 @@ function initSplash() {
   const splash = document.getElementById('page-splash');
   if (!splash) return;
 
-  document.body.classList.add('is-splash-active');
   window.setTimeout(() => dismissSplash(splash), SPLASH_VISIBLE_MS);
+  window.setTimeout(() => dismissSplash(splash), SPLASH_VISIBLE_MS + SPLASH_FADE_MS + 200);
 }
 
 if (document.readyState === 'loading') {
