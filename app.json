@@ -11,7 +11,7 @@
     },
     "android": {
       "package": "com.stride.lite",
-      "versionCode": 2,
+      "versionCode": 3,
       "adaptiveIcon": {
         "backgroundColor": "#f5f7fa",
         "foregroundImage": "./assets/android-icon-foreground.png"
