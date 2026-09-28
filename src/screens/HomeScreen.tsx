@@ -12,6 +12,8 @@ import { useTheme } from '../hooks/useTheme';
 import type { DayOfWeek } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
 import { useAppStore } from '../stores/useAppStore';
+import { AGE_BAND_LABELS } from '../utils/ageBands';
+import { BODY_SPLIT_LABELS } from '../utils/muscleGroups';
 import { getDayExercises } from '../utils/routinesData';
 import { getNutritionGuide, NUTRITION_GOAL_TITLES } from '../utils/nutritionData';
 import {
@@ -41,7 +43,7 @@ const HOME_SUBMENU: ReadonlyArray<{ id: HomeSubmenu; label: string }> = [
 
 export default function HomeScreen() {
   const navigation = useNavigation<HomeNavigation>();
-  const recommendation = useAppStore((state) => state.recommendation);
+  const weeklyPlan = useAppStore((state) => state.weeklyPlan);
   const profile = useAppStore((state) => state.profile);
   const isDayCompleted = useAppStore((state) => state.isDayCompleted);
   const { colors } = useTheme();
@@ -63,6 +65,12 @@ export default function HomeScreen() {
         subtitle: {
           marginTop: 6,
           fontSize: 15,
+          color: colors.textMuted,
+        },
+        note: {
+          marginTop: 8,
+          fontSize: 13,
+          lineHeight: 18,
           color: colors.textMuted,
         },
         listContent: {
@@ -161,7 +169,7 @@ export default function HomeScreen() {
               : 'Según tu plan de entrenamiento'
           }
         />
-      ) : !recommendation ? (
+      ) : !weeklyPlan ? (
         <View style={styles.centerContent}>
           <Text style={styles.errorTitle}>No hay rutina disponible</Text>
           <Text style={styles.errorText}>
@@ -172,11 +180,15 @@ export default function HomeScreen() {
         <>
           <View style={styles.header}>
             <Text style={styles.title}>Tu semana</Text>
-            <Text style={styles.subtitle}>Elige un día para entrenar</Text>
+            <Text style={styles.subtitle}>
+              Cada día trabaja un grupo muscular. {AGE_BAND_LABELS[weeklyPlan.ageBand]}:{' '}
+              {weeklyPlan.sets} series × {weeklyPlan.reps} repeticiones.
+            </Text>
+            <Text style={styles.note}>{weeklyPlan.note}</Text>
           </View>
 
           <FlatList
-            data={[...recommendation.weeklyRoutine].sort((a, b) => a.day - b.day)}
+            data={[...weeklyPlan.weeklyRoutine].sort((a, b) => a.day - b.day)}
             keyExtractor={(item) => String(item.day)}
             contentContainerStyle={styles.listContent}
             renderItem={({ item }) => {
@@ -213,7 +225,11 @@ export default function HomeScreen() {
                   <Text style={styles.dayShort}>{labels.short}</Text>
                   <View style={styles.dayInfo}>
                     <Text style={styles.dayFull}>{labels.full}</Text>
-                    <Text style={styles.dayMeta}>{getDayExercises(item).length} ejercicios</Text>
+                    <Text style={styles.dayMeta}>{item.muscleGroup}</Text>
+                    <Text style={styles.dayMeta}>
+                      {BODY_SPLIT_LABELS[item.bodySplit]} · {getDayExercises(item).length}{' '}
+                      ejercicios
+                    </Text>
                   </View>
                   <Text
                     style={[

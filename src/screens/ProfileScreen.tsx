@@ -19,11 +19,17 @@ import { useTheme } from '../hooks/useTheme';
 import type { WorkoutGoal, WorkoutLocation } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
 import { useAppStore } from '../stores/useAppStore';
-import { MIN_SUPPORTED_AGE, MIN_SUPPORTED_WEIGHT_KG } from '../utils/archetypes';
+import {
+  AGE_BAND_LABELS,
+  DEFAULT_AGE_PRESCRIPTIONS,
+  MIN_SUPPORTED_AGE,
+  MIN_SUPPORTED_WEIGHT_KG,
+  getAgeBand,
+} from '../utils/ageBands';
 import { calculateAge } from '../utils/routineMatcher';
+import { getGoalCatalog } from '../utils/routinesData';
 
 type ProfileNavigation = NativeStackNavigationProp<RootStackParamList, 'Profile'>;
-type GenderSelection = 'male' | 'female';
 
 const DEFAULT_BIRTH_DATE = new Date(2000, 0, 1);
 const GOAL_OPTIONS: ReadonlyArray<{ value: WorkoutGoal; label: string }> = [
@@ -44,7 +50,6 @@ export default function ProfileScreen() {
   const setProfile = useAppStore((state) => state.setProfile);
   const { colors } = useTheme();
 
-  const [gender, setGender] = useState<GenderSelection | null>(null);
   const [workoutLocation, setWorkoutLocation] = useState<WorkoutLocation | null>(null);
   const [goal, setGoal] = useState<WorkoutGoal | null>(null);
   const [weight, setWeight] = useState('');
@@ -83,11 +88,6 @@ export default function ProfileScreen() {
           gap: 12,
           marginBottom: 24,
         },
-        optionsRow: {
-          flexDirection: 'row',
-          gap: 12,
-          marginBottom: 24,
-        },
         optionButton: {
           borderWidth: 1,
           borderColor: colors.border,
@@ -95,9 +95,6 @@ export default function ProfileScreen() {
           paddingVertical: 14,
           alignItems: 'center',
           backgroundColor: colors.inputBackground,
-        },
-        optionButtonFlex: {
-          flex: 1,
         },
         optionButtonActive: {
           borderColor: colors.primary,
@@ -136,16 +133,38 @@ export default function ProfileScreen() {
           fontSize: 16,
           fontWeight: '700',
         },
+        ageSummary: {
+          marginTop: -8,
+          marginBottom: 24,
+          fontSize: 15,
+          lineHeight: 22,
+          color: colors.textSecondary,
+        },
+        ageSummaryInvalid: {
+          color: colors.dangerText,
+        },
       }),
     [colors]
   );
 
-  const handleSave = async () => {
-    if (!gender) {
-      Alert.alert('Perfil incompleto', 'Selecciona tu género.');
-      return;
+  const birthDateIso = formatBirthDate(birthDate);
+  const agePreview = useMemo(() => {
+    try {
+      const age = calculateAge(birthDateIso);
+      return { age, band: getAgeBand(age) };
+    } catch {
+      return null;
     }
+  }, [birthDateIso]);
 
+  const agePrescription =
+    agePreview?.band && workoutLocation && goal
+      ? getGoalCatalog(workoutLocation, goal).distribucionEdades[agePreview.band]
+      : agePreview?.band
+        ? DEFAULT_AGE_PRESCRIPTIONS[agePreview.band]
+        : null;
+
+  const handleSave = async () => {
     if (!workoutLocation) {
       Alert.alert('Perfil incompleto', 'Selecciona el tipo de rutina que deseas.');
       return;
@@ -169,8 +188,6 @@ export default function ProfileScreen() {
       );
       return;
     }
-
-    const birthDateIso = formatBirthDate(birthDate);
 
     let age: number;
     try {
@@ -202,7 +219,7 @@ export default function ProfileScreen() {
     if (!saved) {
       Alert.alert(
         'Sin rutina disponible',
-        'No hay una rutina disponible para el entorno, objetivo, edad y peso seleccionados.'
+        'No hay una rutina disponible para la edad seleccionada. Las rutinas empiezan a los 14 años.'
       );
       return;
     }
@@ -222,47 +239,10 @@ export default function ProfileScreen() {
         >
           <Text style={styles.title}>Tu perfil</Text>
           <Text style={styles.subtitle}>
-            Indica dónde entrenarás, qué deseas conseguir y tus datos personales. Stride
-            personalizará automáticamente tu rutina según tu edad y peso.
+            Indica dónde entrenarás, qué deseas conseguir y tus datos personales. Los
+            ejercicios son los mismos para todas las edades; cambian las series y las
+            repeticiones.
           </Text>
-
-          <Text style={styles.label}>Género</Text>
-          <View style={styles.optionsRow}>
-            <Pressable
-              style={[
-                styles.optionButton,
-                styles.optionButtonFlex,
-                gender === 'male' && styles.optionButtonActive,
-              ]}
-              onPress={() => setGender('male')}
-            >
-              <Text
-                style={[
-                  styles.optionText,
-                  gender === 'male' && styles.optionTextActive,
-                ]}
-              >
-                Hombre
-              </Text>
-            </Pressable>
-            <Pressable
-              style={[
-                styles.optionButton,
-                styles.optionButtonFlex,
-                gender === 'female' && styles.optionButtonActive,
-              ]}
-              onPress={() => setGender('female')}
-            >
-              <Text
-                style={[
-                  styles.optionText,
-                  gender === 'female' && styles.optionTextActive,
-                ]}
-              >
-                Mujer
-              </Text>
-            </Pressable>
-          </View>
 
           <Text style={styles.label}>Tipo de rutina</Text>
           <View style={styles.optionsColumn}>
@@ -339,6 +319,22 @@ export default function ProfileScreen() {
 
           <Text style={styles.label}>Fecha de nacimiento</Text>
           <BirthDatePicker value={birthDate} onChange={setBirthDate} maximumDate={new Date()} />
+          {agePreview ? (
+            <Text
+              style={[
+                styles.ageSummary,
+                !agePreview.band && styles.ageSummaryInvalid,
+              ]}
+            >
+              {agePreview.band && agePrescription
+                ? `Tienes ${agePreview.age} años (${AGE_BAND_LABELS[agePreview.band]}). Tu rutina usa ${agePrescription.series} series de ${agePrescription.repeticiones} repeticiones.`
+                : `Tienes ${agePreview.age} años. Las rutinas están disponibles a partir de los ${MIN_SUPPORTED_AGE} años.`}
+            </Text>
+          ) : (
+            <Text style={[styles.ageSummary, styles.ageSummaryInvalid]}>
+              Selecciona una fecha de nacimiento válida.
+            </Text>
+          )}
 
           <Pressable
             style={[styles.saveButton, isSaving && styles.saveButtonDisabled]}

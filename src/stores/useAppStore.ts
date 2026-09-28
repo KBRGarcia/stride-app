@@ -1,8 +1,7 @@
 import { create } from 'zustand';
 
-import type { DayOfWeek, Recommendation, UserProfile } from '../models/types';
-import { findMatchingRecommendation } from '../utils/routineMatcher';
-import { getRoutines } from '../utils/routinesData';
+import type { DayOfWeek, UserProfile, WeeklyPlan } from '../models/types';
+import { resolveWeeklyPlan } from '../utils/routineMatcher';
 import { isSameCalendarWeek } from '../utils/weekSchedule';
 import {
   clearProfile,
@@ -16,7 +15,7 @@ import {
 interface AppState {
   isHydrated: boolean;
   profile: UserProfile | null;
-  recommendation: Recommendation | null;
+  weeklyPlan: WeeklyPlan | null;
   completedWorkouts: CompletedWorkoutDate[];
   hydrate: () => Promise<void>;
   setProfile: (profile: UserProfile) => Promise<boolean>;
@@ -24,17 +23,14 @@ interface AppState {
   isDayCompleted: (day: DayOfWeek) => boolean;
 }
 
-function matchProfile(profile: UserProfile): Recommendation | null {
-  return findMatchingRecommendation(
-    profile,
-    getRoutines(profile.workoutLocation, profile.goal)
-  );
+function matchProfile(profile: UserProfile): WeeklyPlan | null {
+  return resolveWeeklyPlan(profile);
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
   isHydrated: false,
   profile: null,
-  recommendation: null,
+  weeklyPlan: null,
   completedWorkouts: [],
 
   hydrate: async () => {
@@ -43,25 +39,25 @@ export const useAppStore = create<AppState>((set, get) => ({
       getCompletedWorkoutDates(),
     ]);
 
-    const recommendation = profile ? matchProfile(profile) : null;
+    const weeklyPlan = profile ? matchProfile(profile) : null;
 
     set({
       isHydrated: true,
       profile,
-      recommendation,
+      weeklyPlan,
       completedWorkouts,
     });
   },
 
   setProfile: async (profile) => {
-    const recommendation = matchProfile(profile);
+    const weeklyPlan = matchProfile(profile);
 
-    if (!recommendation) {
+    if (!weeklyPlan) {
       return false;
     }
 
     await saveProfile(profile);
-    set({ profile, recommendation });
+    set({ profile, weeklyPlan });
     return true;
   },
 
@@ -69,7 +65,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     await clearProfile();
     set({
       profile: null,
-      recommendation: null,
+      weeklyPlan: null,
       completedWorkouts: [],
     });
   },

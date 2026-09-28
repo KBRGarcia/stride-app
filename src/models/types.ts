@@ -4,11 +4,14 @@ export type WorkoutLocation = 'home' | 'gym';
 /** Objetivo que determina el conjunto de rutinas disponible. */
 export type WorkoutGoal = 'toning' | 'muscle_gain' | 'fat_reduction';
 
-/** Arquetipo calculado exclusivamente a partir de edad y peso. */
-export type Archetype = 'A' | 'B' | 'C' | 'D' | 'E' | 'F';
+/** Franja de edad que solo cambia series y repeticiones, no los ejercicios. */
+export type AgeBand = '14-39' | '40-59' | '60+';
 
 /** Día de la semana (1 = Lunes … 7 = Domingo). */
 export type DayOfWeek = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+/** Ubicación del día dentro de la división tren superior / tren inferior. */
+export type BodySplit = 'upper-front' | 'upper-back' | 'lower';
 
 /**
  * Ejercicio individual dentro de un día de entrenamiento.
@@ -24,30 +27,84 @@ export interface Exercise {
   sets: number | null;
   reps: string | null;
   durationSeconds: number | null;
+  /** Grupo amplio (Pecho, Espalda, Piernas…). */
+  muscleGroup: string | null;
+  /** Músculo concreto cuando el JSON lo indica. */
+  muscle: string | null;
+  /** Implemento o máquina, si aplica. */
+  tool: string | null;
 }
 
-/** Rutina de un día concreto de la semana. */
+/** Rutina de un día concreto de la semana, dedicada a un grupo muscular. */
 export interface DayRoutine {
   day: DayOfWeek;
+  muscleGroup: string;
+  muscles: string[];
+  bodySplit: BodySplit;
   warmUp: Exercise[];
   mainWorkout: Exercise[];
   coolDown: Exercise[];
 }
 
-/**
- * Recomendación semanal asociada a uno de los seis arquetipos.
- */
-export interface Recommendation {
-  archetype: Archetype;
-  ageMin: number;
-  ageMax: number;
-  weightMin: number;
-  weightMax: number;
-  weeklyRoutine: DayRoutine[];
+/** Series y repeticiones base de una franja de edad dentro de un catálogo. */
+export interface AgePrescription {
+  series: number;
+  repeticiones: number;
+}
+
+/** Ejercicio tal como llega en los JSON de `src/data`. */
+export interface CatalogExercise {
+  id: string;
+  nombre: string;
+  descripcion: string;
+  imagePlaceholder: string;
+  bodyZone: Exercise['bodyZone'];
+  durationSeconds: number | null;
+  grupoMuscular?: string;
+  musculo?: string;
+  herramienta?: string;
+  series?: number | null;
+  reps?: string | null;
+  seriesPorEdad?: Partial<Record<AgeBand, number>>;
+  repsPorEdad?: Partial<Record<AgeBand, string | number>>;
+}
+
+/** Sesión de un día dentro de tren superior o tren inferior. */
+export interface CatalogDay {
+  dia: DayOfWeek;
+  grupoMuscular: string;
+  musculos: string[];
+  calentamiento: CatalogExercise[];
+  ejercicios: CatalogExercise[];
+  enfriamiento: CatalogExercise[];
 }
 
 /** Contenido de uno de los archivos de objetivo bajo `src/data/home` o `src/data/gym`. */
-export type RoutinesData = Recommendation[];
+export interface GoalCatalog {
+  objetivo: string;
+  lugar: string;
+  distribucionEdades: Record<AgeBand, AgePrescription>;
+  nota: string;
+  rutinaSemanal: {
+    trenSuperior: {
+      alFrente: CatalogDay[];
+      atras: CatalogDay[];
+    };
+    trenInferior: CatalogDay[];
+  };
+}
+
+/**
+ * Semana ya resuelta para la edad del usuario.
+ * Los ejercicios son los mismos en todas las franjas; cambian series y repeticiones.
+ */
+export interface WeeklyPlan {
+  ageBand: AgeBand;
+  sets: number;
+  reps: number;
+  note: string;
+  weeklyRoutine: DayRoutine[];
+}
 
 /**
  * Perfil del usuario persistido en AsyncStorage (no proviene del JSON).

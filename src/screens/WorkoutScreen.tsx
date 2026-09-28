@@ -21,7 +21,7 @@ import type { DayOfWeek, DayRoutine, Exercise } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
 import { markDayCompleted, useAppStore } from '../stores/useAppStore';
 import { getExerciseImage } from '../utils/imageMapper';
-import { formatMuscleGroups, getExerciseMuscleGroup } from '../utils/muscleGroups';
+import { BODY_SPLIT_LABELS, formatExerciseFocus } from '../utils/muscleGroups';
 import { getDayExercises } from '../utils/routinesData';
 import { formatElapsedDuration, formatExercisePrescription } from '../utils/workoutFormat';
 import { isDayWorkoutAccessible, toIsoDate } from '../utils/weekSchedule';
@@ -51,7 +51,7 @@ export default function WorkoutScreen() {
 
   const navigation = useNavigation<WorkoutNavigation>();
   const route = useRoute<WorkoutRoute>();
-  const recommendation = useAppStore((state) => state.recommendation);
+  const weeklyPlan = useAppStore((state) => state.weeklyPlan);
   const isDayCompleted = useAppStore((state) => state.isDayCompleted);
   const { colors } = useTheme();
 
@@ -324,8 +324,8 @@ export default function WorkoutScreen() {
   );
 
   const dayRoutine = useMemo(
-    () => recommendation?.weeklyRoutine.find((day) => day.day === route.params.day),
-    [recommendation, route.params.day]
+    () => weeklyPlan?.weeklyRoutine.find((day) => day.day === route.params.day),
+    [weeklyPlan, route.params.day]
   );
 
   const workoutDay = route.params.day;
@@ -533,7 +533,7 @@ export default function WorkoutScreen() {
                 {formatExercisePrescription(currentExercise)}
               </Text>
               <Text style={styles.muscleGroup}>
-                Grupo muscular: {getExerciseMuscleGroup(currentExercise)}
+                {formatExerciseFocus(currentExercise)}
               </Text>
               <Text style={styles.description}>{currentExercise.description}</Text>
 
@@ -666,7 +666,6 @@ function DayPreview({
     secondaryButtonText: object;
   };
 }) {
-  const exercises = getDayExercises(dayRoutine);
   const phases: Array<{ title: string; items: Exercise[] }> = [
     { title: 'Calentamiento', items: dayRoutine.warmUp },
     { title: 'Entrenamiento', items: dayRoutine.mainWorkout },
@@ -676,7 +675,9 @@ function DayPreview({
   return (
     <>
       <Text style={styles.previewTitle}>{dayLabel}</Text>
-      <Text style={styles.previewSubtitle}>{formatMuscleGroups(exercises)}</Text>
+      <Text style={styles.previewSubtitle}>{dayRoutine.muscleGroup}</Text>
+      <Text style={styles.previewSubtitle}>{BODY_SPLIT_LABELS[dayRoutine.bodySplit]}</Text>
+      <Text style={styles.previewHint}>{dayRoutine.muscles.join(' · ')}</Text>
       <Text style={styles.previewHint}>
         {canStart
           ? completedThisWeek
@@ -695,9 +696,7 @@ function DayPreview({
                 <Text style={styles.exerciseCardMeta}>
                   {formatExercisePrescription(exercise)}
                 </Text>
-                <Text style={styles.exerciseCardGroup}>
-                  Grupo muscular: {getExerciseMuscleGroup(exercise)}
-                </Text>
+                <Text style={styles.exerciseCardGroup}>{formatExerciseFocus(exercise)}</Text>
               </View>
             ))}
           </View>

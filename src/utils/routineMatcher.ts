@@ -1,13 +1,11 @@
-import type { Recommendation, RoutinesData, UserProfile } from '../models/types';
-import { getArchetype } from './archetypes';
+import type { UserProfile, WeeklyPlan } from '../models/types';
+import { getAgeBand } from './ageBands';
+import { buildWeeklyPlan, getGoalCatalog } from './routinesData';
 
 /**
  * Calcula la edad en años completos a partir de una fecha ISO (`YYYY-MM-DD`).
  */
-export function calculateAge(
-  birthDate: string,
-  referenceDate: Date = new Date()
-): number {
+export function calculateAge(birthDate: string, referenceDate: Date = new Date()): number {
   const parts = birthDate.split('-');
   if (parts.length !== 3 || parts[0]?.length !== 4) {
     throw new Error(`Invalid birthDate format: "${birthDate}". Expected YYYY-MM-DD.`);
@@ -32,8 +30,7 @@ export function calculateAge(
   let age = referenceDate.getFullYear() - birth.getFullYear();
   const hasBirthdayPassed =
     referenceDate.getMonth() > birth.getMonth() ||
-    (referenceDate.getMonth() === birth.getMonth() &&
-      referenceDate.getDate() >= birth.getDate());
+    (referenceDate.getMonth() === birth.getMonth() && referenceDate.getDate() >= birth.getDate());
 
   if (!hasBirthdayPassed) {
     age -= 1;
@@ -43,17 +40,18 @@ export function calculateAge(
 }
 
 /**
- * Busca la recomendación correspondiente al arquetipo calculado del perfil.
+ * Arma la semana del objetivo elegido y aplica series y repeticiones de la edad.
+ * El peso no cambia los ejercicios.
  */
-export function findMatchingRecommendation(
+export function resolveWeeklyPlan(
   profile: UserProfile,
-  routines: RoutinesData,
   referenceDate: Date = new Date()
-): Recommendation | null {
-  const age = calculateAge(profile.birthDate, referenceDate);
-  const archetype = getArchetype(age, profile.weight);
+): WeeklyPlan | null {
+  const ageBand = getAgeBand(calculateAge(profile.birthDate, referenceDate));
 
-  return archetype
-    ? routines.find((recommendation) => recommendation.archetype === archetype) ?? null
-    : null;
+  if (!ageBand) {
+    return null;
+  }
+
+  return buildWeeklyPlan(getGoalCatalog(profile.workoutLocation, profile.goal), ageBand);
 }

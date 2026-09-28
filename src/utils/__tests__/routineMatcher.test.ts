@@ -1,11 +1,9 @@
-import type { Archetype, UserProfile } from '../../models/types';
-import { calculateAge, findMatchingRecommendation } from '../routineMatcher';
-import { getRoutines } from '../routinesData';
+import type { AgeBand, UserProfile } from '../../models/types';
+import { calculateAge, resolveWeeklyPlan } from '../routineMatcher';
 
 const REFERENCE_DATE = new Date(2026, 7, 31);
-const ROUTINES = getRoutines('home', 'toning');
 
-function createProfile(birthDate: string, weight: number): UserProfile {
+function createProfile(birthDate: string, weight = 70): UserProfile {
   return {
     birthDate,
     weight,
@@ -28,53 +26,70 @@ describe('calculateAge', () => {
   );
 });
 
-describe('findMatchingRecommendation', () => {
+describe('resolveWeeklyPlan', () => {
   it.each([
-    ['1986-08-31', 70, 'A'],
-    ['1986-08-31', 70.1, 'B'],
-    ['1985-08-31', 70, 'C'],
-    ['1985-08-31', 71, 'D'],
-    ['1960-08-31', 150, 'E'],
-    ['1950-08-31', 200, 'F'],
+    ['2012-08-31', '14-39', 4, '15'],
+    ['1987-08-31', '14-39', 4, '15'],
+    ['1986-08-31', '40-59', 3, '12'],
+    ['1967-08-31', '40-59', 3, '12'],
+    ['1966-08-31', '60+', 2, '8'],
+    ['1950-08-31', '60+', 2, '8'],
   ] as const)(
-    'selecciona el arquetipo %s para nacimiento %s y peso %s',
-    (birthDate, weight, expectedArchetype) => {
-      const recommendation = findMatchingRecommendation(
-        createProfile(birthDate, weight),
-        ROUTINES,
-        REFERENCE_DATE
-      );
+    'ajusta la carga de %s a la franja %s',
+    (birthDate, ageBand, sets, reps) => {
+      const plan = resolveWeeklyPlan(createProfile(birthDate), REFERENCE_DATE);
+      const mainExercise = plan?.weeklyRoutine.find((day) => day.day === 1)?.mainWorkout[0];
 
-      expect(recommendation?.archetype).toBe<Archetype>(expectedArchetype);
+      expect(plan?.ageBand).toBe<AgeBand>(ageBand);
+      expect(plan?.sets).toBe(sets);
+      expect(plan?.reps).toBe(Number(reps));
+      expect(mainExercise?.sets).toBe(sets);
+      expect(mainExercise?.reps).toBe(reps);
     }
   );
 
-  it('rechaza perfiles fuera del dominio soportado', () => {
-    expect(
-      findMatchingRecommendation(
-        createProfile('2013-08-31', 70),
-        ROUTINES,
-        REFERENCE_DATE
-      )
-    ).toBeNull();
-    expect(
-      findMatchingRecommendation(
-        createProfile('1986-08-31', 39.9),
-        ROUTINES,
-        REFERENCE_DATE
-      )
-    ).toBeNull();
+  it('mantiene los mismos ejercicios al cambiar de franja', () => {
+    const young = resolveWeeklyPlan(createProfile('2000-01-01'), REFERENCE_DATE);
+    const senior = resolveWeeklyPlan(createProfile('1950-01-01'), REFERENCE_DATE);
+
+    const youngIds = young?.weeklyRoutine.flatMap((day) => [
+      ...day.warmUp.map((exercise) => exercise.id),
+      ...day.mainWorkout.map((exercise) => exercise.id),
+      ...day.coolDown.map((exercise) => exercise.id),
+    ]);
+    const seniorIds = senior?.weeklyRoutine.flatMap((day) => [
+      ...day.warmUp.map((exercise) => exercise.id),
+      ...day.mainWorkout.map((exercise) => exercise.id),
+      ...day.coolDown.map((exercise) => exercise.id),
+    ]);
+
+    expect(seniorIds).toEqual(youngIds);
+    expect(young?.weeklyRoutine[0]?.mainWorkout[0]?.sets).toBe(4);
+    expect(senior?.weeklyRoutine[0]?.mainWorkout[0]?.sets).toBe(2);
   });
 
-  it('no sustituye silenciosamente un arquetipo ausente', () => {
-    const withoutArchetypeF = ROUTINES.filter((routine) => routine.archetype !== 'F');
+  it('no cambia la rutina según el peso', () => {
+    const light = resolveWeeklyPlan(createProfile('2000-01-01', 45), REFERENCE_DATE);
+    const heavy = resolveWeeklyPlan(createProfile('2000-01-01', 120), REFERENCE_DATE);
 
-    expect(
-      findMatchingRecommendation(
-        createProfile('1950-08-31', 70),
-        withoutArchetypeF,
-        REFERENCE_DATE
-      )
-    ).toBeNull();
+    expect(heavy?.weeklyRoutine).toEqual(light?.weeklyRoutine);
+  });
+
+  it('rechaza edades por debajo del mínimo', () => {
+    expect(resolveWeeklyPlan(createProfile('2013-08-31'), REFERENCE_DATE)).toBeNull();
+  });
+
+  it('separa los días por tren superior y tren inferior', () => {
+    const plan = resolveWeeklyPlan(createProfile('2000-01-01'), REFERENCE_DATE);
+
+    expect(plan?.weeklyRoutine.map((day) => [day.day, day.bodySplit, day.muscleGroup])).toEqual([
+      [1, 'upper-front', 'Pecho'],
+      [2, 'upper-back', 'Espalda'],
+      [3, 'upper-front', 'Hombros'],
+      [4, 'lower', 'Piernas'],
+      [5, 'upper-front', 'Brazos'],
+      [6, 'lower', 'Abdomen'],
+      [7, 'lower', 'Recuperación Activa'],
+    ]);
   });
 });

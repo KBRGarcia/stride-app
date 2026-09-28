@@ -1,5 +1,6 @@
 import type { Exercise } from '../../models/types';
 import {
+  formatExerciseFocus,
   formatMuscleGroups,
   getExerciseMuscleGroup,
   inferMuscleGroup,
@@ -15,6 +16,9 @@ function buildExercise(overrides: Partial<Exercise>): Exercise {
     sets: 3,
     reps: '10',
     durationSeconds: null,
+    muscleGroup: null,
+    muscle: null,
+    tool: null,
     ...overrides,
   };
 }
@@ -35,13 +39,38 @@ describe('inferMuscleGroup', () => {
 });
 
 describe('getExerciseMuscleGroup', () => {
-  it('prioriza el nombre y usa bodyZone como respaldo', () => {
+  it('prioriza el músculo indicado en el catálogo', () => {
+    expect(
+      getExerciseMuscleGroup(
+        buildExercise({
+          name: 'Movimiento',
+          muscle: 'Pectoral Mayor',
+          muscleGroup: 'Pecho',
+        })
+      )
+    ).toBe('Pectoral Mayor');
+  });
+
+  it('usa el nombre y, si no hay coincidencia, bodyZone', () => {
     expect(
       getExerciseMuscleGroup(buildExercise({ name: 'Flexiones de pecho', bodyZone: 'upper' }))
     ).toBe('Pecho');
     expect(
       getExerciseMuscleGroup(buildExercise({ name: 'Rotación desconocida', bodyZone: 'upper' }))
     ).toBe('Tren superior');
+  });
+});
+
+describe('formatExerciseFocus', () => {
+  it('añade el implemento cuando existe', () => {
+    expect(
+      formatExerciseFocus(
+        buildExercise({
+          muscle: 'Dorsal ancho',
+          tool: 'Máquina',
+        })
+      )
+    ).toBe('Dorsal ancho · Máquina');
   });
 });
 

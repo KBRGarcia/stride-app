@@ -1,4 +1,10 @@
-import type { Exercise } from '../models/types';
+import type { BodySplit, Exercise } from '../models/types';
+
+export const BODY_SPLIT_LABELS: Record<BodySplit, string> = {
+  'upper-front': 'Tren superior · Al frente',
+  'upper-back': 'Tren superior · Atrás',
+  lower: 'Tren inferior',
+};
 
 const BODY_ZONE_LABELS: Record<Exercise['bodyZone'], string> = {
   upper: 'Tren superior',
@@ -66,7 +72,17 @@ export function inferMuscleGroup(exerciseName: string): string | null {
 }
 
 export function getExerciseMuscleGroup(exercise: Exercise): string {
-  return inferMuscleGroup(exercise.name) ?? BODY_ZONE_LABELS[exercise.bodyZone];
+  return (
+    exercise.muscle ??
+    exercise.muscleGroup ??
+    inferMuscleGroup(exercise.name) ??
+    BODY_ZONE_LABELS[exercise.bodyZone]
+  );
+}
+
+export function formatExerciseFocus(exercise: Exercise): string {
+  const focus = getExerciseMuscleGroup(exercise);
+  return exercise.tool ? `${focus} · ${exercise.tool}` : focus;
 }
 
 export function getDayMuscleGroups(exercises: Exercise[]): string[] {
