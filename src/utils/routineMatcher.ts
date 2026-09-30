@@ -1,5 +1,6 @@
 import type { UserProfile, WeeklyPlan } from '../models/types';
 import { getAgeBand } from './ageBands';
+import { resolveRoutineSchedule } from './routineSchedule';
 import { buildWeeklyPlan, getGoalCatalog } from './routinesData';
 
 /**
@@ -53,5 +54,9 @@ export function resolveWeeklyPlan(
     return null;
   }
 
-  return buildWeeklyPlan(getGoalCatalog(profile.workoutLocation, profile.goal), ageBand);
+  return buildWeeklyPlan(
+    getGoalCatalog(profile.workoutLocation, profile.goal),
+    ageBand,
+    resolveRoutineSchedule(profile.workoutLocation, profile.routineSchedule)
+  );
 }

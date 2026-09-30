@@ -6,12 +6,14 @@ import homeMuscleGain from '../data/home/muscle_gain.json';
 import homeToning from '../data/home/toning.json';
 import type {
   AgeBand,
-  BodySplit,
   CatalogDay,
   CatalogExercise,
+  CatalogRoutine,
+  DayOfWeek,
   DayRoutine,
   Exercise,
   GoalCatalog,
+  RoutineSchedule,
   WeeklyPlan,
   WorkoutGoal,
   WorkoutLocation,
@@ -29,24 +31,82 @@ const GYM_CATALOGS: Record<WorkoutGoal, GoalCatalog> = {
   fat_reduction: gymFatReduction as GoalCatalog,
 };
 
+const WEEKDAY_BY_NAME: ReadonlyArray<readonly [string, DayOfWeek]> = [
+  ['lunes', 1],
+  ['martes', 2],
+  ['miércoles', 3],
+  ['miercoles', 3],
+  ['jueves', 4],
+  ['viernes', 5],
+  ['sábado', 6],
+  ['sabado', 6],
+  ['domingo', 7],
+];
+
+/** La opción de 3 días cae en lunes, miércoles y viernes, en ese orden. */
+const THREE_DAY_WEEKDAYS: readonly DayOfWeek[] = [1, 3, 5];
+
 export function getGoalCatalog(location: WorkoutLocation, goal: WorkoutGoal): GoalCatalog {
   return location === 'gym' ? GYM_CATALOGS[goal] : HOME_CATALOGS[goal];
 }
 
-interface TaggedCatalogDay {
-  day: CatalogDay;
-  bodySplit: BodySplit;
+export function getCatalogRoutine(
+  catalog: GoalCatalog,
+  schedule: RoutineSchedule
+): CatalogRoutine | null {
+  if (schedule === '3-days') {
+    return catalog.rutina3Dias ?? null;
+  }
+
+  return catalog.rutina5Dias;
 }
 
-/** Ordena la semana: tren superior anterior, tren superior posterior y tren inferior. */
-export function listCatalogDays(catalog: GoalCatalog): TaggedCatalogDay[] {
-  const { trenSuperior, trenInferior } = catalog.rutinaSemanal;
+export function listAvailableSchedules(catalog: GoalCatalog): RoutineSchedule[] {
+  return catalog.rutina3Dias ? ['5-days', '3-days'] : ['5-days'];
+}
 
-  return [
-    ...trenSuperior.anterior.map((day) => ({ day, bodySplit: 'upper-anterior' as const })),
-    ...trenSuperior.posterior.map((day) => ({ day, bodySplit: 'upper-posterior' as const })),
-    ...trenInferior.map((day) => ({ day, bodySplit: 'lower' as const })),
-  ].sort((left, right) => left.day.dia - right.day.dia);
+function weekdayFromName(name: string): DayOfWeek | null {
+  const prefix = name.split('-')[0]?.trim().toLowerCase() ?? '';
+  const match = WEEKDAY_BY_NAME.find(([label]) => prefix === label);
+  return match?.[1] ?? null;
+}
+
+function resolveCalendarDay(
+  day: CatalogDay,
+  schedule: RoutineSchedule,
+  index: number
+): DayOfWeek {
+  const fromName = weekdayFromName(day.nombre);
+  if (fromName) {
+    return fromName;
+  }
+
+  if (schedule === '3-days') {
+    return THREE_DAY_WEEKDAYS[index] ?? 1;
+  }
+
+  return (day.dia >= 1 && day.dia <= 7 ? day.dia : 1) as DayOfWeek;
+}
+
+/** Días de la opción pedida, ordenados de lunes a domingo. */
+export function listCatalogDays(catalog: GoalCatalog, schedule: RoutineSchedule): CatalogDay[] {
+  const routine = getCatalogRoutine(catalog, schedule);
+  if (!routine) {
+    return [];
+  }
+
+  return routine.dias
+    .map((day, index) => ({ day, weekday: resolveCalendarDay(day, schedule, index) }))
+    .sort((left, right) => left.weekday - right.weekday)
+    .map((entry) => entry.day);
+}
+
+/** Parte útil del título, sin el día de la semana. */
+export function getSessionTitle(name: string): string {
+  const separator = ' - ';
+  const index = name.indexOf(separator);
+  const title = index >= 0 ? name.slice(index + separator.length) : name;
+  return title.trim();
 }
 
 function asReps(value: string | number | null | undefined): string | null {
@@ -76,28 +136,46 @@ function resolveExercise(exercise: CatalogExercise, ageBand: AgeBand): Exercise 
   };
 }
 
-function resolveDay(entry: TaggedCatalogDay, ageBand: AgeBand): DayRoutine {
+function resolveDay(
+  day: CatalogDay,
+  ageBand: AgeBand,
+  schedule: RoutineSchedule,
+  index: number
+): DayRoutine {
   return {
-    day: entry.day.dia,
-    muscleGroup: entry.day.grupoMuscular,
-    muscles: entry.day.musculos,
-    bodySplit: entry.bodySplit,
-    warmUp: entry.day.calentamiento.map((exercise) => resolveExercise(exercise, ageBand)),
-    mainWorkout: entry.day.ejercicios.map((exercise) => resolveExercise(exercise, ageBand)),
-    coolDown: entry.day.enfriamiento.map((exercise) => resolveExercise(exercise, ageBand)),
+    day: resolveCalendarDay(day, schedule, index),
+    name: day.nombre,
+    muscleGroup: day.grupoMuscular,
+    warmUp: day.calentamiento.map((exercise) => resolveExercise(exercise, ageBand)),
+    mainWorkout: day.ejercicios.map((exercise) => resolveExercise(exercise, ageBand)),
+    coolDown: day.enfriamiento.map((exercise) => resolveExercise(exercise, ageBand)),
   };
 }
 
 /** Misma secuencia de ejercicios para cualquier edad; la franja solo ajusta la carga. */
-export function buildWeeklyPlan(catalog: GoalCatalog, ageBand: AgeBand): WeeklyPlan {
+export function buildWeeklyPlan(
+  catalog: GoalCatalog,
+  ageBand: AgeBand,
+  schedule: RoutineSchedule
+): WeeklyPlan | null {
+  const routine = getCatalogRoutine(catalog, schedule);
+  if (!routine || routine.dias.length === 0) {
+    return null;
+  }
+
   const prescription = catalog.distribucionEdades[ageBand];
+  const weeklyRoutine = routine.dias
+    .map((day, index) => resolveDay(day, ageBand, schedule, index))
+    .sort((left, right) => left.day - right.day);
 
   return {
     ageBand,
     sets: prescription.series,
     reps: prescription.repeticiones,
     note: catalog.nota,
-    weeklyRoutine: listCatalogDays(catalog).map((entry) => resolveDay(entry, ageBand)),
+    schedule,
+    routineDescription: routine.descripcion,
+    weeklyRoutine,
   };
 }
 

@@ -16,862 +16,559 @@
         }
     },
     "nota": "Para hipertrofia en casa se prioriza la sobrecarga progresiva usando mochilas con peso, bandas de alta resistencia y variantes avanzadas de peso corporal. Descanso entre series: 60-90 segundos. Busca el fallo muscular en la última serie. Para adultos (40-59) y seniors (+60) se recomienda enfocarse en técnica y controlar el descenso.",
-    "rutinaSemanal": {
-        "trenSuperior": {
-            "anterior": [
-                {
-                    "dia": 1,
-                    "grupoMuscular": "Pecho",
-                    "musculos": [
-                        "Pectoral Mayor",
-                        "Pectoral Menor"
-                    ],
-                    "calentamiento": [
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH01",
-                            "nombre": "Círculos de hombros con banda",
-                            "descripcion": "Sujeta una banda y gira los hombros en círculos amplios para activar pecho y hombros.",
-                            "imagePlaceholder": "circulos_hombros.png",
-                            "bodyZone": "upper",
-                            "durationSeconds": 15
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH02",
-                            "nombre": "Apertura de brazos con banda",
-                            "descripcion": "Con banda, abre y cierra brazos frente al pecho para calentar el pectoral.",
-                            "imagePlaceholder": "apertura_brazos_banda.png",
-                            "bodyZone": "upper",
-                            "durationSeconds": 15
-                        }
-                    ],
-                    "ejercicios": [
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH03",
-                            "nombre": "Flexiones con aplauso",
-                            "descripcion": "Flexión explosiva con palmada en el aire. Busca el fallo en la última serie.",
-                            "imagePlaceholder": "flexion_aplauso.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Pecho",
-                            "musculo": "Pectoral Mayor, Pectoral Menor",
-                            "herramienta": "Peso Corporal",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH04",
-                            "nombre": "Flexiones en pica",
-                            "descripcion": "Con cadera elevada, baja la cabeza hacia el suelo. Enfócate en la porción superior del pecho.",
-                            "imagePlaceholder": "flexiones_pica.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Pecho",
-                            "musculo": "Pectoral Mayor (porción clavicular)",
-                            "herramienta": "Peso Corporal",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH05",
-                            "nombre": "Fondos entre sillas",
-                            "descripcion": "Coloca dos sillas y baja el cuerpo entre ellas. Controla el descenso.",
-                            "imagePlaceholder": "fondos_sillas.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Pecho",
-                            "musculo": "Pectoral Mayor, Pectoral Menor, Tríceps",
-                            "herramienta": "Sillas",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH06",
-                            "nombre": "Flexiones declive",
-                            "descripcion": "Con los pies elevados en una silla, realiza flexiones. Mayor intensidad para pecho superior.",
-                            "imagePlaceholder": "flexiones_declive.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Pecho",
-                            "musculo": "Pectoral Mayor (porción clavicular)",
-                            "herramienta": "Silla",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH07",
-                            "nombre": "Aperturas con banda (pecho)",
-                            "descripcion": "Banda sujeta detrás, abre los brazos en dirección anterior apretando el pectoral.",
-                            "imagePlaceholder": "aperturas_banda_pecho.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Pecho",
-                            "musculo": "Pectoral Mayor",
-                            "herramienta": "Banda Elástica",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH08",
-                            "nombre": "Flexiones con agarre cerrado",
-                            "descripcion": "Manos juntas, baja el pecho. Enfócate en la contracción del pectoral interno.",
-                            "imagePlaceholder": "flexiones_agarre_cerrado.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Pecho",
-                            "musculo": "Pectoral Mayor (porción esternal), Tríceps",
-                            "herramienta": "Peso Corporal",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH09",
-                            "nombre": "Plancha con toque de hombros",
-                            "descripcion": "En plancha, toca alternativamente el hombro contrario. Mantén el core firme.",
-                            "imagePlaceholder": "plancha_toque_hombros.png",
-                            "bodyZone": "full",
-                            "grupoMuscular": "Pecho",
-                            "musculo": "Pectoral Mayor, Core",
-                            "herramienta": "Peso Corporal",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        }
-                    ],
-                    "enfriamiento": [
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH10",
-                            "nombre": "Estiramiento de tríceps",
-                            "descripcion": "Lleva el brazo por detrás de la cabeza y presiona el codo.",
-                            "imagePlaceholder": "estiramiento_triceps.png",
-                            "bodyZone": "upper",
-                            "durationSeconds": 20
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH11",
-                            "nombre": "Estiramiento de pectoral",
-                            "descripcion": "Junta las manos detrás de la espalda y estira el pecho.",
-                            "imagePlaceholder": "estiramiento_pectoral.png",
-                            "bodyZone": "upper",
-                            "durationSeconds": 20
-                        }
-                    ]
-                },
-                {
-                    "dia": 3,
-                    "grupoMuscular": "Hombros",
-                    "musculos": [
-                        "Deltoides anterior",
-                        "Deltoides medios",
-                        "Deltoides posteriores"
-                    ],
-                    "calentamiento": [
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH12",
-                            "nombre": "Círculos de hombros con banda",
-                            "descripcion": "Sujeta una banda y gira los hombros en círculos amplios.",
-                            "imagePlaceholder": "circulos_hombros.png",
-                            "bodyZone": "upper",
-                            "durationSeconds": 15
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH13",
-                            "nombre": "Press de hombros con banda ligera",
-                            "descripcion": "Banda bajo los pies, presiona hacia arriba suavemente para activar deltoides.",
-                            "imagePlaceholder": "press_hombros_banda.png",
-                            "bodyZone": "upper",
-                            "durationSeconds": 15
-                        }
-                    ],
-                    "ejercicios": [
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH14",
-                            "nombre": "Press militar con mochila",
-                            "descripcion": "Con una mochila con peso, presiona hacia arriba. Busca el fallo en la última serie.",
-                            "imagePlaceholder": "press_militar_mochila.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Hombros",
-                            "musculo": "Deltoides anterior, Deltoides medios",
-                            "herramienta": "Mochila con Peso",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH15",
-                            "nombre": "Press de hombros con banda (resistencia media)",
-                            "descripcion": "Banda bajo los pies, presiona hacia arriba controlando el descenso.",
-                            "imagePlaceholder": "press_hombros_banda_media.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Hombros",
-                            "musculo": "Deltoides anterior, Deltoides medios",
-                            "herramienta": "Banda Elástica",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH16",
-                            "nombre": "Elevaciones laterales con banda",
-                            "descripcion": "Con banda bajo los pies, eleva los brazos hacia los lados hasta la altura de los hombros.",
-                            "imagePlaceholder": "elevaciones_laterales.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Hombros",
-                            "musculo": "Deltoides medios",
-                            "herramienta": "Banda Elástica",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH17",
-                            "nombre": "Face pull con banda",
-                            "descripcion": "Sujeta una banda y tira hacia la cara con codos altos para deltoides posteriores.",
-                            "imagePlaceholder": "face_pull_banda.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Hombros",
-                            "musculo": "Deltoides posteriores",
-                            "herramienta": "Banda Elástica",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH18",
-                            "nombre": "Elevaciones frontales con banda",
-                            "descripcion": "Con banda, eleva los brazos extendidos hacia el frente hasta la altura de los hombros.",
-                            "imagePlaceholder": "elevaciones_frontales.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Hombros",
-                            "musculo": "Deltoides anterior",
-                            "herramienta": "Banda Elástica",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH19",
-                            "nombre": "Pájaros con banda",
-                            "descripcion": "Inclinado hacia anterior, eleva los brazos hacia los lados con banda para deltoides posteriores.",
-                            "imagePlaceholder": "pajaros_banda.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Hombros",
-                            "musculo": "Deltoides posteriores",
-                            "herramienta": "Banda Elástica",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH20",
-                            "nombre": "Remo al mentón con banda",
-                            "descripcion": "Con banda bajo los pies, tira hacia el mentón con los codos altos para deltoides y trapecio.",
-                            "imagePlaceholder": "remo_menton_banda.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Hombros",
-                            "musculo": "Deltoides medios, Trapecio",
-                            "herramienta": "Banda Elástica",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        }
-                    ],
-                    "enfriamiento": [
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH21",
-                            "nombre": "Estiramiento de deltoides",
-                            "descripcion": "Cruza un brazo sobre el pecho y presiona suavemente con el otro.",
-                            "imagePlaceholder": "estiramiento_deltoides.png",
-                            "bodyZone": "upper",
-                            "durationSeconds": 20
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH22",
-                            "nombre": "Estiramiento de trapecio",
-                            "descripcion": "Inclina la cabeza hacia un lado y sujeta suavemente con la mano.",
-                            "imagePlaceholder": "estiramiento_trapecio.png",
-                            "bodyZone": "upper",
-                            "durationSeconds": 20
-                        }
-                    ]
-                },
-                {
-                    "dia": 5,
-                    "grupoMuscular": "Brazos",
-                    "musculos": [
-                        "Bíceps braquial",
-                        "Braquial",
-                        "Coracobraquial",
-                        "Tríceps braquial",
-                        "Ancóneo",
-                        "Braquiorradial"
-                    ],
-                    "calentamiento": [
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH23",
-                            "nombre": "Rotación de muñecas y tobillos",
-                            "descripcion": "Gira muñecas y tobillos para activar articulaciones.",
-                            "imagePlaceholder": "rotacion_munecas_tobillos.png",
-                            "bodyZone": "full",
-                            "durationSeconds": 15
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH24",
-                            "nombre": "Curl de bíceps con banda",
-                            "descripcion": "Pisa la banda y flexiona los codos suavemente para calentar bíceps.",
-                            "imagePlaceholder": "curl_biceps_banda.png",
-                            "bodyZone": "upper",
-                            "durationSeconds": 15
-                        }
-                    ],
-                    "ejercicios": [
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH25",
-                            "nombre": "Curl de bíceps con banda",
-                            "descripcion": "Pisa la banda y flexiona los codos llevando las manos hacia los hombros. Aprieta el bíceps.",
-                            "imagePlaceholder": "curl_biceps_banda.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Brazos (Flexores)",
-                            "musculo": "Bíceps braquial",
-                            "herramienta": "Banda Elástica",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH26",
-                            "nombre": "Curl de bíceps con toalla",
-                            "descripcion": "Sujeta una toalla enrollada y flexiona los codos aplicando tensión.",
-                            "imagePlaceholder": "curl_biceps_toalla.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Brazos (Flexores)",
-                            "musculo": "Bíceps braquial",
-                            "herramienta": "Toalla",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH27",
-                            "nombre": "Extensión de tríceps por encima de la cabeza",
-                            "descripcion": "Con banda sujeta bajo el pie, extiende los brazos hacia arriba por encima de la cabeza.",
-                            "imagePlaceholder": "extension_triceps_banda.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Brazos (Extensores)",
-                            "musculo": "Tríceps braquial",
-                            "herramienta": "Banda Elástica",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH28",
-                            "nombre": "Fondos en banco",
-                            "descripcion": "Con las manos en un banco o silla, baja el cuerpo flexionando los codos. Controla el descenso.",
-                            "imagePlaceholder": "fondos_banco.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Brazos (Extensores)",
-                            "musculo": "Tríceps braquial",
-                            "herramienta": "Banco",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH29",
-                            "nombre": "Curl martillo con banda (resistencia media)",
-                            "descripcion": "Con banda bajo los pies, flexiona los codos con agarre neutro.",
-                            "imagePlaceholder": "curl_biceps_banda_media.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Brazos (Flexores)",
-                            "musculo": "Braquial, Braquiorradial",
-                            "herramienta": "Banda Elástica",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH30",
-                            "nombre": "Extensión de tríceps con banda (polea)",
-                            "descripcion": "Con banda sujeta en un punto alto, extiende los codos hacia abajo. Mantén los codos fijos.",
-                            "imagePlaceholder": "extension_triceps_banda_polea.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Brazos (Extensores)",
-                            "musculo": "Tríceps braquial",
-                            "herramienta": "Banda Elástica",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH31",
-                            "nombre": "Extensión de muñeca con banda",
-                            "descripcion": "Con banda bajo el pie, extiende la muñeca hacia arriba para trabajar el antebrazo.",
-                            "imagePlaceholder": "extension_muneca_banda.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Brazos (Antebrazo)",
-                            "musculo": "Braquiorradial",
-                            "herramienta": "Banda Elástica",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        }
-                    ],
-                    "enfriamiento": [
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH32",
-                            "nombre": "Estiramiento de bíceps",
-                            "descripcion": "Extiende el brazo y gira la palma hacia arriba, presiona suavemente.",
-                            "imagePlaceholder": "estiramiento_biceps.png",
-                            "bodyZone": "upper",
-                            "durationSeconds": 20
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH33",
-                            "nombre": "Estiramiento de tríceps",
-                            "descripcion": "Lleva el brazo por detrás de la cabeza y presiona el codo.",
-                            "imagePlaceholder": "estiramiento_triceps.png",
-                            "bodyZone": "upper",
-                            "durationSeconds": 20
-                        }
-                    ]
-                }
-            ],
-            "posterior": [
-                {
-                    "dia": 2,
-                    "grupoMuscular": "Espalda",
-                    "musculos": [
-                        "Dorsal ancho",
-                        "Trapecio",
-                        "Romboides",
-                        "Erectores de la columna",
-                        "Redondo mayor",
-                        "Redondo menor"
-                    ],
-                    "calentamiento": [
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH34",
-                            "nombre": "Rotación de tronco con banda",
-                            "descripcion": "Sujeta una banda y gira el torso para activar la espalda.",
-                            "imagePlaceholder": "rotacion_tronco_banda.png",
-                            "bodyZone": "full",
-                            "durationSeconds": 15
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH35",
-                            "nombre": "Remo con banda (sentado)",
-                            "descripcion": "Sentado, sujeta banda y tira para activar la espalda.",
-                            "imagePlaceholder": "remo_banda_sentado.png",
-                            "bodyZone": "upper",
-                            "durationSeconds": 15
-                        }
-                    ],
-                    "ejercicios": [
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH36",
-                            "nombre": "Remo invertido",
-                            "descripcion": "Tumbado debajo de una mesa, tira del cuerpo hacia arriba. Busca el fallo en la última serie.",
-                            "imagePlaceholder": "remo_invertido.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Espalda",
-                            "musculo": "Dorsal ancho, Romboides",
-                            "herramienta": "Mesa",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH37",
-                            "nombre": "Dominadas asistidas con toalla",
-                            "descripcion": "Con una toalla en la puerta, tira hacia arriba ayudándote con las piernas.",
-                            "imagePlaceholder": "dominadas_asistidas_toalla.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Espalda",
-                            "musculo": "Dorsal ancho",
-                            "herramienta": "Toalla",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH38",
-                            "nombre": "Remo con banda",
-                            "descripcion": "Sujeta una banda bajo los pies y tira hacia el pecho. Aprieta los omóplatos.",
-                            "imagePlaceholder": "remo_banda.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Espalda",
-                            "musculo": "Dorsal ancho, Trapecio",
-                            "herramienta": "Banda Elástica",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH39",
-                            "nombre": "Remo a una mano con banda",
-                            "descripcion": "Sujeta banda con una mano y rema. Enfócate en la contracción del dorsal.",
-                            "imagePlaceholder": "remo_una_mano_banda.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Espalda",
-                            "musculo": "Dorsal ancho, Redondo mayor",
-                            "herramienta": "Banda Elástica",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH40",
-                            "nombre": "Superman con elevación de piernas",
-                            "descripcion": "Tumbado boca abajo, eleva brazos y piernas simultáneamente. Mantén la contracción.",
-                            "imagePlaceholder": "superman_elevacion.png",
-                            "bodyZone": "full",
-                            "grupoMuscular": "Espalda",
-                            "musculo": "Erectores de la columna, Dorsal ancho",
-                            "herramienta": "Peso Corporal",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH41",
-                            "nombre": "Bird-dog con peso",
-                            "descripcion": "En cuadrupedia, extiende brazo y pierna contrarios. Añade peso si es posible.",
-                            "imagePlaceholder": "bird_dog_peso.png",
-                            "bodyZone": "full",
-                            "grupoMuscular": "Espalda",
-                            "musculo": "Erectores de la columna, Romboides",
-                            "herramienta": "Peso Corporal",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH42",
-                            "nombre": "Face pull con toalla",
-                            "descripcion": "Sujeta una toalla a un punto fijo y tira hacia la cara con codos altos.",
-                            "imagePlaceholder": "face_pull_toalla.png",
-                            "bodyZone": "upper",
-                            "grupoMuscular": "Espalda",
-                            "musculo": "Trapecio, Romboides",
-                            "herramienta": "Toalla",
-                            "series": 4,
-                            "reps": "10",
-                            "seriesPorEdad": {
-                                "14-39": 4,
-                                "40-59": 3,
-                                "60+": 2
-                            },
-                            "repsPorEdad": {
-                                "14-39": "10",
-                                "40-59": "10",
-                                "60+": "8"
-                            },
-                            "durationSeconds": null
-                        }
-                    ],
-                    "enfriamiento": [
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH43",
-                            "nombre": "Estiramiento de dorsal",
-                            "descripcion": "Sujeta una banda o toalla con ambas manos y estira hacia un lado.",
-                            "imagePlaceholder": "estiramiento_dorsal.png",
-                            "bodyZone": "upper",
-                            "durationSeconds": 20
-                        },
-                        {
-                            "id": "550e8400-e29b-41d4-a716-44665544CH44",
-                            "nombre": "Estiramiento de espalda baja",
-                            "descripcion": "Tumbado boca arriba, abraza las rodillas contra el pecho.",
-                            "imagePlaceholder": "estiramiento_espalda_baja.png",
-                            "bodyZone": "full",
-                            "durationSeconds": 20
-                        }
-                    ]
-                }
-            ]
-        },
-        "trenInferior": [
+    "rutina5Dias": {
+        "descripcion": "Rutina de 5 días (Lunes a Viernes) - Push / Pull / Legs / Upper / Lower",
+        "dias": [
             {
-                "dia": 4,
-                "grupoMuscular": "Piernas",
-                "musculos": [
-                    "Cuádriceps",
-                    "Isquiotibiales",
-                    "Glúteos",
-                    "Tríceps sural",
-                    "Aductores",
-                    "Abductores"
+                "dia": 1,
+                "nombre": "Lunes - Empuje (Push)",
+                "grupoMuscular": "Pecho, Deltoides anterior/lateral, Tríceps",
+                "calentamiento": [
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH01",
+                        "nombre": "Círculos de hombros con banda",
+                        "descripcion": "Sujeta una banda y gira los hombros en círculos amplios para activar pecho y hombros.",
+                        "imagePlaceholder": "circulos_hombros.png",
+                        "bodyZone": "upper",
+                        "durationSeconds": 15
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH02",
+                        "nombre": "Apertura de brazos con banda",
+                        "descripcion": "Con banda, abre y cierra brazos frente al pecho para calentar el pectoral.",
+                        "imagePlaceholder": "apertura_brazos_banda.png",
+                        "bodyZone": "upper",
+                        "durationSeconds": 15
+                    }
                 ],
+                "ejercicios": [
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH03",
+                        "nombre": "Flexiones con aplauso",
+                        "descripcion": "Flexión explosiva con palmada en el aire. Busca el fallo en la última serie.",
+                        "imagePlaceholder": "flexion_aplauso.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Pecho",
+                        "musculo": "Pectoral Mayor, Pectoral Menor",
+                        "herramienta": "Peso Corporal",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH04",
+                        "nombre": "Flexiones en pica",
+                        "descripcion": "Con cadera elevada, baja la cabeza hacia el suelo. Enfócate en la porción superior del pecho.",
+                        "imagePlaceholder": "flexiones_pica.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Pecho",
+                        "musculo": "Pectoral Mayor (porción clavicular)",
+                        "herramienta": "Peso Corporal",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH05",
+                        "nombre": "Fondos entre sillas",
+                        "descripcion": "Coloca dos sillas y baja el cuerpo entre ellas. Controla el descenso.",
+                        "imagePlaceholder": "fondos_sillas.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Pecho",
+                        "musculo": "Pectoral Mayor, Pectoral Menor, Tríceps",
+                        "herramienta": "Sillas",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH06",
+                        "nombre": "Flexiones declive",
+                        "descripcion": "Con los pies elevados en una silla, realiza flexiones. Mayor intensidad para pecho superior.",
+                        "imagePlaceholder": "flexiones_declive.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Pecho",
+                        "musculo": "Pectoral Mayor (porción clavicular)",
+                        "herramienta": "Silla",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH07",
+                        "nombre": "Aperturas con banda (pecho)",
+                        "descripcion": "Banda sujeta detrás, abre los brazos en dirección anterior apretando el pectoral.",
+                        "imagePlaceholder": "aperturas_banda_pecho.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Pecho",
+                        "musculo": "Pectoral Mayor",
+                        "herramienta": "Banda Elástica",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH14",
+                        "nombre": "Press militar con mochila",
+                        "descripcion": "Con una mochila con peso, presiona hacia arriba. Busca el fallo en la última serie.",
+                        "imagePlaceholder": "press_militar_mochila.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Hombros",
+                        "musculo": "Deltoides anterior, Deltoides medios",
+                        "herramienta": "Mochila con Peso",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH16",
+                        "nombre": "Elevaciones laterales con banda",
+                        "descripcion": "Con banda bajo los pies, eleva los brazos hacia los lados hasta la altura de los hombros.",
+                        "imagePlaceholder": "elevaciones_laterales.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Hombros",
+                        "musculo": "Deltoides medios",
+                        "herramienta": "Banda Elástica",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH18",
+                        "nombre": "Elevaciones frontales con banda",
+                        "descripcion": "Con banda, eleva los brazos extendidos hacia el frente hasta la altura de los hombros.",
+                        "imagePlaceholder": "elevaciones_frontales.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Hombros",
+                        "musculo": "Deltoides anterior",
+                        "herramienta": "Banda Elástica",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH27",
+                        "nombre": "Extensión de tríceps por encima de la cabeza",
+                        "descripcion": "Con banda sujeta bajo el pie, extiende los brazos hacia arriba por encima de la cabeza.",
+                        "imagePlaceholder": "extension_triceps_banda.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Brazos (Extensores)",
+                        "musculo": "Tríceps braquial",
+                        "herramienta": "Banda Elástica",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH28",
+                        "nombre": "Fondos en banco",
+                        "descripcion": "Con las manos en un banco o silla, baja el cuerpo flexionando los codos. Controla el descenso.",
+                        "imagePlaceholder": "fondos_banco.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Brazos (Extensores)",
+                        "musculo": "Tríceps braquial",
+                        "herramienta": "Banco",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    }
+                ],
+                "enfriamiento": [
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH10",
+                        "nombre": "Estiramiento de tríceps",
+                        "descripcion": "Lleva el brazo por detrás de la cabeza y presiona el codo.",
+                        "imagePlaceholder": "estiramiento_triceps.png",
+                        "bodyZone": "upper",
+                        "durationSeconds": 20
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH11",
+                        "nombre": "Estiramiento de pectoral",
+                        "descripcion": "Junta las manos detrás de la espalda y estira el pecho.",
+                        "imagePlaceholder": "estiramiento_pectoral.png",
+                        "bodyZone": "upper",
+                        "durationSeconds": 20
+                    }
+                ]
+            },
+            {
+                "dia": 2,
+                "nombre": "Martes - Jalón (Pull)",
+                "grupoMuscular": "Espalda, Deltoides posterior, Bíceps",
+                "calentamiento": [
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH34",
+                        "nombre": "Rotación de tronco con banda",
+                        "descripcion": "Sujeta una banda y gira el torso para activar la espalda.",
+                        "imagePlaceholder": "rotacion_tronco_banda.png",
+                        "bodyZone": "full",
+                        "durationSeconds": 15
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH35",
+                        "nombre": "Remo con banda (sentado)",
+                        "descripcion": "Sentado, sujeta banda y tira para activar la espalda.",
+                        "imagePlaceholder": "remo_banda_sentado.png",
+                        "bodyZone": "upper",
+                        "durationSeconds": 15
+                    }
+                ],
+                "ejercicios": [
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH36",
+                        "nombre": "Remo invertido",
+                        "descripcion": "Tumbado debajo de una mesa, tira del cuerpo hacia arriba. Busca el fallo en la última serie.",
+                        "imagePlaceholder": "remo_invertido.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Espalda",
+                        "musculo": "Dorsal ancho, Romboides",
+                        "herramienta": "Mesa",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH37",
+                        "nombre": "Dominadas asistidas con toalla",
+                        "descripcion": "Con una toalla en la puerta, tira hacia arriba ayudándote con las piernas.",
+                        "imagePlaceholder": "dominadas_asistidas_toalla.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Espalda",
+                        "musculo": "Dorsal ancho",
+                        "herramienta": "Toalla",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH38",
+                        "nombre": "Remo con banda",
+                        "descripcion": "Sujeta una banda bajo los pies y tira hacia el pecho. Aprieta los omóplatos.",
+                        "imagePlaceholder": "remo_banda.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Espalda",
+                        "musculo": "Dorsal ancho, Trapecio",
+                        "herramienta": "Banda Elástica",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH39",
+                        "nombre": "Remo a una mano con banda",
+                        "descripcion": "Sujeta banda con una mano y rema. Enfócate en la contracción del dorsal.",
+                        "imagePlaceholder": "remo_una_mano_banda.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Espalda",
+                        "musculo": "Dorsal ancho, Redondo mayor",
+                        "herramienta": "Banda Elástica",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH40",
+                        "nombre": "Superman con elevación de piernas",
+                        "descripcion": "Tumbado boca abajo, eleva brazos y piernas simultáneamente. Mantén la contracción.",
+                        "imagePlaceholder": "superman_elevacion.png",
+                        "bodyZone": "full",
+                        "grupoMuscular": "Espalda",
+                        "musculo": "Erectores de la columna, Dorsal ancho",
+                        "herramienta": "Peso Corporal",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH41",
+                        "nombre": "Bird-dog con peso",
+                        "descripcion": "En cuadrupedia, extiende brazo y pierna contrarios. Añade peso si es posible.",
+                        "imagePlaceholder": "bird_dog_peso.png",
+                        "bodyZone": "full",
+                        "grupoMuscular": "Espalda",
+                        "musculo": "Erectores de la columna, Romboides",
+                        "herramienta": "Peso Corporal",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH17",
+                        "nombre": "Face pull con banda",
+                        "descripcion": "Sujeta una banda y tira hacia la cara con codos altos para deltoides posteriores.",
+                        "imagePlaceholder": "face_pull_banda.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Hombros",
+                        "musculo": "Deltoides posteriores",
+                        "herramienta": "Banda Elástica",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH19",
+                        "nombre": "Pájaros con banda",
+                        "descripcion": "Inclinado hacia anterior, eleva los brazos hacia los lados con banda para deltoides posteriores.",
+                        "imagePlaceholder": "pajaros_banda.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Hombros",
+                        "musculo": "Deltoides posteriores",
+                        "herramienta": "Banda Elástica",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH25",
+                        "nombre": "Curl de bíceps con banda",
+                        "descripcion": "Pisa la banda y flexiona los codos llevando las manos hacia los hombros. Aprieta el bíceps.",
+                        "imagePlaceholder": "curl_biceps_banda.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Brazos (Flexores)",
+                        "musculo": "Bíceps braquial",
+                        "herramienta": "Banda Elástica",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH29",
+                        "nombre": "Curl martillo con banda (resistencia media)",
+                        "descripcion": "Con banda bajo los pies, flexiona los codos con agarre neutro.",
+                        "imagePlaceholder": "curl_biceps_banda_media.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Brazos (Flexores)",
+                        "musculo": "Braquial, Braquiorradial",
+                        "herramienta": "Banda Elástica",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    }
+                ],
+                "enfriamiento": [
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH43",
+                        "nombre": "Estiramiento de dorsal",
+                        "descripcion": "Sujeta una banda o toalla con ambas manos y estira hacia un lado.",
+                        "imagePlaceholder": "estiramiento_dorsal.png",
+                        "bodyZone": "upper",
+                        "durationSeconds": 20
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH32",
+                        "nombre": "Estiramiento de bíceps",
+                        "descripcion": "Extiende el brazo y gira la palma hacia arriba, presiona suavemente.",
+                        "imagePlaceholder": "estiramiento_biceps.png",
+                        "bodyZone": "upper",
+                        "durationSeconds": 20
+                    }
+                ]
+            },
+            {
+                "dia": 3,
+                "nombre": "Miércoles - Pierna (Legs)",
+                "grupoMuscular": "Cuádriceps, Isquiotibiales, Glúteos, Pantorrillas",
                 "calentamiento": [
                     {
                         "id": "550e8400-e29b-41d4-a716-44665544CH45",
@@ -1142,14 +839,305 @@
                 ]
             },
             {
-                "dia": 6,
-                "grupoMuscular": "Abdomen",
-                "musculos": [
-                    "Recto abdominal",
-                    "Oblicuo externo",
-                    "Oblicuo interno",
-                    "Transverso del abdomen"
+                "dia": 4,
+                "nombre": "Jueves - Torso (Upper Body)",
+                "grupoMuscular": "Pecho, Espalda, Hombros, Bíceps, Tríceps",
+                "calentamiento": [
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH12",
+                        "nombre": "Círculos de hombros con banda",
+                        "descripcion": "Sujeta una banda y gira los hombros en círculos amplios.",
+                        "imagePlaceholder": "circulos_hombros.png",
+                        "bodyZone": "upper",
+                        "durationSeconds": 15
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH23",
+                        "nombre": "Rotación de muñecas y tobillos",
+                        "descripcion": "Gira muñecas y tobillos para activar articulaciones.",
+                        "imagePlaceholder": "rotacion_munecas_tobillos.png",
+                        "bodyZone": "full",
+                        "durationSeconds": 15
+                    }
                 ],
+                "ejercicios": [
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH08",
+                        "nombre": "Flexiones con agarre cerrado",
+                        "descripcion": "Manos juntas, baja el pecho. Enfócate en la contracción del pectoral interno.",
+                        "imagePlaceholder": "flexiones_agarre_cerrado.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Pecho",
+                        "musculo": "Pectoral Mayor (porción esternal), Tríceps",
+                        "herramienta": "Peso Corporal",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH09",
+                        "nombre": "Plancha con toque de hombros",
+                        "descripcion": "En plancha, toca alternativamente el hombro contrario. Mantén el core firme.",
+                        "imagePlaceholder": "plancha_toque_hombros.png",
+                        "bodyZone": "full",
+                        "grupoMuscular": "Pecho",
+                        "musculo": "Pectoral Mayor, Core",
+                        "herramienta": "Peso Corporal",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH15",
+                        "nombre": "Press de hombros con banda (resistencia media)",
+                        "descripcion": "Banda bajo los pies, presiona hacia arriba controlando el descenso.",
+                        "imagePlaceholder": "press_hombros_banda_media.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Hombros",
+                        "musculo": "Deltoides anterior, Deltoides medios",
+                        "herramienta": "Banda Elástica",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH20",
+                        "nombre": "Remo al mentón con banda",
+                        "descripcion": "Con banda bajo los pies, tira hacia el mentón con los codos altos para deltoides y trapecio.",
+                        "imagePlaceholder": "remo_menton_banda.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Hombros",
+                        "musculo": "Deltoides medios, Trapecio",
+                        "herramienta": "Banda Elástica",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH42",
+                        "nombre": "Face pull con toalla",
+                        "descripcion": "Sujeta una toalla a un punto fijo y tira hacia la cara con codos altos.",
+                        "imagePlaceholder": "face_pull_toalla.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Espalda",
+                        "musculo": "Trapecio, Romboides",
+                        "herramienta": "Toalla",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH26",
+                        "nombre": "Curl de bíceps con toalla",
+                        "descripcion": "Sujeta una toalla enrollada y flexiona los codos aplicando tensión.",
+                        "imagePlaceholder": "curl_biceps_toalla.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Brazos (Flexores)",
+                        "musculo": "Bíceps braquial",
+                        "herramienta": "Toalla",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH30",
+                        "nombre": "Extensión de tríceps con banda (polea)",
+                        "descripcion": "Con banda sujeta en un punto alto, extiende los codos hacia abajo. Mantén los codos fijos.",
+                        "imagePlaceholder": "extension_triceps_banda_polea.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Brazos (Extensores)",
+                        "musculo": "Tríceps braquial",
+                        "herramienta": "Banda Elástica",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH31",
+                        "nombre": "Extensión de muñeca con banda",
+                        "descripcion": "Con banda bajo el pie, extiende la muñeca hacia arriba para trabajar el antebrazo.",
+                        "imagePlaceholder": "extension_muneca_banda.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Brazos (Antebrazo)",
+                        "musculo": "Braquiorradial",
+                        "herramienta": "Banda Elástica",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH74",
+                        "nombre": "Remo invertido con agarre amplio",
+                        "descripcion": "Tumbado bajo mesa, tira con agarre amplio para trabajar espalda alta.",
+                        "imagePlaceholder": "remo_invertido_amplio.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Espalda",
+                        "musculo": "Trapecio, Romboides",
+                        "herramienta": "Mesa",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH75",
+                        "nombre": "Flexiones con elevación de pies",
+                        "descripcion": "Pies en silla, flexión completa. Mayor intensidad para pecho superior.",
+                        "imagePlaceholder": "flexiones_declive.png",
+                        "bodyZone": "upper",
+                        "grupoMuscular": "Pecho",
+                        "musculo": "Pectoral Mayor (porción clavicular)",
+                        "herramienta": "Silla",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH73",
+                        "nombre": "Clean and press con mochila",
+                        "descripcion": "Levanta mochila al pecho y presiona arriba. Ejercicio compuesto para todo el cuerpo.",
+                        "imagePlaceholder": "clean_press_mochila.png",
+                        "bodyZone": "full",
+                        "grupoMuscular": "Full Body",
+                        "musculo": "Full body",
+                        "herramienta": "Mochila con Peso",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
+                    }
+                ],
+                "enfriamiento": [
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH21",
+                        "nombre": "Estiramiento de deltoides",
+                        "descripcion": "Cruza un brazo sobre el pecho y presiona suavemente con el otro.",
+                        "imagePlaceholder": "estiramiento_deltoides.png",
+                        "bodyZone": "upper",
+                        "durationSeconds": 20
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH33",
+                        "nombre": "Estiramiento de tríceps",
+                        "descripcion": "Lleva el brazo por detrás de la cabeza y presiona el codo.",
+                        "imagePlaceholder": "estiramiento_triceps.png",
+                        "bodyZone": "upper",
+                        "durationSeconds": 20
+                    }
+                ]
+            },
+            {
+                "dia": 5,
+                "nombre": "Viernes - Pierna + Abdomen (Lower Body + Core)",
+                "grupoMuscular": "Cuádriceps, Isquiotibiales, Glúteos, Pantorrillas, Abdomen",
                 "calentamiento": [
                     {
                         "id": "550e8400-e29b-41d4-a716-44665544CH59",
@@ -1225,7 +1213,7 @@
                         "musculo": "Transverso del abdomen, Recto abdominal",
                         "herramienta": "Peso (Mochila/Libro)",
                         "series": 4,
-                        "reps": "10",
+                        "reps": "30s",
                         "seriesPorEdad": {
                             "14-39": 4,
                             "40-59": 3,
@@ -1294,7 +1282,7 @@
                         "musculo": "Recto abdominal, Transverso del abdomen",
                         "herramienta": "Peso Corporal",
                         "series": 4,
-                        "reps": "10",
+                        "reps": "30s",
                         "seriesPorEdad": {
                             "14-39": 4,
                             "40-59": 3,
@@ -1329,6 +1317,29 @@
                             "60+": "8"
                         },
                         "durationSeconds": null
+                    },
+                    {
+                        "id": "550e8400-e29b-41d4-a716-44665544CH72",
+                        "nombre": "Burpees con flexión",
+                        "descripcion": "Burpee con una flexión completa. Movimiento controlado, busca la resistencia.",
+                        "imagePlaceholder": "burpees_flexion.png",
+                        "bodyZone": "full",
+                        "grupoMuscular": "Full Body",
+                        "musculo": "Full body",
+                        "herramienta": "Peso Corporal",
+                        "series": 4,
+                        "reps": "10",
+                        "seriesPorEdad": {
+                            "14-39": 4,
+                            "40-59": 3,
+                            "60+": 2
+                        },
+                        "repsPorEdad": {
+                            "14-39": "10",
+                            "40-59": "10",
+                            "60+": "8"
+                        },
+                        "durationSeconds": null
                     }
                 ],
                 "enfriamiento": [
@@ -1346,144 +1357,6 @@
                         "descripcion": "Tumbado, gira la cadera hacia un lado mientras el torso mira al otro.",
                         "imagePlaceholder": "torsion_espinal.png",
                         "bodyZone": "full",
-                        "durationSeconds": 20
-                    }
-                ]
-            },
-            {
-                "dia": 7,
-                "grupoMuscular": "Recuperación Activa",
-                "musculos": [
-                    "Full body",
-                    "Core"
-                ],
-                "calentamiento": [
-                    {
-                        "id": "550e8400-e29b-41d4-a716-44665544CH70",
-                        "nombre": "Movilidad articular general",
-                        "descripcion": "Realiza círculos suaves con tobillos, rodillas, cadera, hombros y cuello.",
-                        "imagePlaceholder": "movilidad_articular_general.png",
-                        "bodyZone": "full",
-                        "durationSeconds": 15
-                    },
-                    {
-                        "id": "550e8400-e29b-41d4-a716-44665544CH71",
-                        "nombre": "Marcha en el lugar",
-                        "descripcion": "Camina en el lugar elevando rodillas suavemente.",
-                        "imagePlaceholder": "marcha_lugar.png",
-                        "bodyZone": "full",
-                        "durationSeconds": 15
-                    }
-                ],
-                "ejercicios": [
-                    {
-                        "id": "550e8400-e29b-41d4-a716-44665544CH72",
-                        "nombre": "Burpees con flexión",
-                        "descripcion": "Burpee con una flexión completa. Movimiento controlado, busca la resistencia.",
-                        "imagePlaceholder": "burpees_flexion.png",
-                        "bodyZone": "full",
-                        "grupoMuscular": "Full Body",
-                        "musculo": "Full body",
-                        "herramienta": "Peso Corporal",
-                        "series": 3,
-                        "reps": "10",
-                        "seriesPorEdad": {
-                            "14-39": 4,
-                            "40-59": 3,
-                            "60+": 2
-                        },
-                        "repsPorEdad": {
-                            "14-39": "10",
-                            "40-59": "10",
-                            "60+": "8"
-                        },
-                        "durationSeconds": null
-                    },
-                    {
-                        "id": "550e8400-e29b-41d4-a716-44665544CH73",
-                        "nombre": "Clean and press con mochila",
-                        "descripcion": "Levanta mochila al pecho y presiona arriba. Ejercicio compuesto para todo el cuerpo.",
-                        "imagePlaceholder": "clean_press_mochila.png",
-                        "bodyZone": "full",
-                        "grupoMuscular": "Full Body",
-                        "musculo": "Full body",
-                        "herramienta": "Mochila con Peso",
-                        "series": 3,
-                        "reps": "10",
-                        "seriesPorEdad": {
-                            "14-39": 4,
-                            "40-59": 3,
-                            "60+": 2
-                        },
-                        "repsPorEdad": {
-                            "14-39": "10",
-                            "40-59": "10",
-                            "60+": "8"
-                        },
-                        "durationSeconds": null
-                    },
-                    {
-                        "id": "550e8400-e29b-41d4-a716-44665544CH74",
-                        "nombre": "Remo invertido con agarre amplio",
-                        "descripcion": "Tumbado bajo mesa, tira con agarre amplio para trabajar espalda alta.",
-                        "imagePlaceholder": "remo_invertido_amplio.png",
-                        "bodyZone": "upper",
-                        "grupoMuscular": "Espalda",
-                        "musculo": "Trapecio, Romboides",
-                        "herramienta": "Mesa",
-                        "series": 3,
-                        "reps": "10",
-                        "seriesPorEdad": {
-                            "14-39": 4,
-                            "40-59": 3,
-                            "60+": 2
-                        },
-                        "repsPorEdad": {
-                            "14-39": "10",
-                            "40-59": "10",
-                            "60+": "8"
-                        },
-                        "durationSeconds": null
-                    },
-                    {
-                        "id": "550e8400-e29b-41d4-a716-44665544CH75",
-                        "nombre": "Flexiones con elevación de pies",
-                        "descripcion": "Pies en silla, flexión completa. Mayor intensidad para pecho superior.",
-                        "imagePlaceholder": "flexiones_declive.png",
-                        "bodyZone": "upper",
-                        "grupoMuscular": "Pecho",
-                        "musculo": "Pectoral Mayor (porción clavicular)",
-                        "herramienta": "Silla",
-                        "series": 3,
-                        "reps": "10",
-                        "seriesPorEdad": {
-                            "14-39": 4,
-                            "40-59": 3,
-                            "60+": 2
-                        },
-                        "repsPorEdad": {
-                            "14-39": "10",
-                            "40-59": "10",
-                            "60+": "8"
-                        },
-                        "durationSeconds": null
-                    }
-                ],
-                "enfriamiento": [
-                    {
-                        "id": "550e8400-e29b-41d4-a716-44665544CH76",
-                        "nombre": "Estiramiento de isquiotibiales",
-                        "descripcion": "Flexiona el torso hacia las piernas, mantén la espalda recta.",
-                        "imagePlaceholder": "estiramiento_isquios.png",
-                        "bodyZone": "lower",
-                        "durationSeconds": 20
-                    },
-                    {
-                        "id": "550e8400-e29b-41d4-a716-44665544CH77",
-                        "nombre": "Estiramiento de pectoral",
-                        "descripcion": "Junta manos detrás de la espalda y estira el pecho.",
-                        "imagePlaceholder": "estiramiento_pectoral.png",
-                        "bodyZone": "upper",
                         "durationSeconds": 20
                     }
                 ]

@@ -1,17 +1,22 @@
-import type { WorkoutGoal, WorkoutLocation } from '../../models/types';
+import type { RoutineSchedule, WorkoutGoal, WorkoutLocation } from '../../models/types';
 import { EXERCISE_LIBRARY_GROUP_ORDER, getExerciseLibrary, toLibraryExerciseView } from '../exerciseLibrary';
-import { getGoalCatalog, listCatalogDays } from '../routinesData';
+import { getGoalCatalog, listAvailableSchedules, listCatalogDays } from '../routinesData';
 
 const LOCATIONS: WorkoutLocation[] = ['home', 'gym'];
 const GOALS: WorkoutGoal[] = ['toning', 'muscle_gain', 'fat_reduction'];
 const MUSCLE_GROUPS = ['pecho', 'espalda', 'hombros', 'brazos', 'abdomen', 'piernas'];
 
 function sourceIds(location: WorkoutLocation, goal: WorkoutGoal): string[] {
-  return listCatalogDays(getGoalCatalog(location, goal)).flatMap(({ day }) => [
-    ...day.calentamiento.map((exercise) => exercise.id),
-    ...day.ejercicios.map((exercise) => exercise.id),
-    ...day.enfriamiento.map((exercise) => exercise.id),
-  ]);
+  const catalog = getGoalCatalog(location, goal);
+  const ids = listAvailableSchedules(catalog).flatMap((schedule: RoutineSchedule) =>
+    listCatalogDays(catalog, schedule).flatMap((day) => [
+      ...day.calentamiento.map((exercise) => exercise.id),
+      ...day.ejercicios.map((exercise) => exercise.id),
+      ...day.enfriamiento.map((exercise) => exercise.id),
+    ])
+  );
+
+  return [...new Set(ids)];
 }
 
 describe('exerciseLibrary', () => {

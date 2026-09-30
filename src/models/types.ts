@@ -4,14 +4,17 @@ export type WorkoutLocation = 'home' | 'gym';
 /** Objetivo que determina el conjunto de rutinas disponible. */
 export type WorkoutGoal = 'toning' | 'muscle_gain' | 'fat_reduction';
 
+/**
+ * Esquema semanal.
+ * Casa solo ofrece 5 días. Gimnasio ofrece 5 días (opción 1) o 3 días (opción 2).
+ */
+export type RoutineSchedule = '5-days' | '3-days';
+
 /** Franja de edad que solo cambia series y repeticiones, no los ejercicios. */
 export type AgeBand = '14-39' | '40-59' | '60+';
 
 /** Día de la semana (1 = Lunes … 7 = Domingo). */
 export type DayOfWeek = 1 | 2 | 3 | 4 | 5 | 6 | 7;
-
-/** Ubicación del día dentro de la división tren superior / tren inferior. */
-export type BodySplit = 'upper-anterior' | 'upper-posterior' | 'lower';
 
 /**
  * Ejercicio individual dentro de un día de entrenamiento.
@@ -35,12 +38,12 @@ export interface Exercise {
   tool: string | null;
 }
 
-/** Rutina de un día concreto de la semana, dedicada a un grupo muscular. */
+/** Rutina de un día concreto de la semana. `day` es el día calendario (1 = lunes). */
 export interface DayRoutine {
   day: DayOfWeek;
+  /** Título del JSON, por ejemplo `Lunes - Empuje (Push)`. */
+  name: string;
   muscleGroup: string;
-  muscles: string[];
-  bodySplit: BodySplit;
   warmUp: Exercise[];
   mainWorkout: Exercise[];
   coolDown: Exercise[];
@@ -69,14 +72,20 @@ export interface CatalogExercise {
   repsPorEdad?: Partial<Record<AgeBand, string | number>>;
 }
 
-/** Sesión de un día dentro de tren superior o tren inferior. */
+/** Sesión dentro de `rutina5Dias` o `rutina3Dias`. `dia` es el orden en el JSON, no siempre el día calendario. */
 export interface CatalogDay {
-  dia: DayOfWeek;
+  dia: number;
+  nombre: string;
   grupoMuscular: string;
-  musculos: string[];
   calentamiento: CatalogExercise[];
   ejercicios: CatalogExercise[];
   enfriamiento: CatalogExercise[];
+}
+
+/** Bloque de días de una opción de rutina. */
+export interface CatalogRoutine {
+  descripcion: string;
+  dias: CatalogDay[];
 }
 
 /** Contenido de uno de los archivos de objetivo bajo `src/data/home` o `src/data/gym`. */
@@ -85,13 +94,9 @@ export interface GoalCatalog {
   lugar: string;
   distribucionEdades: Record<AgeBand, AgePrescription>;
   nota: string;
-  rutinaSemanal: {
-    trenSuperior: {
-      anterior: CatalogDay[];
-      posterior: CatalogDay[];
-    };
-    trenInferior: CatalogDay[];
-  };
+  rutina5Dias: CatalogRoutine;
+  /** Solo los catálogos de gimnasio incluyen la segunda opción. */
+  rutina3Dias?: CatalogRoutine;
 }
 
 /**
@@ -103,6 +108,8 @@ export interface WeeklyPlan {
   sets: number;
   reps: number;
   note: string;
+  schedule: RoutineSchedule;
+  routineDescription: string;
   weeklyRoutine: DayRoutine[];
 }
 
@@ -147,6 +154,8 @@ export interface UserProfile {
   weight: number;
   workoutLocation: WorkoutLocation;
   goal: WorkoutGoal;
+  /** En casa siempre es `5-days`. En gimnasio el usuario elige `5-days` o `3-days`. */
+  routineSchedule: RoutineSchedule;
 }
 
 /** Guía nutricional asociada a un objetivo de entrenamiento. */

@@ -16,7 +16,7 @@ import {
 import { AppShell } from '../components/AppShell';
 import { BirthDatePicker } from '../components/BirthDatePicker';
 import { useTheme } from '../hooks/useTheme';
-import type { WorkoutGoal, WorkoutLocation } from '../models/types';
+import type { RoutineSchedule, WorkoutGoal, WorkoutLocation } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
 import { useAppStore } from '../stores/useAppStore';
 import {
@@ -27,6 +27,7 @@ import {
   getAgeBand,
 } from '../utils/ageBands';
 import { calculateAge } from '../utils/routineMatcher';
+import { resolveRoutineSchedule } from '../utils/routineSchedule';
 import { getGoalCatalog } from '../utils/routinesData';
 
 type ProfileNavigation = NativeStackNavigationProp<RootStackParamList, 'Profile'>;
@@ -36,6 +37,23 @@ const GOAL_OPTIONS: ReadonlyArray<{ value: WorkoutGoal; label: string }> = [
   { value: 'toning', label: 'Tonificación' },
   { value: 'muscle_gain', label: 'Aumento de masa muscular' },
   { value: 'fat_reduction', label: 'Reducción de grasa' },
+];
+
+const ROUTINE_OPTIONS: ReadonlyArray<{
+  value: RoutineSchedule;
+  label: string;
+  description: string;
+}> = [
+  {
+    value: '5-days',
+    label: 'Primera opción',
+    description: '5 días · Lunes a viernes (Empuje / Jalón / Pierna / Torso / Pierna)',
+  },
+  {
+    value: '3-days',
+    label: 'Segunda opción',
+    description: '3 días · Lunes, miércoles y viernes (Cuerpo completo)',
+  },
 ];
 
 function formatBirthDate(date: Date): string {
@@ -52,6 +70,7 @@ export default function ProfileScreen() {
 
   const [workoutLocation, setWorkoutLocation] = useState<WorkoutLocation | null>(null);
   const [goal, setGoal] = useState<WorkoutGoal | null>(null);
+  const [routineSchedule, setRoutineSchedule] = useState<RoutineSchedule | null>(null);
   const [weight, setWeight] = useState('');
   const [birthDate, setBirthDate] = useState(DEFAULT_BIRTH_DATE);
   const [isSaving, setIsSaving] = useState(false);
@@ -105,6 +124,17 @@ export default function ProfileScreen() {
           fontWeight: '600',
         },
         optionTextActive: {
+          color: colors.primaryText,
+        },
+        optionDescription: {
+          marginTop: 4,
+          paddingHorizontal: 12,
+          fontSize: 13,
+          lineHeight: 18,
+          textAlign: 'center',
+          color: colors.textMuted,
+        },
+        optionDescriptionActive: {
           color: colors.primaryText,
         },
         input: {
@@ -175,6 +205,11 @@ export default function ProfileScreen() {
       return;
     }
 
+    if (workoutLocation === 'gym' && !routineSchedule) {
+      Alert.alert('Perfil incompleto', 'Selecciona la opción de rutina.');
+      return;
+    }
+
     const parsedWeight = Number(weight.replace(',', '.'));
     if (!weight.trim() || Number.isNaN(parsedWeight) || parsedWeight <= 0) {
       Alert.alert('Peso inválido', 'Introduce un peso válido en kilogramos.');
@@ -210,6 +245,7 @@ export default function ProfileScreen() {
     const saved = await setProfile({
       workoutLocation,
       goal,
+      routineSchedule: resolveRoutineSchedule(workoutLocation, routineSchedule),
       weight: parsedWeight,
       birthDate: birthDateIso,
     });
@@ -304,6 +340,39 @@ export default function ProfileScreen() {
                   </Pressable>
                 ))}
               </View>
+
+              {workoutLocation === 'gym' ? (
+                <>
+                  <Text style={styles.label}>Opción de rutina</Text>
+                  <View style={styles.optionsColumn}>
+                    {ROUTINE_OPTIONS.map((option) => {
+                      const isActive = routineSchedule === option.value;
+
+                      return (
+                        <Pressable
+                          key={option.value}
+                          style={[styles.optionButton, isActive && styles.optionButtonActive]}
+                          onPress={() => setRoutineSchedule(option.value)}
+                          accessibilityRole="button"
+                          accessibilityState={{ selected: isActive }}
+                        >
+                          <Text style={[styles.optionText, isActive && styles.optionTextActive]}>
+                            {option.label}
+                          </Text>
+                          <Text
+                            style={[
+                              styles.optionDescription,
+                              isActive && styles.optionDescriptionActive,
+                            ]}
+                          >
+                            {option.description}
+                          </Text>
+                        </Pressable>
+                      );
+                    })}
+                  </View>
+                </>
+              ) : null}
             </>
           ) : null}
 

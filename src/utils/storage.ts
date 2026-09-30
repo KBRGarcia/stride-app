@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import type { DayOfWeek, UserProfile } from '../models/types';
 import type { ColorScheme } from '../theme/types';
+import { resolveRoutineSchedule } from './routineSchedule';
 
 const STORAGE_KEYS = {
   profile: '@stride/profile',
@@ -44,6 +45,7 @@ export async function getProfile(): Promise<UserProfile | null> {
     weight: parsed.weight,
     workoutLocation,
     goal,
+    routineSchedule: resolveRoutineSchedule(workoutLocation, parsed.routineSchedule),
   };
 }
 

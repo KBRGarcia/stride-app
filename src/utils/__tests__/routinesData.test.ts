@@ -1,9 +1,32 @@
-import type { AgeBand, GoalCatalog, WorkoutGoal, WorkoutLocation } from '../../models/types';
+import type {
+  AgeBand,
+  DayOfWeek,
+  GoalCatalog,
+  RoutineSchedule,
+  WorkoutGoal,
+  WorkoutLocation,
+} from '../../models/types';
 import { AGE_BANDS } from '../ageBands';
-import { buildWeeklyPlan, getDayExercises, getGoalCatalog, listCatalogDays } from '../routinesData';
+import {
+  buildWeeklyPlan,
+  getCatalogRoutine,
+  getDayExercises,
+  getGoalCatalog,
+  getSessionTitle,
+  listAvailableSchedules,
+  listCatalogDays,
+} from '../routinesData';
 
 const GOALS: WorkoutGoal[] = ['toning', 'muscle_gain', 'fat_reduction'];
-const LOCATIONS: WorkoutLocation[] = ['home', 'gym'];
+const WEEKDAY_NAMES: Record<DayOfWeek, string> = {
+  1: 'Lunes',
+  2: 'Martes',
+  3: 'Miércoles',
+  4: 'Jueves',
+  5: 'Viernes',
+  6: 'Sábado',
+  7: 'Domingo',
+};
 const DATASETS: ReadonlyArray<{
   name: string;
   location: WorkoutLocation;
@@ -17,27 +40,29 @@ const DATASETS: ReadonlyArray<{
   { name: 'gimnasio/reducción de grasa', location: 'gym', goal: 'fat_reduction' },
 ];
 
-function validateCatalog(catalog: GoalCatalog): void {
+function validateRoutine(
+  catalog: GoalCatalog,
+  schedule: RoutineSchedule,
+  expectedDays: DayOfWeek[]
+): void {
   expect(Object.keys(catalog.distribucionEdades).sort()).toEqual([...AGE_BANDS].sort());
-
-  const days = listCatalogDays(catalog);
-  expect(days.map((entry) => entry.day.dia).sort()).toEqual([1, 2, 3, 4, 5, 6, 7]);
-
-  const exerciseIds = new Set<string>();
+  expect(listCatalogDays(catalog, schedule).map((day) => day.dia).length).toBe(expectedDays.length);
 
   for (const band of AGE_BANDS) {
-    const plan = buildWeeklyPlan(catalog, band);
+    const plan = buildWeeklyPlan(catalog, band, schedule);
+    expect(plan?.schedule).toBe(schedule);
+    expect(plan?.routineDescription.length).toBeGreaterThan(0);
+    expect(plan?.weeklyRoutine.map((day) => day.day)).toEqual(expectedDays);
 
-    for (const day of plan.weeklyRoutine) {
+    for (const day of plan?.weeklyRoutine ?? []) {
+      expect(day.name.startsWith(WEEKDAY_NAMES[day.day])).toBe(true);
       expect(day.muscleGroup.length).toBeGreaterThan(0);
-      expect(day.muscles.length).toBeGreaterThan(0);
+      expect(getSessionTitle(day.name).length).toBeGreaterThan(0);
+
+      const ids = getDayExercises(day).map((exercise) => exercise.id);
+      expect(new Set(ids).size).toBe(ids.length);
 
       for (const exercise of getDayExercises(day)) {
-        if (band === '14-39') {
-          expect(exerciseIds.has(exercise.id)).toBe(false);
-          exerciseIds.add(exercise.id);
-        }
-
         expect(['upper', 'lower', 'full']).toContain(exercise.bodyZone);
 
         const isTimed =
@@ -56,31 +81,44 @@ function validateCatalog(catalog: GoalCatalog): void {
 }
 
 describe('routinesData', () => {
-  it.each(LOCATIONS)('cubre los siete días en %s para cada objetivo', (location) => {
+  it('ofrece 5 días en casa y las dos opciones en el gimnasio', () => {
     for (const goal of GOALS) {
-      const days = listCatalogDays(getGoalCatalog(location, goal));
+      const home = getGoalCatalog('home', goal);
+      const gym = getGoalCatalog('gym', goal);
 
-      expect(days.map((entry) => entry.day.dia).sort()).toEqual([1, 2, 3, 4, 5, 6, 7]);
-      expect(days.some((entry) => entry.bodySplit === 'upper-anterior')).toBe(true);
-      expect(days.some((entry) => entry.bodySplit === 'upper-posterior')).toBe(true);
-      expect(days.some((entry) => entry.bodySplit === 'lower')).toBe(true);
+      expect(listAvailableSchedules(home)).toEqual(['5-days']);
+      expect(getCatalogRoutine(home, '3-days')).toBeNull();
+      expect(listAvailableSchedules(gym)).toEqual(['5-days', '3-days']);
+      expect(listCatalogDays(home, '5-days')).toHaveLength(5);
+      expect(listCatalogDays(gym, '5-days')).toHaveLength(5);
+      expect(listCatalogDays(gym, '3-days')).toHaveLength(3);
     }
   });
 
   it('ordena las fases de cada sesión', () => {
-    const day = buildWeeklyPlan(getGoalCatalog('home', 'toning'), '14-39').weeklyRoutine[0];
+    const day = buildWeeklyPlan(getGoalCatalog('home', 'toning'), '14-39', '5-days')
+      ?.weeklyRoutine[0];
 
-    expect(getDayExercises(day)).toEqual([...day.warmUp, ...day.mainWorkout, ...day.coolDown]);
+    expect(day).toBeDefined();
+    expect(getDayExercises(day!)).toEqual([...day!.warmUp, ...day!.mainWorkout, ...day!.coolDown]);
   });
 
-  it.each(DATASETS)('valida profundamente el JSON de $name', ({ location, goal }) => {
-    validateCatalog(getGoalCatalog(location, goal));
+  it.each(DATASETS)('valida la rutina de 5 días de $name', ({ location, goal }) => {
+    validateRoutine(getGoalCatalog(location, goal), '5-days', [1, 2, 3, 4, 5]);
+  });
+
+  it.each(GOALS)('ubica la rutina de 3 días del gimnasio en lunes, miércoles y viernes (%s)', (goal) => {
+    validateRoutine(getGoalCatalog('gym', goal), '3-days', [1, 3, 5]);
+  });
+
+  it('no arma una rutina de 3 días para casa', () => {
+    expect(buildWeeklyPlan(getGoalCatalog('home', 'toning'), '14-39', '3-days')).toBeNull();
   });
 
   it('aplica la carga de cada franja sin cambiar el ejercicio', () => {
     const catalog = getGoalCatalog('gym', 'toning');
     const loads = AGE_BANDS.map((band) => {
-      const exercise = buildWeeklyPlan(catalog, band).weeklyRoutine[0]?.mainWorkout[0];
+      const exercise = buildWeeklyPlan(catalog, band, '5-days')?.weeklyRoutine[0]?.mainWorkout[0];
       return [band, exercise?.id, exercise?.sets, exercise?.reps] as const;
     });
 

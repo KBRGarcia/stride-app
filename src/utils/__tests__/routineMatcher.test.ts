@@ -9,6 +9,7 @@ function createProfile(birthDate: string, weight = 70): UserProfile {
     weight,
     workoutLocation: 'home',
     goal: 'toning',
+    routineSchedule: '5-days',
   };
 }
 
@@ -79,17 +80,48 @@ describe('resolveWeeklyPlan', () => {
     expect(resolveWeeklyPlan(createProfile('2013-08-31'), REFERENCE_DATE)).toBeNull();
   });
 
-  it('separa los días por tren superior y tren inferior', () => {
+  it('arma la semana de casa de lunes a viernes', () => {
     const plan = resolveWeeklyPlan(createProfile('2000-01-01'), REFERENCE_DATE);
 
-    expect(plan?.weeklyRoutine.map((day) => [day.day, day.bodySplit, day.muscleGroup])).toEqual([
-      [1, 'upper-anterior', 'Pecho'],
-      [2, 'upper-posterior', 'Espalda'],
-      [3, 'upper-anterior', 'Hombros'],
-      [4, 'lower', 'Piernas'],
-      [5, 'upper-anterior', 'Brazos'],
-      [6, 'lower', 'Abdomen'],
-      [7, 'lower', 'Recuperación Activa'],
+    expect(plan?.schedule).toBe('5-days');
+    expect(plan?.weeklyRoutine.map((day) => [day.day, day.muscleGroup])).toEqual([
+      [1, 'Pecho, Deltoides anterior/lateral, Tríceps'],
+      [2, 'Espalda, Deltoides posterior, Bíceps'],
+      [3, 'Cuádriceps, Isquiotibiales, Glúteos, Pantorrillas'],
+      [4, 'Pecho, Espalda, Hombros, Bíceps, Tríceps'],
+      [5, 'Cuádriceps, Isquiotibiales, Glúteos, Pantorrillas, Abdomen'],
     ]);
+  });
+
+  it('arma la segunda opción del gimnasio en lunes, miércoles y viernes', () => {
+    const plan = resolveWeeklyPlan(
+      {
+        ...createProfile('2000-01-01'),
+        workoutLocation: 'gym',
+        routineSchedule: '3-days',
+      },
+      REFERENCE_DATE
+    );
+
+    expect(plan?.schedule).toBe('3-days');
+    expect(plan?.weeklyRoutine.map((day) => day.day)).toEqual([1, 3, 5]);
+    expect(plan?.weeklyRoutine.map((day) => day.name.split(' - ')[0])).toEqual([
+      'Lunes',
+      'Miércoles',
+      'Viernes',
+    ]);
+  });
+
+  it('ignora una opción de 3 días si el perfil es de casa', () => {
+    const plan = resolveWeeklyPlan(
+      {
+        ...createProfile('2000-01-01'),
+        routineSchedule: '3-days',
+      },
+      REFERENCE_DATE
+    );
+
+    expect(plan?.schedule).toBe('5-days');
+    expect(plan?.weeklyRoutine.map((day) => day.day)).toEqual([1, 2, 3, 4, 5]);
   });
 });

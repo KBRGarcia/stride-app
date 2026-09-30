@@ -1,10 +1,4 @@
-import type { BodySplit, Exercise } from '../models/types';
-
-export const BODY_SPLIT_LABELS: Record<BodySplit, string> = {
-  'upper-anterior': 'Tren superior · Anterior',
-  'upper-posterior': 'Tren superior · Posterior',
-  lower: 'Tren inferior',
-};
+import type { Exercise } from '../models/types';
 
 const BODY_ZONE_LABELS: Record<Exercise['bodyZone'], string> = {
   upper: 'Tren superior',

@@ -14,8 +14,7 @@ import type { DayOfWeek } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
 import { useAppStore } from '../stores/useAppStore';
 import { AGE_BAND_LABELS } from '../utils/ageBands';
-import { BODY_SPLIT_LABELS } from '../utils/muscleGroups';
-import { getDayExercises } from '../utils/routinesData';
+import { getDayExercises, getSessionTitle } from '../utils/routinesData';
 import { getNutritionGuide, NUTRITION_GOAL_TITLES } from '../utils/nutritionData';
 import {
   getDayOfWeek,
@@ -184,9 +183,10 @@ export default function HomeScreen() {
         <>
           <View style={styles.header}>
             <Text style={styles.title}>Tu semana</Text>
-            <Text style={styles.subtitle}>
-              Cada día trabaja un grupo muscular. {AGE_BAND_LABELS[weeklyPlan.ageBand]}:{' '}
-              {weeklyPlan.sets} series × {weeklyPlan.reps} repeticiones.
+            <Text style={styles.subtitle}>{weeklyPlan.routineDescription}</Text>
+            <Text style={styles.note}>
+              {AGE_BAND_LABELS[weeklyPlan.ageBand]}: {weeklyPlan.sets} series × {weeklyPlan.reps}{' '}
+              repeticiones.
             </Text>
             <Text style={styles.note}>{weeklyPlan.note}</Text>
           </View>
@@ -229,10 +229,9 @@ export default function HomeScreen() {
                   <Text style={styles.dayShort}>{labels.short}</Text>
                   <View style={styles.dayInfo}>
                     <Text style={styles.dayFull}>{labels.full}</Text>
-                    <Text style={styles.dayMeta}>{item.muscleGroup}</Text>
+                    <Text style={styles.dayMeta}>{getSessionTitle(item.name)}</Text>
                     <Text style={styles.dayMeta}>
-                      {BODY_SPLIT_LABELS[item.bodySplit]} · {getDayExercises(item).length}{' '}
-                      ejercicios
+                      {item.muscleGroup} · {getDayExercises(item).length} ejercicios
                     </Text>
                   </View>
                   <Text

@@ -21,8 +21,8 @@ import type { DayOfWeek, DayRoutine, Exercise } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
 import { markDayCompleted, useAppStore } from '../stores/useAppStore';
 import { getExerciseImage } from '../utils/imageMapper';
-import { BODY_SPLIT_LABELS, formatExerciseFocus } from '../utils/muscleGroups';
-import { getDayExercises } from '../utils/routinesData';
+import { formatExerciseFocus } from '../utils/muscleGroups';
+import { getDayExercises, getSessionTitle } from '../utils/routinesData';
 import { formatElapsedDuration, formatExercisePrescription } from '../utils/workoutFormat';
 import { isDayWorkoutAccessible, toIsoDate } from '../utils/weekSchedule';
 
@@ -675,9 +675,8 @@ function DayPreview({
   return (
     <>
       <Text style={styles.previewTitle}>{dayLabel}</Text>
-      <Text style={styles.previewSubtitle}>{dayRoutine.muscleGroup}</Text>
-      <Text style={styles.previewSubtitle}>{BODY_SPLIT_LABELS[dayRoutine.bodySplit]}</Text>
-      <Text style={styles.previewHint}>{dayRoutine.muscles.join(' · ')}</Text>
+      <Text style={styles.previewSubtitle}>{getSessionTitle(dayRoutine.name)}</Text>
+      <Text style={styles.previewHint}>{dayRoutine.muscleGroup}</Text>
       <Text style={styles.previewHint}>
         {canStart
           ? completedThisWeek
