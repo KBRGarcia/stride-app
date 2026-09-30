@@ -32,8 +32,10 @@ export function SectionSubmenu<T extends string>({
           marginBottom: 4,
         },
         option: {
+          flex: 1,
+          alignItems: 'center',
           paddingVertical: 8,
-          paddingHorizontal: 14,
+          paddingHorizontal: 8,
           borderRadius: 20,
           borderWidth: 1,
           borderColor: colors.border,
@@ -47,6 +49,7 @@ export function SectionSubmenu<T extends string>({
           fontSize: 14,
           fontWeight: '600',
           color: colors.textSecondary,
+          textAlign: 'center',
         },
         labelActive: {
           color: colors.primaryText,

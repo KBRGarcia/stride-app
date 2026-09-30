@@ -106,6 +106,38 @@ export interface WeeklyPlan {
   weeklyRoutine: DayRoutine[];
 }
 
+/** Apartado de la biblioteca de ejercicios. */
+export type ExerciseLibraryGroupId =
+  | 'pecho'
+  | 'espalda'
+  | 'hombros'
+  | 'brazos'
+  | 'abdomen'
+  | 'piernas'
+  | 'calentamiento'
+  | 'enfriamiento';
+
+export type ExerciseLibraryPhase = 'calentamiento' | 'entrenamiento' | 'enfriamiento';
+
+/** Ejercicio de la biblioteca. No incluye carga por edad ni duración en segundos. */
+export interface LibraryExercise
+  extends Omit<CatalogExercise, 'durationSeconds' | 'seriesPorEdad' | 'repsPorEdad'> {
+  fase: ExerciseLibraryPhase;
+}
+
+export interface ExerciseLibraryGroup {
+  id: ExerciseLibraryGroupId;
+  nombre: string;
+  ejercicios: LibraryExercise[];
+}
+
+/** Catálogo de ejercicios de un objetivo, agrupado por músculo. */
+export interface ExerciseLibrary {
+  objetivo: string;
+  lugar: string;
+  gruposMusculares: ExerciseLibraryGroup[];
+}
+
 /**
  * Perfil del usuario persistido en AsyncStorage (no proviene del JSON).
  * La edad se calcula en runtime a partir de `birthDate`.

@@ -6,6 +6,7 @@ import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { AppShell } from '../components/AppShell';
 import { MainSectionTabs } from '../components/MainSectionTabs';
+import { ExerciseLibraryPanel } from '../components/ExerciseLibraryPanel';
 import { NutritionPanel } from '../components/NutritionPanel';
 import { SectionSubmenu } from '../components/SectionSubmenu';
 import { useTheme } from '../hooks/useTheme';
@@ -24,7 +25,7 @@ import {
 } from '../utils/weekSchedule';
 
 type HomeNavigation = NativeStackNavigationProp<RootStackParamList, 'Home'>;
-type HomeSubmenu = 'plan' | 'nutrition';
+type HomeSubmenu = 'plan' | 'exercises' | 'nutrition';
 
 const DAY_LABELS: Record<DayOfWeek, { short: string; full: string }> = {
   1: { short: 'Lun', full: 'Lunes' },
@@ -38,6 +39,7 @@ const DAY_LABELS: Record<DayOfWeek, { short: string; full: string }> = {
 
 const HOME_SUBMENU: ReadonlyArray<{ id: HomeSubmenu; label: string }> = [
   { id: 'plan', label: 'Plan' },
+  { id: 'exercises', label: 'Ejercicios' },
   { id: 'nutrition', label: 'Nutrición' },
 ];
 
@@ -159,7 +161,9 @@ export default function HomeScreen() {
       <MainSectionTabs active="home" />
       <SectionSubmenu options={HOME_SUBMENU} active={submenu} onChange={setSubmenu} />
 
-      {submenu === 'nutrition' ? (
+      {submenu === 'exercises' && profile ? (
+        <ExerciseLibraryPanel location={profile.workoutLocation} goal={profile.goal} />
+      ) : submenu === 'nutrition' ? (
         <NutritionPanel
           guide={nutritionGuide}
           title="Nutrición"

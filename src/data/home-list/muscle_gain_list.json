@@ -1,0 +1,943 @@
+{
+    "objetivo": "Aumento de Masa Muscular",
+    "lugar": "Casa",
+    "gruposMusculares": [
+        {
+            "id": "pecho",
+            "nombre": "Pecho",
+            "ejercicios": [
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH03",
+                    "nombre": "Flexiones con aplauso",
+                    "descripcion": "Flexión explosiva con palmada en el aire. Busca el fallo en la última serie.",
+                    "imagePlaceholder": "flexion_aplauso.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Pecho",
+                    "musculo": "Pectoral Mayor, Pectoral Menor",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH04",
+                    "nombre": "Flexiones en pica",
+                    "descripcion": "Con cadera elevada, baja la cabeza hacia el suelo. Enfócate en la porción superior del pecho.",
+                    "imagePlaceholder": "flexiones_pica.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Pecho",
+                    "musculo": "Pectoral Mayor (porción clavicular)",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH05",
+                    "nombre": "Fondos entre sillas",
+                    "descripcion": "Coloca dos sillas y baja el cuerpo entre ellas. Controla el descenso.",
+                    "imagePlaceholder": "fondos_sillas.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Pecho",
+                    "musculo": "Pectoral Mayor, Pectoral Menor, Tríceps",
+                    "herramienta": "Sillas",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH06",
+                    "nombre": "Flexiones declive",
+                    "descripcion": "Con los pies elevados en una silla, realiza flexiones. Mayor intensidad para pecho superior.",
+                    "imagePlaceholder": "flexiones_declive.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Pecho",
+                    "musculo": "Pectoral Mayor (porción clavicular)",
+                    "herramienta": "Silla",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH07",
+                    "nombre": "Aperturas con banda (pecho)",
+                    "descripcion": "Banda sujeta detrás, abre los brazos en dirección anterior apretando el pectoral.",
+                    "imagePlaceholder": "aperturas_banda_pecho.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Pecho",
+                    "musculo": "Pectoral Mayor",
+                    "herramienta": "Banda Elástica",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH08",
+                    "nombre": "Flexiones con agarre cerrado",
+                    "descripcion": "Manos juntas, baja el pecho. Enfócate en la contracción del pectoral interno.",
+                    "imagePlaceholder": "flexiones_agarre_cerrado.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Pecho",
+                    "musculo": "Pectoral Mayor (porción esternal), Tríceps",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH09",
+                    "nombre": "Plancha con toque de hombros",
+                    "descripcion": "En plancha, toca alternativamente el hombro contrario. Mantén el core firme.",
+                    "imagePlaceholder": "plancha_toque_hombros.png",
+                    "bodyZone": "full",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Pecho",
+                    "musculo": "Pectoral Mayor, Core",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH73",
+                    "nombre": "Clean and press con mochila",
+                    "descripcion": "Levanta mochila al pecho y presiona arriba. Ejercicio compuesto para todo el cuerpo.",
+                    "imagePlaceholder": "clean_press_mochila.png",
+                    "bodyZone": "full",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Pecho",
+                    "musculo": "Full body",
+                    "herramienta": "Mochila con Peso",
+                    "series": 3,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH75",
+                    "nombre": "Flexiones con elevación de pies",
+                    "descripcion": "Pies en silla, flexión completa. Mayor intensidad para pecho superior.",
+                    "imagePlaceholder": "flexiones_declive.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Pecho",
+                    "musculo": "Pectoral Mayor (porción clavicular)",
+                    "herramienta": "Silla",
+                    "series": 3,
+                    "reps": "10"
+                }
+            ]
+        },
+        {
+            "id": "espalda",
+            "nombre": "Espalda",
+            "ejercicios": [
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH36",
+                    "nombre": "Remo invertido",
+                    "descripcion": "Tumbado debajo de una mesa, tira del cuerpo hacia arriba. Busca el fallo en la última serie.",
+                    "imagePlaceholder": "remo_invertido.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Espalda",
+                    "musculo": "Dorsal ancho, Romboides",
+                    "herramienta": "Mesa",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH37",
+                    "nombre": "Dominadas asistidas con toalla",
+                    "descripcion": "Con una toalla en la puerta, tira hacia arriba ayudándote con las piernas.",
+                    "imagePlaceholder": "dominadas_asistidas_toalla.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Espalda",
+                    "musculo": "Dorsal ancho",
+                    "herramienta": "Toalla",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH38",
+                    "nombre": "Remo con banda",
+                    "descripcion": "Sujeta una banda bajo los pies y tira hacia el pecho. Aprieta los omóplatos.",
+                    "imagePlaceholder": "remo_banda.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Espalda",
+                    "musculo": "Dorsal ancho, Trapecio",
+                    "herramienta": "Banda Elástica",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH39",
+                    "nombre": "Remo a una mano con banda",
+                    "descripcion": "Sujeta banda con una mano y rema. Enfócate en la contracción del dorsal.",
+                    "imagePlaceholder": "remo_una_mano_banda.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Espalda",
+                    "musculo": "Dorsal ancho, Redondo mayor",
+                    "herramienta": "Banda Elástica",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH40",
+                    "nombre": "Superman con elevación de piernas",
+                    "descripcion": "Tumbado boca abajo, eleva brazos y piernas simultáneamente. Mantén la contracción.",
+                    "imagePlaceholder": "superman_elevacion.png",
+                    "bodyZone": "full",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Espalda",
+                    "musculo": "Erectores de la columna, Dorsal ancho",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH41",
+                    "nombre": "Bird-dog con peso",
+                    "descripcion": "En cuadrupedia, extiende brazo y pierna contrarios. Añade peso si es posible.",
+                    "imagePlaceholder": "bird_dog_peso.png",
+                    "bodyZone": "full",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Espalda",
+                    "musculo": "Erectores de la columna, Romboides",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH42",
+                    "nombre": "Face pull con toalla",
+                    "descripcion": "Sujeta una toalla a un punto fijo y tira hacia la cara con codos altos.",
+                    "imagePlaceholder": "face_pull_toalla.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Espalda",
+                    "musculo": "Trapecio, Romboides",
+                    "herramienta": "Toalla",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH74",
+                    "nombre": "Remo invertido con agarre amplio",
+                    "descripcion": "Tumbado bajo mesa, tira con agarre amplio para trabajar espalda alta.",
+                    "imagePlaceholder": "remo_invertido_amplio.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Espalda",
+                    "musculo": "Trapecio, Romboides",
+                    "herramienta": "Mesa",
+                    "series": 3,
+                    "reps": "10"
+                }
+            ]
+        },
+        {
+            "id": "hombros",
+            "nombre": "Hombros",
+            "ejercicios": [
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH14",
+                    "nombre": "Press militar con mochila",
+                    "descripcion": "Con una mochila con peso, presiona hacia arriba. Busca el fallo en la última serie.",
+                    "imagePlaceholder": "press_militar_mochila.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Hombros",
+                    "musculo": "Deltoides anterior, Deltoides medios",
+                    "herramienta": "Mochila con Peso",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH15",
+                    "nombre": "Press de hombros con banda (resistencia media)",
+                    "descripcion": "Banda bajo los pies, presiona hacia arriba controlando el descenso.",
+                    "imagePlaceholder": "press_hombros_banda_media.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Hombros",
+                    "musculo": "Deltoides anterior, Deltoides medios",
+                    "herramienta": "Banda Elástica",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH16",
+                    "nombre": "Elevaciones laterales con banda",
+                    "descripcion": "Con banda bajo los pies, eleva los brazos hacia los lados hasta la altura de los hombros.",
+                    "imagePlaceholder": "elevaciones_laterales.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Hombros",
+                    "musculo": "Deltoides medios",
+                    "herramienta": "Banda Elástica",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH17",
+                    "nombre": "Face pull con banda",
+                    "descripcion": "Sujeta una banda y tira hacia la cara con codos altos para deltoides posteriores.",
+                    "imagePlaceholder": "face_pull_banda.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Hombros",
+                    "musculo": "Deltoides posteriores",
+                    "herramienta": "Banda Elástica",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH18",
+                    "nombre": "Elevaciones frontales con banda",
+                    "descripcion": "Con banda, eleva los brazos extendidos hacia el frente hasta la altura de los hombros.",
+                    "imagePlaceholder": "elevaciones_frontales.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Hombros",
+                    "musculo": "Deltoides anterior",
+                    "herramienta": "Banda Elástica",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH19",
+                    "nombre": "Pájaros con banda",
+                    "descripcion": "Inclinado hacia anterior, eleva los brazos hacia los lados con banda para deltoides posteriores.",
+                    "imagePlaceholder": "pajaros_banda.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Hombros",
+                    "musculo": "Deltoides posteriores",
+                    "herramienta": "Banda Elástica",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH20",
+                    "nombre": "Remo al mentón con banda",
+                    "descripcion": "Con banda bajo los pies, tira hacia el mentón con los codos altos para deltoides y trapecio.",
+                    "imagePlaceholder": "remo_menton_banda.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Hombros",
+                    "musculo": "Deltoides medios, Trapecio",
+                    "herramienta": "Banda Elástica",
+                    "series": 4,
+                    "reps": "10"
+                }
+            ]
+        },
+        {
+            "id": "brazos",
+            "nombre": "Brazos",
+            "ejercicios": [
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH25",
+                    "nombre": "Curl de bíceps con banda",
+                    "descripcion": "Pisa la banda y flexiona los codos llevando las manos hacia los hombros. Aprieta el bíceps.",
+                    "imagePlaceholder": "curl_biceps_banda.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Brazos",
+                    "musculo": "Bíceps braquial",
+                    "herramienta": "Banda Elástica",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH26",
+                    "nombre": "Curl de bíceps con toalla",
+                    "descripcion": "Sujeta una toalla enrollada y flexiona los codos aplicando tensión.",
+                    "imagePlaceholder": "curl_biceps_toalla.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Brazos",
+                    "musculo": "Bíceps braquial",
+                    "herramienta": "Toalla",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH27",
+                    "nombre": "Extensión de tríceps por encima de la cabeza",
+                    "descripcion": "Con banda sujeta bajo el pie, extiende los brazos hacia arriba por encima de la cabeza.",
+                    "imagePlaceholder": "extension_triceps_banda.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Brazos",
+                    "musculo": "Tríceps braquial",
+                    "herramienta": "Banda Elástica",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH28",
+                    "nombre": "Fondos en banco",
+                    "descripcion": "Con las manos en un banco o silla, baja el cuerpo flexionando los codos. Controla el descenso.",
+                    "imagePlaceholder": "fondos_banco.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Brazos",
+                    "musculo": "Tríceps braquial",
+                    "herramienta": "Banco",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH29",
+                    "nombre": "Curl martillo con banda (resistencia media)",
+                    "descripcion": "Con banda bajo los pies, flexiona los codos con agarre neutro.",
+                    "imagePlaceholder": "curl_biceps_banda_media.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Brazos",
+                    "musculo": "Braquial, Braquiorradial",
+                    "herramienta": "Banda Elástica",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH30",
+                    "nombre": "Extensión de tríceps con banda (polea)",
+                    "descripcion": "Con banda sujeta en un punto alto, extiende los codos hacia abajo. Mantén los codos fijos.",
+                    "imagePlaceholder": "extension_triceps_banda_polea.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Brazos",
+                    "musculo": "Tríceps braquial",
+                    "herramienta": "Banda Elástica",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH31",
+                    "nombre": "Extensión de muñeca con banda",
+                    "descripcion": "Con banda bajo el pie, extiende la muñeca hacia arriba para trabajar el antebrazo.",
+                    "imagePlaceholder": "extension_muneca_banda.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Brazos",
+                    "musculo": "Braquiorradial",
+                    "herramienta": "Banda Elástica",
+                    "series": 4,
+                    "reps": "10"
+                }
+            ]
+        },
+        {
+            "id": "abdomen",
+            "nombre": "Abdomen",
+            "ejercicios": [
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH61",
+                    "nombre": "Crunch abdominal con peso",
+                    "descripcion": "Sujeta un objeto pesado sobre el pecho y haz crunch. Busca el fallo en la última serie.",
+                    "imagePlaceholder": "crunch_peso.png",
+                    "bodyZone": "full",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Abdomen",
+                    "musculo": "Recto abdominal",
+                    "herramienta": "Peso (Libro/Mochila)",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH62",
+                    "nombre": "Crunch inverso con piernas rectas",
+                    "descripcion": "Eleva piernas rectas y levanta cadera del suelo. Enfócate en la contracción abdominal baja.",
+                    "imagePlaceholder": "crunch_inverso_recto.png",
+                    "bodyZone": "full",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Abdomen",
+                    "musculo": "Recto abdominal",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH63",
+                    "nombre": "Plancha con peso",
+                    "descripcion": "Coloca un peso (mochila/libro) en la espalda y mantén la plancha. Busca el fallo.",
+                    "imagePlaceholder": "plancha_peso.png",
+                    "bodyZone": "full",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Abdomen",
+                    "musculo": "Transverso del abdomen, Recto abdominal",
+                    "herramienta": "Peso (Mochila/Libro)",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH64",
+                    "nombre": "Plancha con elevación de brazos",
+                    "descripcion": "En plancha, eleva un brazo alternadamente. Mantén el core firme.",
+                    "imagePlaceholder": "plancha_elevacion_brazos.png",
+                    "bodyZone": "full",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Abdomen",
+                    "musculo": "Transverso del abdomen, Oblicuo externo",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH65",
+                    "nombre": "Plancha con flexión de rodilla",
+                    "descripcion": "En plancha, lleva rodilla al pecho alternando. Trabaja recto abdominal y oblicuos.",
+                    "imagePlaceholder": "plancha_flexion_rodilla.png",
+                    "bodyZone": "full",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Abdomen",
+                    "musculo": "Recto abdominal, Oblicuo externo",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH66",
+                    "nombre": "Escaladores (rápidos)",
+                    "descripcion": "Lleva rodillas al pecho alternando rápido. Ejercicio de alta intensidad para core.",
+                    "imagePlaceholder": "escaladores_rapidos.png",
+                    "bodyZone": "full",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Abdomen",
+                    "musculo": "Recto abdominal, Transverso del abdomen",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH67",
+                    "nombre": "Crunch inverso con piernas flexionadas",
+                    "descripcion": "Tumbado, lleva rodillas al pecho. Enfócate en la contracción abdominal.",
+                    "imagePlaceholder": "crunch_inverso_flex.png",
+                    "bodyZone": "full",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Abdomen",
+                    "musculo": "Recto abdominal",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH72",
+                    "nombre": "Burpees con flexión",
+                    "descripcion": "Burpee con una flexión completa. Movimiento controlado, busca la resistencia.",
+                    "imagePlaceholder": "burpees_flexion.png",
+                    "bodyZone": "full",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Abdomen",
+                    "musculo": "Full body",
+                    "herramienta": "Peso Corporal",
+                    "series": 3,
+                    "reps": "10"
+                }
+            ]
+        },
+        {
+            "id": "piernas",
+            "nombre": "Piernas",
+            "ejercicios": [
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH47",
+                    "nombre": "Sentadillas profundas",
+                    "descripcion": "Baja hasta que los muslos estén paralelos al suelo. Busca el fallo en la última serie.",
+                    "imagePlaceholder": "sentadillas_profundas.png",
+                    "bodyZone": "lower",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Piernas",
+                    "musculo": "Cuádriceps, Glúteos",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH48",
+                    "nombre": "Sentadilla búlgara",
+                    "descripcion": "Apoya un pie en una silla detrás y baja. Trabaja cuádriceps y glúteos unilateralmente.",
+                    "imagePlaceholder": "sentadilla_bulgara.png",
+                    "bodyZone": "lower",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Piernas",
+                    "musculo": "Cuádriceps, Glúteos",
+                    "herramienta": "Silla",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH49",
+                    "nombre": "Zancadas con salto",
+                    "descripcion": "Zancada y salta cambiando de pierna en el aire. Ejercicio explosivo para piernas.",
+                    "imagePlaceholder": "zancada_salto.png",
+                    "bodyZone": "lower",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Piernas",
+                    "musculo": "Cuádriceps, Glúteos, Isquiotibiales",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH50",
+                    "nombre": "Peso muerto rumano a una pierna",
+                    "descripcion": "Con pierna recta, flexiona cadera manteniendo espalda plana. Enfócate en isquiotibiales.",
+                    "imagePlaceholder": "peso_muerto_rumano_1pierna.png",
+                    "bodyZone": "lower",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Piernas",
+                    "musculo": "Isquiotibiales, Glúteos",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH51",
+                    "nombre": "Elevaciones de talones con mochila",
+                    "descripcion": "Con mochila con peso, eleva los talones. Trabaja gemelos y sóleo.",
+                    "imagePlaceholder": "elevaciones_talones_mochila.png",
+                    "bodyZone": "lower",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Piernas",
+                    "musculo": "Tríceps sural (Gemelos, Sóleo)",
+                    "herramienta": "Mochila con Peso",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH52",
+                    "nombre": "Sentadillas con salto",
+                    "descripcion": "Desde sentadilla, salta verticalmente. Ejercicio explosivo para potencia y fuerza.",
+                    "imagePlaceholder": "sentadilla_salto.png",
+                    "bodyZone": "lower",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Piernas",
+                    "musculo": "Cuádriceps, Glúteos",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH53",
+                    "nombre": "Plancha lateral con elevación de pierna",
+                    "descripcion": "En plancha lateral, eleva la pierna superior. Trabaja oblicuos y glúteo medio.",
+                    "imagePlaceholder": "plancha_lateral_elevacion.png",
+                    "bodyZone": "full",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Piernas",
+                    "musculo": "Glúteo medio, Oblicuos",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH54",
+                    "nombre": "Puente de glúteos a una pierna",
+                    "descripcion": "Con un pie apoyado, eleva la cadera apretando el glúteo. Alterna piernas.",
+                    "imagePlaceholder": "puente_gluteos_una_pierna.png",
+                    "bodyZone": "lower",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Piernas",
+                    "musculo": "Glúteos, Isquiotibiales",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH55",
+                    "nombre": "Sentadillas sumo con mochila",
+                    "descripcion": "Con pies abiertos y mochila sujeta al pecho, baja la cadera. Enfócate en aductores.",
+                    "imagePlaceholder": "sentadillas_sumo_mochila.png",
+                    "bodyZone": "lower",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Piernas",
+                    "musculo": "Aductores, Glúteos, Cuádriceps",
+                    "herramienta": "Mochila con Peso",
+                    "series": 4,
+                    "reps": "10"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH56",
+                    "nombre": "Apertura de cadera en decúbito lateral",
+                    "descripcion": "Tumbado de lado, abre la pierna superior como una concha. Trabaja glúteo medio y abductores.",
+                    "imagePlaceholder": "apertura_cadera_lateral.png",
+                    "bodyZone": "lower",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Piernas",
+                    "musculo": "Glúteo medio, Abductores",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "10"
+                }
+            ]
+        },
+        {
+            "id": "calentamiento",
+            "nombre": "Calentamiento",
+            "ejercicios": [
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH01",
+                    "nombre": "Círculos de hombros con banda",
+                    "descripcion": "Sujeta una banda y gira los hombros en círculos amplios para activar pecho y hombros.",
+                    "imagePlaceholder": "circulos_hombros.png",
+                    "bodyZone": "upper",
+                    "fase": "calentamiento",
+                    "grupoMuscular": "Pecho"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH02",
+                    "nombre": "Apertura de brazos con banda",
+                    "descripcion": "Con banda, abre y cierra brazos frente al pecho para calentar el pectoral.",
+                    "imagePlaceholder": "apertura_brazos_banda.png",
+                    "bodyZone": "upper",
+                    "fase": "calentamiento",
+                    "grupoMuscular": "Pecho"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH34",
+                    "nombre": "Rotación de tronco con banda",
+                    "descripcion": "Sujeta una banda y gira el torso para activar la espalda.",
+                    "imagePlaceholder": "rotacion_tronco_banda.png",
+                    "bodyZone": "full",
+                    "fase": "calentamiento",
+                    "grupoMuscular": "Espalda"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH35",
+                    "nombre": "Remo con banda (sentado)",
+                    "descripcion": "Sentado, sujeta banda y tira para activar la espalda.",
+                    "imagePlaceholder": "remo_banda_sentado.png",
+                    "bodyZone": "upper",
+                    "fase": "calentamiento",
+                    "grupoMuscular": "Espalda"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH12",
+                    "nombre": "Círculos de hombros con banda",
+                    "descripcion": "Sujeta una banda y gira los hombros en círculos amplios.",
+                    "imagePlaceholder": "circulos_hombros.png",
+                    "bodyZone": "upper",
+                    "fase": "calentamiento",
+                    "grupoMuscular": "Hombros"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH13",
+                    "nombre": "Press de hombros con banda ligera",
+                    "descripcion": "Banda bajo los pies, presiona hacia arriba suavemente para activar deltoides.",
+                    "imagePlaceholder": "press_hombros_banda.png",
+                    "bodyZone": "upper",
+                    "fase": "calentamiento",
+                    "grupoMuscular": "Hombros"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH45",
+                    "nombre": "Círculos de cadera",
+                    "descripcion": "Gira la cadera en círculos amplios para activar la articulación.",
+                    "imagePlaceholder": "circulos_cadera.png",
+                    "bodyZone": "lower",
+                    "fase": "calentamiento",
+                    "grupoMuscular": "Piernas"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH46",
+                    "nombre": "Sentadilla isométrica",
+                    "descripcion": "Mantén la posición de sentadilla contra la pared 15s.",
+                    "imagePlaceholder": "sentadilla_isometrica.png",
+                    "bodyZone": "lower",
+                    "fase": "calentamiento",
+                    "grupoMuscular": "Piernas"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH23",
+                    "nombre": "Rotación de muñecas y tobillos",
+                    "descripcion": "Gira muñecas y tobillos para activar articulaciones.",
+                    "imagePlaceholder": "rotacion_munecas_tobillos.png",
+                    "bodyZone": "full",
+                    "fase": "calentamiento",
+                    "grupoMuscular": "Brazos"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH24",
+                    "nombre": "Curl de bíceps con banda",
+                    "descripcion": "Pisa la banda y flexiona los codos suavemente para calentar bíceps.",
+                    "imagePlaceholder": "curl_biceps_banda.png",
+                    "bodyZone": "upper",
+                    "fase": "calentamiento",
+                    "grupoMuscular": "Brazos"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH59",
+                    "nombre": "Gato-camello",
+                    "descripcion": "En cuatro apoyos, arquea la espalda hacia arriba y hacia abajo para activar el core.",
+                    "imagePlaceholder": "gato_camello.png",
+                    "bodyZone": "full",
+                    "fase": "calentamiento",
+                    "grupoMuscular": "Abdomen"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH60",
+                    "nombre": "Plancha con banda",
+                    "descripcion": "Coloca una banda alrededor de los muslos y mantén la plancha activando el abdomen.",
+                    "imagePlaceholder": "plancha_banda.png",
+                    "bodyZone": "full",
+                    "fase": "calentamiento",
+                    "grupoMuscular": "Abdomen"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH70",
+                    "nombre": "Movilidad articular general",
+                    "descripcion": "Realiza círculos suaves con tobillos, rodillas, cadera, hombros y cuello.",
+                    "imagePlaceholder": "movilidad_articular_general.png",
+                    "bodyZone": "full",
+                    "fase": "calentamiento",
+                    "grupoMuscular": "Hombros"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH71",
+                    "nombre": "Marcha en el lugar",
+                    "descripcion": "Camina en el lugar elevando rodillas suavemente.",
+                    "imagePlaceholder": "marcha_lugar.png",
+                    "bodyZone": "full",
+                    "fase": "calentamiento",
+                    "grupoMuscular": "Piernas"
+                }
+            ]
+        },
+        {
+            "id": "enfriamiento",
+            "nombre": "Enfriamiento",
+            "ejercicios": [
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH10",
+                    "nombre": "Estiramiento de tríceps",
+                    "descripcion": "Lleva el brazo por detrás de la cabeza y presiona el codo.",
+                    "imagePlaceholder": "estiramiento_triceps.png",
+                    "bodyZone": "upper",
+                    "fase": "enfriamiento",
+                    "grupoMuscular": "Pecho"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH11",
+                    "nombre": "Estiramiento de pectoral",
+                    "descripcion": "Junta las manos detrás de la espalda y estira el pecho.",
+                    "imagePlaceholder": "estiramiento_pectoral.png",
+                    "bodyZone": "upper",
+                    "fase": "enfriamiento",
+                    "grupoMuscular": "Pecho"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH43",
+                    "nombre": "Estiramiento de dorsal",
+                    "descripcion": "Sujeta una banda o toalla con ambas manos y estira hacia un lado.",
+                    "imagePlaceholder": "estiramiento_dorsal.png",
+                    "bodyZone": "upper",
+                    "fase": "enfriamiento",
+                    "grupoMuscular": "Espalda"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH44",
+                    "nombre": "Estiramiento de espalda baja",
+                    "descripcion": "Tumbado boca arriba, abraza las rodillas contra el pecho.",
+                    "imagePlaceholder": "estiramiento_espalda_baja.png",
+                    "bodyZone": "full",
+                    "fase": "enfriamiento",
+                    "grupoMuscular": "Espalda"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH21",
+                    "nombre": "Estiramiento de deltoides",
+                    "descripcion": "Cruza un brazo sobre el pecho y presiona suavemente con el otro.",
+                    "imagePlaceholder": "estiramiento_deltoides.png",
+                    "bodyZone": "upper",
+                    "fase": "enfriamiento",
+                    "grupoMuscular": "Hombros"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH22",
+                    "nombre": "Estiramiento de trapecio",
+                    "descripcion": "Inclina la cabeza hacia un lado y sujeta suavemente con la mano.",
+                    "imagePlaceholder": "estiramiento_trapecio.png",
+                    "bodyZone": "upper",
+                    "fase": "enfriamiento",
+                    "grupoMuscular": "Hombros"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH57",
+                    "nombre": "Estiramiento de cuádriceps",
+                    "descripcion": "Lleva el talón al glúteo sujetando el pie, mantén la rodilla hacia abajo.",
+                    "imagePlaceholder": "estiramiento_cuadriceps.png",
+                    "bodyZone": "lower",
+                    "fase": "enfriamiento",
+                    "grupoMuscular": "Piernas"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH58",
+                    "nombre": "Estiramiento de glúteos",
+                    "descripcion": "Cruza un tobillo sobre la rodilla contraria y tira hacia ti.",
+                    "imagePlaceholder": "estiramiento_gluteos.png",
+                    "bodyZone": "lower",
+                    "fase": "enfriamiento",
+                    "grupoMuscular": "Piernas"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH32",
+                    "nombre": "Estiramiento de bíceps",
+                    "descripcion": "Extiende el brazo y gira la palma hacia arriba, presiona suavemente.",
+                    "imagePlaceholder": "estiramiento_biceps.png",
+                    "bodyZone": "upper",
+                    "fase": "enfriamiento",
+                    "grupoMuscular": "Brazos"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH33",
+                    "nombre": "Estiramiento de tríceps",
+                    "descripcion": "Lleva el brazo por detrás de la cabeza y presiona el codo.",
+                    "imagePlaceholder": "estiramiento_triceps.png",
+                    "bodyZone": "upper",
+                    "fase": "enfriamiento",
+                    "grupoMuscular": "Brazos"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH68",
+                    "nombre": "Estiramiento de abdomen",
+                    "descripcion": "Tumbado boca abajo, apoya las manos en el suelo y eleva el torso suavemente.",
+                    "imagePlaceholder": "estiramiento_abdomen.png",
+                    "bodyZone": "full",
+                    "fase": "enfriamiento",
+                    "grupoMuscular": "Abdomen"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH69",
+                    "nombre": "Torsión espinal tumbado",
+                    "descripcion": "Tumbado, gira la cadera hacia un lado mientras el torso mira al otro.",
+                    "imagePlaceholder": "torsion_espinal.png",
+                    "bodyZone": "full",
+                    "fase": "enfriamiento",
+                    "grupoMuscular": "Abdomen"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH76",
+                    "nombre": "Estiramiento de isquiotibiales",
+                    "descripcion": "Flexiona el torso hacia las piernas, mantén la espalda recta.",
+                    "imagePlaceholder": "estiramiento_isquios.png",
+                    "bodyZone": "lower",
+                    "fase": "enfriamiento",
+                    "grupoMuscular": "Espalda"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CH77",
+                    "nombre": "Estiramiento de pectoral",
+                    "descripcion": "Junta manos detrás de la espalda y estira el pecho.",
+                    "imagePlaceholder": "estiramiento_pectoral.png",
+                    "bodyZone": "upper",
+                    "fase": "enfriamiento",
+                    "grupoMuscular": "Pecho"
+                }
+            ]
+        }
+    ]
+}
