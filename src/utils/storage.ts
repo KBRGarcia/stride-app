@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import type { DayOfWeek, UserProfile } from '../models/types';
 import type { ColorScheme } from '../theme/types';
+import { resolveMetabolism } from './nutritionData';
 import { resolveRoutineSchedule } from './routineSchedule';
 
 const STORAGE_KEYS = {
@@ -46,6 +47,7 @@ export async function getProfile(): Promise<UserProfile | null> {
     workoutLocation,
     goal,
     routineSchedule: resolveRoutineSchedule(workoutLocation, parsed.routineSchedule),
+    metabolism: resolveMetabolism(parsed.metabolism),
   };
 }
 

@@ -16,7 +16,7 @@ import {
 import { AppShell } from '../components/AppShell';
 import { BirthDatePicker } from '../components/BirthDatePicker';
 import { useTheme } from '../hooks/useTheme';
-import type { RoutineSchedule, WorkoutGoal, WorkoutLocation } from '../models/types';
+import type { MetabolismType, RoutineSchedule, WorkoutGoal, WorkoutLocation } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
 import { useAppStore } from '../stores/useAppStore';
 import {
@@ -26,6 +26,7 @@ import {
   MIN_SUPPORTED_WEIGHT_KG,
   getAgeBand,
 } from '../utils/ageBands';
+import { resolveMetabolism } from '../utils/nutritionData';
 import { calculateAge } from '../utils/routineMatcher';
 import { resolveRoutineSchedule } from '../utils/routineSchedule';
 import { getGoalCatalog } from '../utils/routinesData';
@@ -37,6 +38,28 @@ const GOAL_OPTIONS: ReadonlyArray<{ value: WorkoutGoal; label: string }> = [
   { value: 'toning', label: 'Tonificación' },
   { value: 'muscle_gain', label: 'Aumento de masa muscular' },
   { value: 'fat_reduction', label: 'Reducción de grasa' },
+];
+
+const METABOLISM_OPTIONS: ReadonlyArray<{
+  value: MetabolismType;
+  label: string;
+  description: string;
+}> = [
+  {
+    value: 'slow',
+    label: 'Lento',
+    description: 'Gastas menos calorías en reposo y acumulas grasa con facilidad.',
+  },
+  {
+    value: 'fast',
+    label: 'Rápido',
+    description: 'Gastas muchas calorías en reposo y te cuesta subir de peso.',
+  },
+  {
+    value: 'normal',
+    label: 'Normal',
+    description: 'Tu peso responde de forma predecible al déficit o al superávit.',
+  },
 ];
 
 const ROUTINE_OPTIONS: ReadonlyArray<{
@@ -71,6 +94,7 @@ export default function ProfileScreen() {
   const [workoutLocation, setWorkoutLocation] = useState<WorkoutLocation | null>(null);
   const [goal, setGoal] = useState<WorkoutGoal | null>(null);
   const [routineSchedule, setRoutineSchedule] = useState<RoutineSchedule | null>(null);
+  const [metabolism, setMetabolism] = useState<MetabolismType | null>(null);
   const [weight, setWeight] = useState('');
   const [birthDate, setBirthDate] = useState(DEFAULT_BIRTH_DATE);
   const [isSaving, setIsSaving] = useState(false);
@@ -210,6 +234,11 @@ export default function ProfileScreen() {
       return;
     }
 
+    if (!metabolism) {
+      Alert.alert('Perfil incompleto', 'Selecciona tu tipo de metabolismo.');
+      return;
+    }
+
     const parsedWeight = Number(weight.replace(',', '.'));
     if (!weight.trim() || Number.isNaN(parsedWeight) || parsedWeight <= 0) {
       Alert.alert('Peso inválido', 'Introduce un peso válido en kilogramos.');
@@ -246,6 +275,7 @@ export default function ProfileScreen() {
       workoutLocation,
       goal,
       routineSchedule: resolveRoutineSchedule(workoutLocation, routineSchedule),
+      metabolism: resolveMetabolism(metabolism),
       weight: parsedWeight,
       birthDate: birthDateIso,
     });
@@ -375,6 +405,35 @@ export default function ProfileScreen() {
               ) : null}
             </>
           ) : null}
+
+          <Text style={styles.label}>Tipo de metabolismo</Text>
+          <View style={styles.optionsColumn}>
+            {METABOLISM_OPTIONS.map((option) => {
+              const isActive = metabolism === option.value;
+
+              return (
+                <Pressable
+                  key={option.value}
+                  style={[styles.optionButton, isActive && styles.optionButtonActive]}
+                  onPress={() => setMetabolism(option.value)}
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: isActive }}
+                >
+                  <Text style={[styles.optionText, isActive && styles.optionTextActive]}>
+                    {option.label}
+                  </Text>
+                  <Text
+                    style={[
+                      styles.optionDescription,
+                      isActive && styles.optionDescriptionActive,
+                    ]}
+                  >
+                    {option.description}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </View>
 
           <Text style={styles.label}>Peso (kg)</Text>
           <TextInput

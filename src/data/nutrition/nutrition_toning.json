@@ -1,57 +1,186 @@
 {
     "objetivo": "tonificacion",
-    "descripcion": "Mantener o ganar músculo mientras se reduce grasa corporal, logrando un aspecto firme y definido. Déficit calórico ligero o mantenimiento con alta calidad nutricional.",
-    "nota": "Esta información es orientativa y no sustituye el asesoramiento profesional.",
-    "caloriasYMacros": {
-        "calorias": "Mantenimiento o déficit ligero (–200 a –300 kcal/día respecto al gasto total).",
-        "proteinas": "1.6 – 2.0 g por kg de peso corporal",
-        "carbohidratos": "3 – 5 g/kg (priorizar fibra y complejos)",
-        "grasas": "0.8 – 1.0 g/kg (énfasis en insaturadas)"
-    },
-    "alimentosRecomendados": [
-        "Pechuga de pollo, pavo, pescado blanco y azul (salmón, atún)",
-        "Huevos y claras de huevo",
-        "Yogur griego, requesón, queso fresco batido 0%",
-        "Legumbres (lentejas, garbanzos), tofu, tempeh, seitán",
-        "Avena, arroz integral, quinoa, patata dulce, boniato",
-        "Pan y pasta integrales",
-        "Aguacate, aceite de oliva virgen extra",
-        "Frutos secos (nueces, almendras) y semillas (chía, lino, sésamo)",
-        "Verduras de hoja verde (espinacas, acelgas, brócoli)",
-        "Frutas de bajo índice glucémico (bayas, manzana, pera)",
-        "Leche desnatada o semidesnatada"
-    ],
-    "alimentosAEliminarOLimitar": [
-        "Azúcares refinados y ultraprocesados (bollería, galletas, refrescos azucarados, zumos envasados)",
-        "Harinas blancas (pan blanco, pasta blanca) en exceso",
-        "Fritos y rebozados industriales",
-        "Embutidos y carnes procesadas (salchichas, bacon, mortadela)",
-        "Alcohol (especialmente cerveza y cócteles con azúcar) – consumir con moderación",
-        "Salsas comerciales ricas en azúcar y grasas (kétchup, mayonesa)"
-    ],
-    "hidratacion": {
-        "agua": "2 – 2.5 litros al día (ajustar según sudoración)",
-        "bebidas": "Isotónicas sin azúcar solo si el entrenamiento supera 1 hora de alta intensidad"
-    },
-    "suplementosYEstimulantes": {
-        "recomendados": [
-            "Cafeína (200-400 mg/día): café o té verde, evitar después de las 4 p.m.",
-            "Proteína en polvo (whey o vegetal): para alcanzar requerimientos proteicos",
-            "L-carnitina y té verde: efecto termogénico leve (opcional)"
-        ],
-        "evitar": "Quemagrasas no regulados, diuréticos, efedrina, DNP y estimulantes extremos por riesgos cardiovasculares."
-    },
-    "timingDeComidas": {
-        "antesEntreno": "1-2 h antes: carbohidratos complejos + proteína (ej. avena con leche y nueces)",
-        "duranteEntreno": "Agua o bebida isotónica sin azúcar (si >60 min)",
-        "despuesEntreno": "30-60 min después: proteína de rápida absorción + carbohidratos (ej. batido whey con fruta o pollo con arroz)",
-        "distribucion": "4-5 comidas al día, no saltar desayuno ni cena"
-    },
-    "ejemploMenuDiario": {
-        "desayuno": "Yogur griego con avena, fresas y nueces",
-        "mediaManana": "Manzana con un puñado de almendras",
-        "comida": "Pechuga de pollo a la plancha, ensalada mixta con quinoa y aguacate",
-        "merienda": "Batido de proteína con leche y plátano",
-        "cena": "Merluza al horno con espárragos y patata asada"
+    "descripcion": "Mantener o ganar músculo mientras se reduce grasa corporal, logrando un aspecto firme y definido. Déficit calórico ligero o mantenimiento con alta calidad nutricional, adaptado al tipo de metabolismo del usuario.",
+    "nota": "Esta información es orientativa y no sustituye el asesoramiento profesional. Cada metabolismo requiere ajustes específicos en calorías, macronutrientes y estrategias para optimizar la composición corporal.",
+    "metabolismos": {
+        "metabolismoRapido": {
+            "nombre": "Metabolismo Rápido o Hipermetabólico",
+            "caracteristicas": "Alto gasto calórico en reposo (TMB elevada) y NEAT muy activo. Dificultad para subir de peso y ganar masa muscular. En tonificación, pueden permitirse un mayor consumo calórico y de carbohidratos sin acumular grasa fácilmente.",
+            "comportamientoEnGym": "Requieren un ligero déficit o mantenimiento con alta proteína para preservar y construir músculo. Necesitan comer con frecuencia y priorizar carbohidratos complejos para tener energía en entrenamientos de resistencia.",
+            "caloriasYMacros": {
+                "calorias": "Mantenimiento o déficit ligero (–100 a –200 kcal/día). Pueden tolerar más calorías sin ganar grasa.",
+                "proteinas": "1.8 – 2.2 g/kg (alto para preservar y promover masa muscular).",
+                "carbohidratos": "4 – 5 g/kg (necesitan energía para entrenar y recuperarse).",
+                "grasas": "0.9 – 1.1 g/kg (para función hormonal y densidad energética)."
+            },
+            "alimentosRecomendados": [
+                "Pechuga de pollo, pavo, pescado blanco y azul (salmón, atún)",
+                "Huevos enteros y claras de huevo",
+                "Yogur griego, requesón, queso fresco batido",
+                "Legumbres (lentejas, garbanzos), tofu, tempeh, seitán",
+                "Avena, arroz integral, quinoa, patata dulce, boniato, pasta integral",
+                "Pan integral",
+                "Aguacate, aceite de oliva virgen extra",
+                "Frutos secos (nueces, almendras) y semillas (chía, lino, sésamo)",
+                "Verduras de hoja verde (espinacas, acelgas, brócoli)",
+                "Frutas: plátano, manzana, pera, bayas, naranja",
+                "Leche semidesnatada o entera"
+            ],
+            "alimentosAEliminarOLimitar": [
+                "Azúcares refinados y ultraprocesados (bollería, galletas, refrescos azucarados, zumos envasados)",
+                "Harinas blancas en exceso",
+                "Fritos y rebozados industriales",
+                "Embutidos y carnes procesadas",
+                "Alcohol (especialmente cerveza y cócteles con azúcar) – consumir con moderación",
+                "Salsas comerciales ricas en azúcar y grasas"
+            ],
+            "hidratacion": {
+                "agua": "2.5 – 3 litros al día (ajustar según sudoración y NEAT elevado)",
+                "bebidas": "Isotónicas sin azúcar si el entrenamiento supera 1 hora de alta intensidad; tés e infusiones"
+            },
+            "suplementosYEstimulantes": {
+                "recomendados": [
+                    "Cafeína (200-400 mg/día): café o té verde, evitar después de las 4 p.m.",
+                    "Proteína en polvo (whey o vegetal): para alcanzar requerimientos proteicos",
+                    "Creatina (3-5 g/día): ayuda a preservar y ganar masa muscular",
+                    "L-carnitina y té verde: efecto termogénico leve (opcional)",
+                    "Omega-3: reduce inflamación y beneficia la salud general"
+                ],
+                "evitar": "Quemagrasas no regulados, diuréticos, efedrina, DNP y estimulantes extremos por riesgos cardiovasculares."
+            },
+            "timingDeComidas": {
+                "antesEntreno": "1-2 h antes: carbohidratos complejos + proteína (ej. avena con leche y nueces)",
+                "duranteEntreno": "Agua o bebida isotónica sin azúcar (si >60 min)",
+                "despuesEntreno": "30-60 min después: proteína de rápida absorción + carbohidratos (ej. batido whey con fruta o pollo con arroz)",
+                "distribucion": "4-5 comidas al día, no saltar desayuno ni cena. Incluir tentempié antes de dormir si es necesario."
+            },
+            "ejemploMenuDiario": {
+                "desayuno": "Yogur griego con avena, fresas, nueces y un plátano",
+                "mediaManana": "Manzana con un puñado de almendras y un yogur",
+                "comida": "Pechuga de pollo a la plancha, ensalada mixta con quinoa y aguacate",
+                "merienda": "Batido de proteína con leche y fruta",
+                "cena": "Merluza al horno con espárragos y patata asada",
+                "antesDormir": "Requesón con 10 g de nueces (opcional)"
+            }
+        },
+        "metabolismoLento": {
+            "nombre": "Metabolismo Lento o Hipometabólico",
+            "caracteristicas": "Menor TMB y tendencia a acumular tejido graso con relativa facilidad frente a pequeños excesos calóricos. Sensibles a los carbohidratos refinados y al superávit. En tonificación, requieren un déficit más controlado y alta proteína.",
+            "comportamientoEnGym": "Necesitan un déficit moderado y sostenido, con control estricto de carbohidratos y énfasis en proteína y grasas saludables. Entrenar fuerza para aumentar masa muscular y elevar la TMB. Evitar ganancia de grasa.",
+            "caloriasYMacros": {
+                "calorias": "Déficit de 300 – 400 kcal/día (moderado para evitar adaptaciones metabólicas).",
+                "proteinas": "2.0 – 2.4 g/kg (muy alto para preservar y promover masa muscular).",
+                "carbohidratos": "2 – 3 g/kg (priorizar carbohidratos complejos y fibra, evitar refinados).",
+                "grasas": "0.6 – 0.8 g/kg (no bajar de 0.5 para función hormonal)."
+            },
+            "alimentosRecomendados": [
+                "Pechuga de pollo, pavo, pescado blanco y azul (salmón, atún)",
+                "Huevos y claras de huevo",
+                "Yogur griego desnatado, requesón 0%, queso fresco batido 0%",
+                "Legumbres (en raciones controladas), tofu, tempeh, seitán",
+                "Avena, arroz integral, quinoa, patata dulce, boniato (en porciones moderadas)",
+                "Pan y pasta integrales (en pequeñas cantidades)",
+                "Aguacate (pequeña cantidad), aceite de oliva virgen extra (1 cucharada/día)",
+                "Frutos secos (20-25 g/día) y semillas (chía, lino, sésamo)",
+                "Verduras de hoja verde y crucíferas (espinacas, acelgas, brócoli, coliflor)",
+                "Frutas de bajo índice glucémico (bayas, manzana, pera, pomelo)",
+                "Leche desnatada o semidesnatada"
+            ],
+            "alimentosAEliminarOLimitar": [
+                "Azúcares refinados y ultraprocesados (bollería, galletas, refrescos azucarados, zumos envasados)",
+                "Harinas blancas (pan blanco, pasta blanca) en exceso",
+                "Fritos y rebozados industriales",
+                "Embutidos y carnes procesadas (salchichas, bacon, mortadela)",
+                "Alcohol (especialmente cerveza y cócteles con azúcar) – evitar o consumir muy esporádicamente",
+                "Salsas comerciales ricas en azúcar y grasas (kétchup, mayonesa)",
+                "Frutas muy dulces: plátano, uvas, mango, higos (limitar)",
+                "Lácteos enteros y quesos curados"
+            ],
+            "hidratacion": {
+                "agua": "2.5 – 3 litros al día (ayuda a la saciedad y al metabolismo)",
+                "bebidas": "Tés e infusiones sin azúcar (té verde, rojo, manzanilla). Evitar edulcorantes artificiales en exceso."
+            },
+            "suplementosYEstimulantes": {
+                "recomendados": [
+                    "Cafeína (200-400 mg/día): reduce el apetito y aumenta el gasto calórico. Evitar por la noche.",
+                    "Proteína en polvo (whey aislada): para asegurar ingesta proteica elevada con pocas calorías",
+                    "Creatina (3-5 g/día): ayuda a preservar y ganar masa muscular",
+                    "Fibras solubles (psyllium, glucomanano): aumentan la saciedad",
+                    "L-carnitina y té verde: efecto termogénico leve (opcional)",
+                    "Omega-3: reduce inflamación y beneficia la salud general"
+                ],
+                "evitar": "Quemagrasas no regulados, diuréticos, efedrina, DNP y estimulantes extremos por riesgos cardiovasculares."
+            },
+            "timingDeComidas": {
+                "antesEntreno": "1-2 h antes: proteína + carbohidratos complejos en pequeña cantidad (ej. claras de huevo con avena)",
+                "duranteEntreno": "Agua o bebida sin calorías; no se recomiendan carbohidratos durante el ejercicio en déficit",
+                "despuesEntreno": "30-60 min después: proteína de rápida absorción + carbohidratos moderados (ej. batido whey con agua y media manzana)",
+                "distribucion": "3-4 comidas principales y 1-2 tentempiés bajos en calorías (verduras crudas, palitos de apio, pepino). Evitar picar entre horas."
+            },
+            "ejemploMenuDiario": {
+                "desayuno": "Revuelto de claras de huevo con espinacas y una tostada integral pequeña",
+                "mediaManana": "Un puñado de fresas y un yogur desnatado",
+                "comida": "Ensalada grande con atún al natural, tomate, pepino, cebolla y 1 cucharada de aceite de oliva",
+                "merienda": "Batido de proteína con agua y canela",
+                "cena": "Pechuga de pavo a la plancha con brócoli al vapor y 10 g de almendras"
+            }
+        },
+        "metabolismoNormal": {
+            "nombre": "Metabolismo Normal o Basal Flexible (Normometabólico)",
+            "caracteristicas": "Responde de forma predecible y lineal a los balances calóricos (superávit para hipertrofia, déficit para definición). No tiene dificultades extremas para ganar o perder peso. Ideal para tonificación con un déficit ligero o mantenimiento.",
+            "comportamientoEnGym": "Puede seguir un plan estándar de déficit ligero o mantenimiento con una distribución equilibrada de macronutrientes. Responde bien a cambios graduales y sostenidos.",
+            "caloriasYMacros": {
+                "calorias": "Mantenimiento o déficit ligero (–200 a –300 kcal/día respecto al gasto total).",
+                "proteinas": "1.6 – 2.0 g por kg de peso corporal",
+                "carbohidratos": "3 – 5 g/kg (priorizar fibra y complejos)",
+                "grasas": "0.8 – 1.0 g/kg (énfasis en insaturadas)"
+            },
+            "alimentosRecomendados": [
+                "Pechuga de pollo, pavo, pescado blanco y azul (salmón, atún)",
+                "Huevos y claras de huevo",
+                "Yogur griego, requesón, queso fresco batido 0%",
+                "Legumbres (lentejas, garbanzos), tofu, tempeh, seitán",
+                "Avena, arroz integral, quinoa, patata dulce, boniato",
+                "Pan y pasta integrales",
+                "Aguacate, aceite de oliva virgen extra",
+                "Frutos secos (nueces, almendras) y semillas (chía, lino, sésamo)",
+                "Verduras de hoja verde (espinacas, acelgas, brócoli)",
+                "Frutas de bajo índice glucémico (bayas, manzana, pera)",
+                "Leche desnatada o semidesnatada"
+            ],
+            "alimentosAEliminarOLimitar": [
+                "Azúcares refinados y ultraprocesados (bollería, galletas, refrescos azucarados, zumos envasados)",
+                "Harinas blancas (pan blanco, pasta blanca) en exceso",
+                "Fritos y rebozados industriales",
+                "Embutidos y carnes procesadas (salchichas, bacon, mortadela)",
+                "Alcohol (especialmente cerveza y cócteles con azúcar) – consumir con moderación",
+                "Salsas comerciales ricas en azúcar y grasas (kétchup, mayonesa)"
+            ],
+            "hidratacion": {
+                "agua": "2 – 2.5 litros al día (ajustar según sudoración)",
+                "bebidas": "Isotónicas sin azúcar solo si el entrenamiento supera 1 hora de alta intensidad"
+            },
+            "suplementosYEstimulantes": {
+                "recomendados": [
+                    "Cafeína (200-400 mg/día): café o té verde, evitar después de las 4 p.m.",
+                    "Proteína en polvo (whey o vegetal): para alcanzar requerimientos proteicos",
+                    "L-carnitina y té verde: efecto termogénico leve (opcional)"
+                ],
+                "evitar": "Quemagrasas no regulados, diuréticos, efedrina, DNP y estimulantes extremos por riesgos cardiovasculares."
+            },
+            "timingDeComidas": {
+                "antesEntreno": "1-2 h antes: carbohidratos complejos + proteína (ej. avena con leche y nueces)",
+                "duranteEntreno": "Agua o bebida isotónica sin azúcar (si >60 min)",
+                "despuesEntreno": "30-60 min después: proteína de rápida absorción + carbohidratos (ej. batido whey con fruta o pollo con arroz)",
+                "distribucion": "4-5 comidas al día, no saltar desayuno ni cena"
+            },
+            "ejemploMenuDiario": {
+                "desayuno": "Yogur griego con avena, fresas y nueces",
+                "mediaManana": "Manzana con un puñado de almendras",
+                "comida": "Pechuga de pollo a la plancha, ensalada mixta con quinoa y aguacate",
+                "merienda": "Batido de proteína con leche y plátano",
+                "cena": "Merluza al horno con espárragos y patata asada"
+            }
+        }
     }
 }

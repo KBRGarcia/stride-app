@@ -11,8 +11,9 @@ import { SectionSubmenu } from '../components/SectionSubmenu';
 import { useTheme } from '../hooks/useTheme';
 import type { CardioActivityId } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
+import { useAppStore } from '../stores/useAppStore';
 import { getCardioActivities } from '../utils/cardioData';
-import { getCardioNutritionGuide } from '../utils/nutritionData';
+import { getCardioNutritionGuide, METABOLISM_LABELS } from '../utils/nutritionData';
 
 type CardioNavigation = NativeStackNavigationProp<RootStackParamList, 'Cardio'>;
 type CardioSubmenu = 'activities' | 'nutrition';
@@ -32,8 +33,9 @@ export default function CardioScreen() {
   const navigation = useNavigation<CardioNavigation>();
   const { colors } = useTheme();
   const [submenu, setSubmenu] = useState<CardioSubmenu>('activities');
+  const metabolism = useAppStore((state) => state.profile?.metabolism ?? 'normal');
   const activities = getCardioActivities();
-  const nutritionGuide = getCardioNutritionGuide();
+  const nutritionGuide = getCardioNutritionGuide(metabolism);
 
   const styles = useMemo(
     () =>
@@ -103,7 +105,7 @@ export default function CardioScreen() {
         <NutritionPanel
           guide={nutritionGuide}
           title="Nutrición"
-          subtitle="Guía de reducción de grasa asociada al cardio"
+          subtitle={`Guía de reducción de grasa · Metabolismo ${METABOLISM_LABELS[metabolism].toLowerCase()}`}
         />
       ) : (
         <>

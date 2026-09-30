@@ -75,6 +75,7 @@ describe('nutrición asociada al cardio', () => {
     const guide = getCardioNutritionGuide();
 
     expect(guide.objetivo).toBe('reduccionDeGrasa');
+    expect(guide.caloriasYMacros.calorias.length).toBeGreaterThan(0);
     expect(guide).toEqual(getCardioNutritionGuide());
   });
 });

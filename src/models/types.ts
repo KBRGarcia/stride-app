@@ -10,6 +10,9 @@ export type WorkoutGoal = 'toning' | 'muscle_gain' | 'fat_reduction';
  */
 export type RoutineSchedule = '5-days' | '3-days';
 
+/** Tipo de metabolismo que elige la guía nutricional. */
+export type MetabolismType = 'slow' | 'fast' | 'normal';
+
 /** Franja de edad que solo cambia series y repeticiones, no los ejercicios. */
 export type AgeBand = '14-39' | '40-59' | '60+';
 
@@ -156,6 +159,7 @@ export interface UserProfile {
   goal: WorkoutGoal;
   /** En casa siempre es `5-days`. En gimnasio el usuario elige `5-days` o `3-days`. */
   routineSchedule: RoutineSchedule;
+  metabolism: MetabolismType;
 }
 
 /** Guía nutricional asociada a un objetivo de entrenamiento. */
@@ -194,10 +198,11 @@ export interface NutritionDailyMenu {
   antesDormir?: string;
 }
 
-export interface NutritionGuide {
-  objetivo: string;
-  descripcion: string;
-  nota: string;
+/** Guía de un metabolismo dentro de un objetivo. */
+export interface MetabolismGuide {
+  nombre: string;
+  caracteristicas: string;
+  comportamientoEnGym: string;
   caloriasYMacros: NutritionMacros;
   alimentosRecomendados: string[];
   alimentosAEliminarOLimitar: string[];
@@ -205,6 +210,25 @@ export interface NutritionGuide {
   suplementosYEstimulantes: NutritionSupplements;
   timingDeComidas: NutritionMealTiming;
   ejemploMenuDiario: NutritionDailyMenu;
+}
+
+/** Archivo de `src/data/nutrition`, con las tres variantes de metabolismo. */
+export interface NutritionCatalog {
+  objetivo: string;
+  descripcion: string;
+  nota: string;
+  metabolismos: {
+    metabolismoRapido: MetabolismGuide;
+    metabolismoLento: MetabolismGuide;
+    metabolismoNormal: MetabolismGuide;
+  };
+}
+
+/** Guía ya resuelta para el objetivo y el metabolismo del usuario. */
+export interface NutritionGuide extends MetabolismGuide {
+  objetivo: string;
+  descripcion: string;
+  nota: string;
 }
 
 /** Identificador de una actividad de cardio independiente del perfil. */

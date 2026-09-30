@@ -15,7 +15,11 @@ import type { RootStackParamList } from '../navigation/types';
 import { useAppStore } from '../stores/useAppStore';
 import { AGE_BAND_LABELS } from '../utils/ageBands';
 import { getDayExercises, getSessionTitle } from '../utils/routinesData';
-import { getNutritionGuide, NUTRITION_GOAL_TITLES } from '../utils/nutritionData';
+import {
+  getNutritionGuide,
+  METABOLISM_LABELS,
+  NUTRITION_GOAL_TITLES,
+} from '../utils/nutritionData';
 import {
   getDayOfWeek,
   getDayScheduleStatus,
@@ -153,7 +157,9 @@ export default function HomeScreen() {
     [colors]
   );
 
-  const nutritionGuide = profile ? getNutritionGuide(profile.goal) : null;
+  const nutritionGuide = profile
+    ? getNutritionGuide(profile.goal, profile.metabolism)
+    : null;
 
   return (
     <AppShell>
@@ -168,7 +174,7 @@ export default function HomeScreen() {
           title="Nutrición"
           subtitle={
             profile
-              ? `Guía para ${NUTRITION_GOAL_TITLES[profile.goal].toLowerCase()}`
+              ? `Guía para ${NUTRITION_GOAL_TITLES[profile.goal].toLowerCase()} · Metabolismo ${METABOLISM_LABELS[profile.metabolism].toLowerCase()}`
               : 'Según tu plan de entrenamiento'
           }
         />

@@ -10,6 +10,7 @@ function createProfile(birthDate: string, weight = 70): UserProfile {
     workoutLocation: 'home',
     goal: 'toning',
     routineSchedule: '5-days',
+    metabolism: 'normal',
   };
 }
 

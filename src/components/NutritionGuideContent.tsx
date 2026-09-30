@@ -114,6 +114,12 @@ export function NutritionGuideContent({ guide }: NutritionGuideContentProps) {
         <Text style={styles.body}>{guide.descripcion}</Text>
       </Section>
 
+      <Section title="Metabolismo">
+        <Text style={styles.body}>{guide.nombre}</Text>
+        {renderField('Características', guide.caracteristicas)}
+        {renderField('En el entrenamiento', guide.comportamientoEnGym)}
+      </Section>
+
       <Section title="Calorías y macros">
         {renderField('Calorías', guide.caloriasYMacros.calorias)}
         {renderField('Proteínas', guide.caloriasYMacros.proteinas)}
