@@ -16,11 +16,16 @@ import {
 import { AppShell } from '../components/AppShell';
 import { BirthDatePicker } from '../components/BirthDatePicker';
 import { useTheme } from '../hooks/useTheme';
-import type { MetabolismType, RoutineSchedule, WorkoutGoal, WorkoutLocation } from '../models/types';
+import type {
+  MetabolismType,
+  RoutineSchedule,
+  UserGender,
+  WorkoutGoal,
+  WorkoutLocation,
+} from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
 import { useAppStore } from '../stores/useAppStore';
 import {
-  AGE_BAND_LABELS,
   DEFAULT_AGE_PRESCRIPTIONS,
   MIN_SUPPORTED_AGE,
   MIN_SUPPORTED_WEIGHT_KG,
@@ -29,6 +34,7 @@ import {
 import { resolveMetabolism } from '../utils/nutritionData';
 import { calculateAge } from '../utils/routineMatcher';
 import { resolveRoutineSchedule } from '../utils/routineSchedule';
+import { GENDER_OPTIONS } from '../utils/userGender';
 import { getGoalCatalog } from '../utils/routinesData';
 
 type ProfileNavigation = NativeStackNavigationProp<RootStackParamList, 'Profile'>;
@@ -62,20 +68,14 @@ const METABOLISM_OPTIONS: ReadonlyArray<{
   },
 ];
 
-const ROUTINE_OPTIONS: ReadonlyArray<{
-  value: RoutineSchedule;
-  label: string;
-  description: string;
-}> = [
+const ROUTINE_OPTIONS: ReadonlyArray<{ value: RoutineSchedule; label: string }> = [
   {
     value: '5-days',
-    label: 'Primera opción',
-    description: '5 días · Lunes a viernes (Empuje / Jalón / Pierna / Torso / Pierna)',
+    label: '5 días a la semana (De Lunes a Viernes)',
   },
   {
     value: '3-days',
-    label: 'Segunda opción',
-    description: '3 días · Lunes, miércoles y viernes (Cuerpo completo)',
+    label: '3 días a la semana (Lunes, Miércoles y Viernes)',
   },
 ];
 
@@ -95,6 +95,7 @@ export default function ProfileScreen() {
   const [goal, setGoal] = useState<WorkoutGoal | null>(null);
   const [routineSchedule, setRoutineSchedule] = useState<RoutineSchedule | null>(null);
   const [metabolism, setMetabolism] = useState<MetabolismType | null>(null);
+  const [gender, setGender] = useState<UserGender | null>(null);
   const [weight, setWeight] = useState('');
   const [birthDate, setBirthDate] = useState(DEFAULT_BIRTH_DATE);
   const [isSaving, setIsSaving] = useState(false);
@@ -230,12 +231,17 @@ export default function ProfileScreen() {
     }
 
     if (workoutLocation === 'gym' && !routineSchedule) {
-      Alert.alert('Perfil incompleto', 'Selecciona la opción de rutina.');
+      Alert.alert('Perfil incompleto', 'Selecciona cuántos días entrenarás a la semana.');
       return;
     }
 
     if (!metabolism) {
       Alert.alert('Perfil incompleto', 'Selecciona tu tipo de metabolismo.');
+      return;
+    }
+
+    if (!gender) {
+      Alert.alert('Perfil incompleto', 'Selecciona tu género.');
       return;
     }
 
@@ -276,6 +282,7 @@ export default function ProfileScreen() {
       goal,
       routineSchedule: resolveRoutineSchedule(workoutLocation, routineSchedule),
       metabolism: resolveMetabolism(metabolism),
+      gender,
       weight: parsedWeight,
       birthDate: birthDateIso,
     });
@@ -373,7 +380,7 @@ export default function ProfileScreen() {
 
               {workoutLocation === 'gym' ? (
                 <>
-                  <Text style={styles.label}>Opción de rutina</Text>
+                  <Text style={styles.label}>Días de entrenamiento</Text>
                   <View style={styles.optionsColumn}>
                     {ROUTINE_OPTIONS.map((option) => {
                       const isActive = routineSchedule === option.value;
@@ -385,17 +392,10 @@ export default function ProfileScreen() {
                           onPress={() => setRoutineSchedule(option.value)}
                           accessibilityRole="button"
                           accessibilityState={{ selected: isActive }}
+                          accessibilityLabel={option.label}
                         >
                           <Text style={[styles.optionText, isActive && styles.optionTextActive]}>
                             {option.label}
-                          </Text>
-                          <Text
-                            style={[
-                              styles.optionDescription,
-                              isActive && styles.optionDescriptionActive,
-                            ]}
-                          >
-                            {option.description}
                           </Text>
                         </Pressable>
                       );
@@ -435,6 +435,27 @@ export default function ProfileScreen() {
             })}
           </View>
 
+          <Text style={styles.label}>Género</Text>
+          <View style={styles.optionsColumn}>
+            {GENDER_OPTIONS.map((option) => {
+              const isActive = gender === option.value;
+
+              return (
+                <Pressable
+                  key={option.value}
+                  style={[styles.optionButton, isActive && styles.optionButtonActive]}
+                  onPress={() => setGender(option.value)}
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: isActive }}
+                >
+                  <Text style={[styles.optionText, isActive && styles.optionTextActive]}>
+                    {option.label}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </View>
+
           <Text style={styles.label}>Peso (kg)</Text>
           <TextInput
             style={styles.input}
@@ -455,7 +476,7 @@ export default function ProfileScreen() {
               ]}
             >
               {agePreview.band && agePrescription
-                ? `Tienes ${agePreview.age} años (${AGE_BAND_LABELS[agePreview.band]}). Tu rutina usa ${agePrescription.series} series de ${agePrescription.repeticiones} repeticiones.`
+                ? `Tienes ${agePreview.age} años. Tu rutina usa ${agePrescription.series} series de ${agePrescription.repeticiones} repeticiones.`
                 : `Tienes ${agePreview.age} años. Las rutinas están disponibles a partir de los ${MIN_SUPPORTED_AGE} años.`}
             </Text>
           ) : (

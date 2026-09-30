@@ -4,6 +4,7 @@ import type { DayOfWeek, UserProfile } from '../models/types';
 import type { ColorScheme } from '../theme/types';
 import { resolveMetabolism } from './nutritionData';
 import { resolveRoutineSchedule } from './routineSchedule';
+import { isUserGender } from './userGender';
 
 const STORAGE_KEYS = {
   profile: '@stride/profile',
@@ -36,7 +37,8 @@ export async function getProfile(): Promise<UserProfile | null> {
     !parsed.birthDate ||
     typeof parsed.weight !== 'number' ||
     !isValidGoal ||
-    !isValidLocation
+    !isValidLocation ||
+    !isUserGender(parsed.gender)
   ) {
     return null;
   }
@@ -44,6 +46,7 @@ export async function getProfile(): Promise<UserProfile | null> {
   return {
     birthDate: parsed.birthDate,
     weight: parsed.weight,
+    gender: parsed.gender,
     workoutLocation,
     goal,
     routineSchedule: resolveRoutineSchedule(workoutLocation, parsed.routineSchedule),

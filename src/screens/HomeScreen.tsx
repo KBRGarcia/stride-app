@@ -13,7 +13,6 @@ import { useTheme } from '../hooks/useTheme';
 import type { DayOfWeek } from '../models/types';
 import type { RootStackParamList } from '../navigation/types';
 import { useAppStore } from '../stores/useAppStore';
-import { AGE_BAND_LABELS } from '../utils/ageBands';
 import { getDayExercises, getSessionTitle } from '../utils/routinesData';
 import {
   getNutritionGuide,
@@ -191,8 +190,7 @@ export default function HomeScreen() {
             <Text style={styles.title}>Tu semana</Text>
             <Text style={styles.subtitle}>{weeklyPlan.routineDescription}</Text>
             <Text style={styles.note}>
-              {AGE_BAND_LABELS[weeklyPlan.ageBand]}: {weeklyPlan.sets} series × {weeklyPlan.reps}{' '}
-              repeticiones.
+              Tu plan: {weeklyPlan.sets} series × {weeklyPlan.reps} repeticiones.
             </Text>
             <Text style={styles.note}>{weeklyPlan.note}</Text>
           </View>

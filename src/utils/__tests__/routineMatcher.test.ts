@@ -11,6 +11,7 @@ function createProfile(birthDate: string, weight = 70): UserProfile {
     goal: 'toning',
     routineSchedule: '5-days',
     metabolism: 'normal',
+    gender: 'male',
   };
 }
 
@@ -94,7 +95,7 @@ describe('resolveWeeklyPlan', () => {
     ]);
   });
 
-  it('arma la segunda opción del gimnasio en lunes, miércoles y viernes', () => {
+  it('arma la rutina de 3 días del gimnasio en lunes, miércoles y viernes', () => {
     const plan = resolveWeeklyPlan(
       {
         ...createProfile('2000-01-01'),
@@ -113,7 +114,7 @@ describe('resolveWeeklyPlan', () => {
     ]);
   });
 
-  it('ignora una opción de 3 días si el perfil es de casa', () => {
+  it('ignora la rutina de 3 días si el perfil es de casa', () => {
     const plan = resolveWeeklyPlan(
       {
         ...createProfile('2000-01-01'),

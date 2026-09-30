@@ -6,12 +6,15 @@ export type WorkoutGoal = 'toning' | 'muscle_gain' | 'fat_reduction';
 
 /**
  * Esquema semanal.
- * Casa solo ofrece 5 días. Gimnasio ofrece 5 días (opción 1) o 3 días (opción 2).
+ * Casa solo ofrece 5 días. Gimnasio ofrece 5 o 3 días a la semana.
  */
 export type RoutineSchedule = '5-days' | '3-days';
 
 /** Tipo de metabolismo que elige la guía nutricional. */
 export type MetabolismType = 'slow' | 'fast' | 'normal';
+
+/** Género declarado en el perfil (solo experiencia de usuario; no afecta rutinas). */
+export type UserGender = 'male' | 'female' | 'other';
 
 /** Franja de edad que solo cambia series y repeticiones, no los ejercicios. */
 export type AgeBand = '14-39' | '40-59' | '60+';
@@ -155,6 +158,7 @@ export interface ExerciseLibrary {
 export interface UserProfile {
   birthDate: string;
   weight: number;
+  gender: UserGender;
   workoutLocation: WorkoutLocation;
   goal: WorkoutGoal;
   /** En casa siempre es `5-days`. En gimnasio el usuario elige `5-days` o `3-days`. */
