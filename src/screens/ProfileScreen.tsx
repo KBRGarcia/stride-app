@@ -317,6 +317,27 @@ export default function ProfileScreen() {
             repeticiones.
           </Text>
 
+          <Text style={styles.label}>Género</Text>
+          <View style={styles.optionsColumn}>
+            {GENDER_OPTIONS.map((option) => {
+              const isActive = gender === option.value;
+
+              return (
+                <Pressable
+                  key={option.value}
+                  style={[styles.optionButton, isActive && styles.optionButtonActive]}
+                  onPress={() => setGender(option.value)}
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: isActive }}
+                >
+                  <Text style={[styles.optionText, isActive && styles.optionTextActive]}>
+                    {option.label}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </View>
+
           <Text style={styles.label}>Tipo de rutina</Text>
           <View style={styles.optionsColumn}>
             <Pressable
@@ -429,27 +450,6 @@ export default function ProfileScreen() {
                     ]}
                   >
                     {option.description}
-                  </Text>
-                </Pressable>
-              );
-            })}
-          </View>
-
-          <Text style={styles.label}>Género</Text>
-          <View style={styles.optionsColumn}>
-            {GENDER_OPTIONS.map((option) => {
-              const isActive = gender === option.value;
-
-              return (
-                <Pressable
-                  key={option.value}
-                  style={[styles.optionButton, isActive && styles.optionButtonActive]}
-                  onPress={() => setGender(option.value)}
-                  accessibilityRole="button"
-                  accessibilityState={{ selected: isActive }}
-                >
-                  <Text style={[styles.optionText, isActive && styles.optionTextActive]}>
-                    {option.label}
                   </Text>
                 </Pressable>
               );

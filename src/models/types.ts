@@ -14,7 +14,7 @@ export type RoutineSchedule = '5-days' | '3-days';
 export type MetabolismType = 'slow' | 'fast' | 'normal';
 
 /** Género declarado en el perfil (solo experiencia de usuario; no afecta rutinas). */
-export type UserGender = 'male' | 'female' | 'other';
+export type UserGender = 'male' | 'female';
 
 /** Franja de edad que solo cambia series y repeticiones, no los ejercicios. */
 export type AgeBand = '14-39' | '40-59' | '60+';
