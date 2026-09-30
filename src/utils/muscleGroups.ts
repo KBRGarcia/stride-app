@@ -1,8 +1,8 @@
 import type { BodySplit, Exercise } from '../models/types';
 
 export const BODY_SPLIT_LABELS: Record<BodySplit, string> = {
-  'upper-front': 'Tren superior · Al frente',
-  'upper-back': 'Tren superior · Atrás',
+  'upper-anterior': 'Tren superior · Anterior',
+  'upper-posterior': 'Tren superior · Posterior',
   lower: 'Tren inferior',
 };
 

@@ -18,7 +18,7 @@
     "nota": "Para hipertrofia se prioriza la sobrecarga progresiva, repeticiones medias-bajas (8-12) y 4-5 series. Descanso entre series: 60-90 segundos. Busca el fallo muscular en la última serie. Para adultos (40-59) y seniors (+60) se recomienda enfocarse en técnica y controlar el descenso.",
     "rutinaSemanal": {
         "trenSuperior": {
-            "alFrente": [
+            "anterior": [
                 {
                     "dia": 1,
                     "grupoMuscular": "Pecho",
@@ -30,7 +30,7 @@
                         {
                             "id": "550e8400-e29b-41d4-a716-44665544H001",
                             "nombre": "Rotaciones de hombros con barra vacía",
-                            "descripcion": "Sujeta una barra sin discos y gira los hombros hacia adelante y atrás para activar la articulación.",
+                            "descripcion": "Sujeta una barra sin discos y gira los hombros en sentido anterior y posterior para activar la articulación.",
                             "imagePlaceholder": "rotacion_hombros_barra.png",
                             "bodyZone": "upper",
                             "durationSeconds": 15
@@ -140,7 +140,7 @@
                         {
                             "id": "550e8400-e29b-41d4-a716-44665544H007",
                             "nombre": "Press de Pecho en Máquina de Carga de Discos",
-                            "descripcion": "Sentado en la máquina de press de pecho, empuja las asas hacia adelante extendiendo los brazos. Controla la fase negativa.",
+                            "descripcion": "Sentado en la máquina de press de pecho, empuja las asas en dirección anterior extendiendo los brazos. Controla la fase negativa.",
                             "imagePlaceholder": "press_pecho_maquina_discos.png",
                             "bodyZone": "upper",
                             "grupoMuscular": "Pecho",
@@ -186,7 +186,7 @@
                         {
                             "id": "550e8400-e29b-41d4-a716-44665544H009",
                             "nombre": "Press de Pecho en Polea",
-                            "descripcion": "De pie frente a la polea, empuja las asas hacia adelante juntando las manos. Enfócate en la contracción máxima.",
+                            "descripcion": "De pie frente a la polea, empuja las asas en dirección anterior juntando las manos. Enfócate en la contracción máxima.",
                             "imagePlaceholder": "press_pecho_polea.png",
                             "bodyZone": "upper",
                             "grupoMuscular": "Pecho",
@@ -219,7 +219,7 @@
                         {
                             "id": "550e8400-e29b-41d4-a716-44665544H011",
                             "nombre": "Estiramiento de pecho con banda",
-                            "descripcion": "Sujeta una banda por detrás de la espalda y estira los brazos hacia adelante.",
+                            "descripcion": "Sujeta una banda por detrás de la espalda y estira los brazos en dirección anterior.",
                             "imagePlaceholder": "estiramiento_pecho_banda.png",
                             "bodyZone": "upper",
                             "durationSeconds": 20
@@ -238,7 +238,7 @@
                         {
                             "id": "550e8400-e29b-41d4-a716-44665544H012",
                             "nombre": "Rotaciones de hombros con banda",
-                            "descripcion": "Sujeta una banda elástica y gira los hombros hacia adelante y atrás.",
+                            "descripcion": "Sujeta una banda elástica y gira los hombros en sentido anterior y posterior.",
                             "imagePlaceholder": "rotacion_hombros_banda.png",
                             "bodyZone": "upper",
                             "durationSeconds": 15
@@ -348,7 +348,7 @@
                         {
                             "id": "550e8400-e29b-41d4-a716-44665544H018",
                             "nombre": "Pájaros con Mancuernas",
-                            "descripcion": "Inclinado hacia adelante, eleva las mancuernas hacia los lados para trabajar deltoides posteriores.",
+                            "descripcion": "Inclinado hacia anterior, eleva las mancuernas hacia los lados para trabajar deltoides posteriores.",
                             "imagePlaceholder": "pajaros_mancuernas.png",
                             "bodyZone": "upper",
                             "grupoMuscular": "Hombros",
@@ -630,7 +630,7 @@
                         {
                             "id": "550e8400-e29b-41d4-a716-44665544H032",
                             "nombre": "Estiramiento de bíceps",
-                            "descripcion": "Extiende el brazo hacia atrás y gira la palma hacia arriba para estirar el bíceps.",
+                            "descripcion": "Extiende el brazo hacia posterior y gira la palma hacia arriba para estirar el bíceps.",
                             "imagePlaceholder": "estiramiento_biceps.png",
                             "bodyZone": "upper",
                             "durationSeconds": 20
@@ -855,7 +855,7 @@
                     ]
                 }
             ],
-            "atras": [
+            "posterior": [
                 {
                     "dia": 2,
                     "grupoMuscular": "Espalda",
@@ -871,7 +871,7 @@
                         {
                             "id": "550e8400-e29b-41d4-a716-44665544H045",
                             "nombre": "Rotaciones de hombros con banda",
-                            "descripcion": "Sujeta una banda elástica y gira los hombros hacia adelante y atrás.",
+                            "descripcion": "Sujeta una banda elástica y gira los hombros en sentido anterior y posterior.",
                             "imagePlaceholder": "rotacion_hombros_banda.png",
                             "bodyZone": "upper",
                             "durationSeconds": 15
@@ -935,7 +935,7 @@
                         {
                             "id": "550e8400-e29b-41d4-a716-44665544H049",
                             "nombre": "Remo con Barra Inclinado",
-                            "descripcion": "Inclinado hacia adelante, tira de la barra hacia el abdomen manteniendo la espalda recta.",
+                            "descripcion": "Inclinado hacia anterior, tira de la barra hacia el abdomen manteniendo la espalda recta.",
                             "imagePlaceholder": "remo_barra_inclinado.png",
                             "bodyZone": "upper",
                             "grupoMuscular": "Espalda",
@@ -981,7 +981,7 @@
                         {
                             "id": "550e8400-e29b-41d4-a716-44665544H051",
                             "nombre": "Remo Unilateral con Mancuerna",
-                            "descripcion": "Apóyate en un banco y rema con una mancuerna llevando el codo hacia atrás.",
+                            "descripcion": "Apóyate en un banco y rema con una mancuerna llevando el codo hacia posterior.",
                             "imagePlaceholder": "remo_unilateral_mancuerna.png",
                             "bodyZone": "upper",
                             "grupoMuscular": "Espalda",
@@ -1274,7 +1274,7 @@
                     {
                         "id": "550e8400-e29b-41d4-a716-44665544H066",
                         "nombre": "Estiramiento de isquiotibiales",
-                        "descripcion": "Sentado, extiende una pierna y flexiona el torso hacia adelante.",
+                        "descripcion": "Sentado, extiende una pierna y flexiona el torso hacia anterior.",
                         "imagePlaceholder": "estiramiento_isquiotibiales.png",
                         "bodyZone": "lower",
                         "durationSeconds": 20

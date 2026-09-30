@@ -61,8 +61,8 @@ describe('routinesData', () => {
       const days = listCatalogDays(getGoalCatalog(location, goal));
 
       expect(days.map((entry) => entry.day.dia).sort()).toEqual([1, 2, 3, 4, 5, 6, 7]);
-      expect(days.some((entry) => entry.bodySplit === 'upper-front')).toBe(true);
-      expect(days.some((entry) => entry.bodySplit === 'upper-back')).toBe(true);
+      expect(days.some((entry) => entry.bodySplit === 'upper-anterior')).toBe(true);
+      expect(days.some((entry) => entry.bodySplit === 'upper-posterior')).toBe(true);
       expect(days.some((entry) => entry.bodySplit === 'lower')).toBe(true);
     }
   });

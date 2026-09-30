@@ -18,7 +18,7 @@
     "nota": "Para hipertrofia en casa se prioriza la sobrecarga progresiva usando mochilas con peso, bandas de alta resistencia y variantes avanzadas de peso corporal. Descanso entre series: 60-90 segundos. Busca el fallo muscular en la última serie. Para adultos (40-59) y seniors (+60) se recomienda enfocarse en técnica y controlar el descenso.",
     "rutinaSemanal": {
         "trenSuperior": {
-            "alFrente": [
+            "anterior": [
                 {
                     "dia": 1,
                     "grupoMuscular": "Pecho",
@@ -140,7 +140,7 @@
                         {
                             "id": "550e8400-e29b-41d4-a716-44665544CH07",
                             "nombre": "Aperturas con banda (pecho)",
-                            "descripcion": "Banda sujeta detrás, abre brazos hacia adelante apretando el pectoral.",
+                            "descripcion": "Banda sujeta detrás, abre los brazos en dirección anterior apretando el pectoral.",
                             "imagePlaceholder": "aperturas_banda_pecho.png",
                             "bodyZone": "upper",
                             "grupoMuscular": "Pecho",
@@ -371,7 +371,7 @@
                         {
                             "id": "550e8400-e29b-41d4-a716-44665544CH19",
                             "nombre": "Pájaros con banda",
-                            "descripcion": "Inclinado hacia adelante, eleva los brazos hacia los lados con banda para deltoides posteriores.",
+                            "descripcion": "Inclinado hacia anterior, eleva los brazos hacia los lados con banda para deltoides posteriores.",
                             "imagePlaceholder": "pajaros_banda.png",
                             "bodyZone": "upper",
                             "grupoMuscular": "Hombros",
@@ -646,7 +646,7 @@
                     ]
                 }
             ],
-            "atras": [
+            "posterior": [
                 {
                     "dia": 2,
                     "grupoMuscular": "Espalda",

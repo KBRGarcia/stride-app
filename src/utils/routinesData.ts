@@ -38,13 +38,13 @@ interface TaggedCatalogDay {
   bodySplit: BodySplit;
 }
 
-/** Ordena la semana: tren superior al frente, tren superior atrás y tren inferior. */
+/** Ordena la semana: tren superior anterior, tren superior posterior y tren inferior. */
 export function listCatalogDays(catalog: GoalCatalog): TaggedCatalogDay[] {
   const { trenSuperior, trenInferior } = catalog.rutinaSemanal;
 
   return [
-    ...trenSuperior.alFrente.map((day) => ({ day, bodySplit: 'upper-front' as const })),
-    ...trenSuperior.atras.map((day) => ({ day, bodySplit: 'upper-back' as const })),
+    ...trenSuperior.anterior.map((day) => ({ day, bodySplit: 'upper-anterior' as const })),
+    ...trenSuperior.posterior.map((day) => ({ day, bodySplit: 'upper-posterior' as const })),
     ...trenInferior.map((day) => ({ day, bodySplit: 'lower' as const })),
   ].sort((left, right) => left.day.dia - right.day.dia);
 }

@@ -18,7 +18,7 @@
     "nota": "Las repeticiones y series se ajustan según la edad. Para adultos (40-59) y seniors (+60) se recomienda enfocarse en técnica y controlar el descenso. Descanso entre series: 60-90 segundos.",
     "rutinaSemanal": {
         "trenSuperior": {
-            "alFrente": [
+            "anterior": [
                 {
                     "dia": 1,
                     "grupoMuscular": "Pecho",
@@ -30,7 +30,7 @@
                         {
                             "id": "550e8400-e29b-41d4-a716-44665544CT01",
                             "nombre": "Rotación de brazos",
-                            "descripcion": "Gira los brazos hacia adelante y atrás para calentar hombros y pecho.",
+                            "descripcion": "Gira los brazos en sentido anterior y posterior para calentar hombros y pecho.",
                             "imagePlaceholder": "rotacion_brazos.png",
                             "bodyZone": "upper",
                             "durationSeconds": 15
@@ -246,7 +246,7 @@
                         {
                             "id": "550e8400-e29b-41d4-a716-44665544CT13",
                             "nombre": "Rotación de brazos grandes",
-                            "descripcion": "Haz círculos amplios con los brazos extendidos hacia adelante y atrás.",
+                            "descripcion": "Haz círculos amplios con los brazos extendidos en sentido anterior y posterior.",
                             "imagePlaceholder": "rotacion_brazos_grandes.png",
                             "bodyZone": "upper",
                             "durationSeconds": 15
@@ -325,7 +325,7 @@
                         {
                             "id": "550e8400-e29b-41d4-a716-44665544CT17",
                             "nombre": "Pájaros con banda",
-                            "descripcion": "Inclinado hacia adelante, eleva los brazos hacia los lados con banda para trabajar deltoides posteriores.",
+                            "descripcion": "Inclinado hacia anterior, eleva los brazos hacia los lados con banda para trabajar deltoides posteriores.",
                             "imagePlaceholder": "pajaros_banda.png",
                             "bodyZone": "upper",
                             "grupoMuscular": "Hombros",
@@ -582,7 +582,7 @@
                         {
                             "id": "550e8400-e29b-41d4-a716-44665544CT30",
                             "nombre": "Patada de tríceps con banda",
-                            "descripcion": "Inclinado hacia adelante, extiende el codo hacia atrás con banda. Aprieta el tríceps.",
+                            "descripcion": "Inclinado hacia anterior, extiende el codo hacia posterior con banda. Aprieta el tríceps.",
                             "imagePlaceholder": "patada_triceps_banda.png",
                             "bodyZone": "upper",
                             "grupoMuscular": "Brazos (Extensores)",
@@ -630,7 +630,7 @@
                         {
                             "id": "550e8400-e29b-41d4-a716-44665544CT32",
                             "nombre": "Estiramiento de bíceps",
-                            "descripcion": "Extiende el brazo hacia atrás y gira la palma hacia arriba para estirar el bíceps. Mantén 20 segundos por lado.",
+                            "descripcion": "Extiende el brazo hacia posterior y gira la palma hacia arriba para estirar el bíceps. Mantén 20 segundos por lado.",
                             "imagePlaceholder": "estiramiento_biceps.png",
                             "bodyZone": "upper",
                             "durationSeconds": 20
@@ -646,7 +646,7 @@
                     ]
                 }
             ],
-            "atras": [
+            "posterior": [
                 {
                     "dia": 2,
                     "grupoMuscular": "Espalda",
@@ -703,7 +703,7 @@
                         {
                             "id": "550e8400-e29b-41d4-a716-44665544CT37",
                             "nombre": "Remo con banda",
-                            "descripcion": "Con banda sujeta a un punto fijo, tira hacia el pecho llevando los codos hacia atrás.",
+                            "descripcion": "Con banda sujeta a un punto fijo, tira hacia el pecho llevando los codos hacia posterior.",
                             "imagePlaceholder": "remo_banda.png",
                             "bodyZone": "upper",
                             "grupoMuscular": "Espalda",
@@ -917,7 +917,7 @@
                     {
                         "id": "550e8400-e29b-41d4-a716-44665544CT48",
                         "nombre": "Zancadas",
-                        "descripcion": "Da un paso largo hacia adelante y baja la rodilla trasera sin tocar el suelo. Alterna piernas.",
+                        "descripcion": "Da un paso largo anterior y baja la rodilla trasera sin tocar el suelo. Alterna piernas.",
                         "imagePlaceholder": "zancadas.png",
                         "bodyZone": "lower",
                         "grupoMuscular": "Piernas",
@@ -1032,7 +1032,7 @@
                     {
                         "id": "550e8400-e29b-41d4-a716-44665544CT53",
                         "nombre": "Zancadas invertidas",
-                        "descripcion": "Da un paso hacia atrás y baja la rodilla trasera. Alterna piernas manteniendo el equilibrio.",
+                        "descripcion": "Da un paso posterior y baja la rodilla trasera. Alterna piernas manteniendo el equilibrio.",
                         "imagePlaceholder": "zancadas_invertidas.png",
                         "bodyZone": "lower",
                         "grupoMuscular": "Piernas",
@@ -1134,7 +1134,7 @@
                     {
                         "id": "550e8400-e29b-41d4-a716-44665544CT58",
                         "nombre": "Estiramiento de isquiotibiales",
-                        "descripcion": "Sentado, extiende una pierna y flexiona el torso hacia adelante. 20 segundos por pierna.",
+                        "descripcion": "Sentado, extiende una pierna y flexiona el torso hacia anterior. 20 segundos por pierna.",
                         "imagePlaceholder": "estiramiento_isquiotibiales.png",
                         "bodyZone": "lower",
                         "durationSeconds": 20

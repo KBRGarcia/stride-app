@@ -83,11 +83,11 @@ describe('resolveWeeklyPlan', () => {
     const plan = resolveWeeklyPlan(createProfile('2000-01-01'), REFERENCE_DATE);
 
     expect(plan?.weeklyRoutine.map((day) => [day.day, day.bodySplit, day.muscleGroup])).toEqual([
-      [1, 'upper-front', 'Pecho'],
-      [2, 'upper-back', 'Espalda'],
-      [3, 'upper-front', 'Hombros'],
+      [1, 'upper-anterior', 'Pecho'],
+      [2, 'upper-posterior', 'Espalda'],
+      [3, 'upper-anterior', 'Hombros'],
       [4, 'lower', 'Piernas'],
-      [5, 'upper-front', 'Brazos'],
+      [5, 'upper-anterior', 'Brazos'],
       [6, 'lower', 'Abdomen'],
       [7, 'lower', 'Recuperación Activa'],
     ]);

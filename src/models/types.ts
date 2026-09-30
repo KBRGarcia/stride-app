@@ -11,7 +11,7 @@ export type AgeBand = '14-39' | '40-59' | '60+';
 export type DayOfWeek = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
 /** Ubicación del día dentro de la división tren superior / tren inferior. */
-export type BodySplit = 'upper-front' | 'upper-back' | 'lower';
+export type BodySplit = 'upper-anterior' | 'upper-posterior' | 'lower';
 
 /**
  * Ejercicio individual dentro de un día de entrenamiento.
@@ -87,8 +87,8 @@ export interface GoalCatalog {
   nota: string;
   rutinaSemanal: {
     trenSuperior: {
-      alFrente: CatalogDay[];
-      atras: CatalogDay[];
+      anterior: CatalogDay[];
+      posterior: CatalogDay[];
     };
     trenInferior: CatalogDay[];
   };
