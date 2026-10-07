@@ -8,7 +8,12 @@ KEYSTORE="${CRED_DIR}/stride-release.keystore"
 PROPS="${CRED_DIR}/keystore.properties"
 
 STORE_PASS="${STRIDE_KEYSTORE_PASSWORD:-}"
-KEY_PASS="${STRIDE_KEY_PASSWORD:-}"
+KEY_PASS="${STRIDE_KEY_PASSWORD:-${STORE_PASS}}"
+# PKCS12 solo admite una contraseña; Gradle debe usar la misma en store y key.
+if [[ -n "${STORE_PASS}" && "${KEY_PASS}" != "${STORE_PASS}" ]]; then
+  echo "==> PKCS12: keyPassword igual a storePassword."
+  KEY_PASS="${STORE_PASS}"
+fi
 
 mkdir -p "${CRED_DIR}"
 

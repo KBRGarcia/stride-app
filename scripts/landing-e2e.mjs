@@ -40,9 +40,10 @@ async function runChecks(page) {
   if (!(await page.locator('.hero h1').isVisible())) {
     throw new Error('Hero h1 no visible en index');
   }
-  if ((await page.locator('#download-lite').textContent())?.trim() !== 'Descargar') {
-    throw new Error('Botón descarga no habilitado en index');
-  }
+  await page.waitForFunction(
+    () => document.getElementById('download-lite')?.textContent?.trim() === 'Descargar',
+    { timeout: 10_000 },
+  );
 
   await page.goto(`${BASE}/productos.html?v=${ASSET_V}`, { waitUntil: 'networkidle' });
   if (!(await page.locator('#download-lite-productos').isVisible())) {

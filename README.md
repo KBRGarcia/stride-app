@@ -284,7 +284,7 @@ Los archivos de test viven en `src/utils/__tests__/`.
 - [x] Temporizador de descanso con notificaciones
 - [x] Sección de cardio y guías nutricionales
 - [x] Tema claro / oscuro
-- [ ] Build de producción (APK) con EAS Build
+- [x] Build de producción (APK) — `npm run build:apk:local` o `npm run build:apk:landing`
 
 ---
 

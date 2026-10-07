@@ -195,19 +195,6 @@
                     "reps": "15"
                 },
                 {
-                    "id": "550e8400-e29b-41d4-a716-44665544CF73",
-                    "nombre": "Pájaro-perro",
-                    "descripcion": "Extiende brazo y pierna contrarios manteniendo el equilibrio. 12 repeticiones por lado.",
-                    "imagePlaceholder": "pajaro_perro.png",
-                    "bodyZone": "full",
-                    "fase": "entrenamiento",
-                    "grupoMuscular": "Espalda",
-                    "musculo": "Erectores de la columna, Glúteos",
-                    "herramienta": "Peso Corporal",
-                    "series": 2,
-                    "reps": "12"
-                },
-                {
                     "id": "550e8400-e29b-41d4-a716-44665544CF75",
                     "nombre": "Estiramientos suaves con banda",
                     "descripcion": "Realiza estiramientos suaves de piernas, espalda y hombros con banda elástica.",
@@ -279,6 +266,19 @@
                     "reps": "15"
                 },
                 {
+                    "id": "550e8400-e29b-41d4-a716-44665544CF20",
+                    "nombre": "Elevación lateral en decúbito prono",
+                    "descripcion": "Tumbado boca abajo, eleva los brazos hacia los lados para trabajar deltoides posteriores.",
+                    "imagePlaceholder": "elevacion_lateral_prono.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Hombros",
+                    "musculo": "Deltoides posteriores",
+                    "herramienta": "Peso Corporal",
+                    "series": 4,
+                    "reps": "15"
+                },
+                {
                     "id": "550e8400-e29b-41d4-a716-44665544CF18",
                     "nombre": "Remo al mentón con banda",
                     "descripcion": "Con banda bajo los pies, tira hacia el mentón con los codos altos para trabajar deltoides y trapecio.",
@@ -303,19 +303,6 @@
                     "herramienta": "Mancuernas",
                     "series": 4,
                     "reps": "15"
-                },
-                {
-                    "id": "550e8400-e29b-41d4-a716-44665544CF20",
-                    "nombre": "Elevación lateral en decúbito prono",
-                    "descripcion": "Tumbado boca abajo, eleva los brazos hacia los lados para trabajar deltoides posteriores.",
-                    "imagePlaceholder": "elevacion_lateral_prono.png",
-                    "bodyZone": "upper",
-                    "fase": "entrenamiento",
-                    "grupoMuscular": "Hombros",
-                    "musculo": "Deltoides posteriores",
-                    "herramienta": "Peso Corporal",
-                    "series": 4,
-                    "reps": "15"
                 }
             ]
         },
@@ -323,32 +310,6 @@
             "id": "brazos",
             "nombre": "Brazos",
             "ejercicios": [
-                {
-                    "id": "550e8400-e29b-41d4-a716-44665544CF25",
-                    "nombre": "Curl de bíceps con banda",
-                    "descripcion": "Pisa la banda y flexiona los codos llevando las manos hacia los hombros. Aprieta el bíceps.",
-                    "imagePlaceholder": "curl_biceps_banda.png",
-                    "bodyZone": "upper",
-                    "fase": "entrenamiento",
-                    "grupoMuscular": "Brazos",
-                    "musculo": "Bíceps braquial",
-                    "herramienta": "Banda Elástica",
-                    "series": 4,
-                    "reps": "15"
-                },
-                {
-                    "id": "550e8400-e29b-41d4-a716-44665544CF26",
-                    "nombre": "Curl martillo con banda",
-                    "descripcion": "Con banda bajo los pies, flexiona los codos con agarre neutro (como si sostuvieras un martillo).",
-                    "imagePlaceholder": "curl_martillo_banda.png",
-                    "bodyZone": "upper",
-                    "fase": "entrenamiento",
-                    "grupoMuscular": "Brazos",
-                    "musculo": "Braquial, Braquiorradial",
-                    "herramienta": "Banda Elástica",
-                    "series": 4,
-                    "reps": "15"
-                },
                 {
                     "id": "550e8400-e29b-41d4-a716-44665544CF27",
                     "nombre": "Extensión de tríceps por encima de la cabeza",
@@ -371,6 +332,32 @@
                     "fase": "entrenamiento",
                     "grupoMuscular": "Brazos",
                     "musculo": "Tríceps braquial",
+                    "herramienta": "Banda Elástica",
+                    "series": 4,
+                    "reps": "15"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CF25",
+                    "nombre": "Curl de bíceps con banda",
+                    "descripcion": "Pisa la banda y flexiona los codos llevando las manos hacia los hombros. Aprieta el bíceps.",
+                    "imagePlaceholder": "curl_biceps_banda.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Brazos",
+                    "musculo": "Bíceps braquial",
+                    "herramienta": "Banda Elástica",
+                    "series": 4,
+                    "reps": "15"
+                },
+                {
+                    "id": "550e8400-e29b-41d4-a716-44665544CF26",
+                    "nombre": "Curl martillo con banda",
+                    "descripcion": "Con banda bajo los pies, flexiona los codos con agarre neutro (como si sostuvieras un martillo).",
+                    "imagePlaceholder": "curl_martillo_banda.png",
+                    "bodyZone": "upper",
+                    "fase": "entrenamiento",
+                    "grupoMuscular": "Brazos",
+                    "musculo": "Braquial, Braquiorradial",
                     "herramienta": "Banda Elástica",
                     "series": 4,
                     "reps": "15"
@@ -510,19 +497,6 @@
                     "herramienta": "Peso Corporal",
                     "series": 4,
                     "reps": "15"
-                },
-                {
-                    "id": "550e8400-e29b-41d4-a716-44665544CF72",
-                    "nombre": "Plancha",
-                    "descripcion": "Mantén la plancha durante 30 segundos para activar el core suavemente.",
-                    "imagePlaceholder": "plancha.png",
-                    "bodyZone": "full",
-                    "fase": "entrenamiento",
-                    "grupoMuscular": "Abdomen",
-                    "musculo": "Recto abdominal, Transverso del abdomen",
-                    "herramienta": "Peso Corporal",
-                    "series": 2,
-                    "reps": "30s"
                 }
             ]
         },
@@ -659,19 +633,6 @@
                     "herramienta": "Peso Corporal",
                     "series": 4,
                     "reps": "15"
-                },
-                {
-                    "id": "550e8400-e29b-41d4-a716-44665544CF74",
-                    "nombre": "Puente de glúteos",
-                    "descripcion": "Eleva la cadera apretando glúteos. Mantén 2 segundos arriba.",
-                    "imagePlaceholder": "puente_gluteos.png",
-                    "bodyZone": "lower",
-                    "fase": "entrenamiento",
-                    "grupoMuscular": "Piernas",
-                    "musculo": "Glúteos, Isquiotibiales",
-                    "herramienta": "Peso Corporal",
-                    "series": 2,
-                    "reps": "15"
                 }
             ]
         },
@@ -716,24 +677,6 @@
                     "grupoMuscular": "Espalda"
                 },
                 {
-                    "id": "550e8400-e29b-41d4-a716-44665544CF12",
-                    "nombre": "Encogimiento de hombros",
-                    "descripcion": "Sube y baja los hombros para activar la zona alta de la espalda y hombros.",
-                    "imagePlaceholder": "encogimiento_hombros.png",
-                    "bodyZone": "upper",
-                    "fase": "calentamiento",
-                    "grupoMuscular": "Hombros"
-                },
-                {
-                    "id": "550e8400-e29b-41d4-a716-44665544CF13",
-                    "nombre": "Rotación de brazos grandes",
-                    "descripcion": "Haz círculos amplios con los brazos extendidos en sentido anterior y posterior.",
-                    "imagePlaceholder": "rotacion_brazos_grandes.png",
-                    "bodyZone": "upper",
-                    "fase": "calentamiento",
-                    "grupoMuscular": "Hombros"
-                },
-                {
                     "id": "550e8400-e29b-41d4-a716-44665544CF45",
                     "nombre": "Círculos de cadera",
                     "descripcion": "Realiza círculos con la cadera en ambos sentidos para activar la articulación.",
@@ -752,19 +695,19 @@
                     "grupoMuscular": "Piernas"
                 },
                 {
+                    "id": "550e8400-e29b-41d4-a716-44665544CF12",
+                    "nombre": "Encogimiento de hombros",
+                    "descripcion": "Sube y baja los hombros para activar la zona alta de la espalda y hombros.",
+                    "imagePlaceholder": "encogimiento_hombros.png",
+                    "bodyZone": "upper",
+                    "fase": "calentamiento",
+                    "grupoMuscular": "Hombros"
+                },
+                {
                     "id": "550e8400-e29b-41d4-a716-44665544CF23",
                     "nombre": "Rotación de muñecas",
                     "descripcion": "Gira las muñecas en círculos hacia ambos lados para activar antebrazos.",
                     "imagePlaceholder": "rotacion_munecas.png",
-                    "bodyZone": "upper",
-                    "fase": "calentamiento",
-                    "grupoMuscular": "Brazos"
-                },
-                {
-                    "id": "550e8400-e29b-41d4-a716-44665544CF24",
-                    "nombre": "Curl de bíceps con banda ligera",
-                    "descripcion": "Pisa una banda elástica y flexiona los codos suavemente para calentar bíceps.",
-                    "imagePlaceholder": "curl_banda.png",
                     "bodyZone": "upper",
                     "fase": "calentamiento",
                     "grupoMuscular": "Brazos"
@@ -786,24 +729,6 @@
                     "bodyZone": "full",
                     "fase": "calentamiento",
                     "grupoMuscular": "Abdomen"
-                },
-                {
-                    "id": "550e8400-e29b-41d4-a716-44665544CF70",
-                    "nombre": "Movilidad articular general",
-                    "descripcion": "Realiza círculos suaves con tobillos, rodillas, cadera, hombros y cuello.",
-                    "imagePlaceholder": "movilidad_articular_general.png",
-                    "bodyZone": "full",
-                    "fase": "calentamiento",
-                    "grupoMuscular": "Hombros"
-                },
-                {
-                    "id": "550e8400-e29b-41d4-a716-44665544CF71",
-                    "nombre": "Marcha en el lugar",
-                    "descripcion": "Camina en el lugar elevando rodillas suavemente durante 5 minutos.",
-                    "imagePlaceholder": "marcha_lugar.png",
-                    "bodyZone": "full",
-                    "fase": "calentamiento",
-                    "grupoMuscular": "Piernas"
                 }
             ]
         },
@@ -848,24 +773,6 @@
                     "grupoMuscular": "Espalda"
                 },
                 {
-                    "id": "550e8400-e29b-41d4-a716-44665544CF21",
-                    "nombre": "Estiramiento de deltoides",
-                    "descripcion": "Cruza un brazo sobre el pecho y presiona suavemente con el otro. Mantén 20 segundos por lado.",
-                    "imagePlaceholder": "estiramiento_deltoides.png",
-                    "bodyZone": "upper",
-                    "fase": "enfriamiento",
-                    "grupoMuscular": "Hombros"
-                },
-                {
-                    "id": "550e8400-e29b-41d4-a716-44665544CF22",
-                    "nombre": "Estiramiento de trapecio",
-                    "descripcion": "Inclina la cabeza hacia un lado y sujeta suavemente con la mano. Mantén 20 segundos por lado.",
-                    "imagePlaceholder": "estiramiento_trapecio.png",
-                    "bodyZone": "upper",
-                    "fase": "enfriamiento",
-                    "grupoMuscular": "Hombros"
-                },
-                {
                     "id": "550e8400-e29b-41d4-a716-44665544CF57",
                     "nombre": "Estiramiento de cuádriceps",
                     "descripcion": "Lleva el talón al glúteo sujetando el pie, mantén la rodilla hacia abajo. 20 segundos por pierna.",
@@ -884,13 +791,13 @@
                     "grupoMuscular": "Piernas"
                 },
                 {
-                    "id": "550e8400-e29b-41d4-a716-44665544CF32",
-                    "nombre": "Estiramiento de bíceps",
-                    "descripcion": "Extiende el brazo hacia posterior y gira la palma hacia arriba para estirar el bíceps. Mantén 20 segundos por lado.",
-                    "imagePlaceholder": "estiramiento_biceps.png",
+                    "id": "550e8400-e29b-41d4-a716-44665544CF21",
+                    "nombre": "Estiramiento de deltoides",
+                    "descripcion": "Cruza un brazo sobre el pecho y presiona suavemente con el otro. Mantén 20 segundos por lado.",
+                    "imagePlaceholder": "estiramiento_deltoides.png",
                     "bodyZone": "upper",
                     "fase": "enfriamiento",
-                    "grupoMuscular": "Brazos"
+                    "grupoMuscular": "Hombros"
                 },
                 {
                     "id": "550e8400-e29b-41d4-a716-44665544CF33",
@@ -915,24 +822,6 @@
                     "nombre": "Torsión espinal tumbado",
                     "descripcion": "Tumbado, gira la cadera hacia un lado mientras el torso mira al otro. 20 segundos por lado.",
                     "imagePlaceholder": "torsion_espinal.png",
-                    "bodyZone": "full",
-                    "fase": "enfriamiento",
-                    "grupoMuscular": "Abdomen"
-                },
-                {
-                    "id": "550e8400-e29b-41d4-a716-44665544CF76",
-                    "nombre": "Estiramiento de espalda (gato)",
-                    "descripcion": "En cuatro apoyos, arquea la espalda hacia arriba y hacia abajo suavemente. Mantén 20 segundos.",
-                    "imagePlaceholder": "estiramiento_gato.png",
-                    "bodyZone": "full",
-                    "fase": "enfriamiento",
-                    "grupoMuscular": "Espalda"
-                },
-                {
-                    "id": "550e8400-e29b-41d4-a716-44665544CF77",
-                    "nombre": "Respiración diafragmática",
-                    "descripcion": "Tumbado boca arriba, inhala profundamente por la nariz y exhala por la boca. Repite durante 20 segundos.",
-                    "imagePlaceholder": "respiracion_diafragmatica.png",
                     "bodyZone": "full",
                     "fase": "enfriamiento",
                     "grupoMuscular": "Abdomen"
